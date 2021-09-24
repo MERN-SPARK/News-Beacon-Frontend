@@ -21,7 +21,7 @@ export class App extends Component {
             <Home />
           </Route>
           <Route path="/about">
-            <AboutUs />
+            <AboutUs/>
           </Route>
           <Route path="/favorate">
             <Favorate />
