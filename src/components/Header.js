@@ -1,14 +1,28 @@
 import React, { Component } from "react";
-import { Navbar,Nav, NavDropdown,Form,Button,FormControl} from "react-bootstrap";
-
-
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  Button,
+  FormControl,
+  Offcanvas,
+} from "react-bootstrap";
 
 export class Header extends Component {
   render() {
     return (
       <>
-        <Navbar bg="light" expand="lg">
-          <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+        <Navbar
+          bg="light"
+          expand="lg"
+          style={{ position: "sticky", top: "0", zIndex: 1 }}
+        >
+          <Navbar.Brand href="#home"></Navbar.Brand>
+          <Navbar.Brand href="#">
+            {" "}
+            <img src="../imgs/3346914.png" width="30" height="30" alt="logo" />
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -16,8 +30,10 @@ export class Header extends Component {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="#action1">Home</Nav.Link>
-              <Nav.Link href="#action2">Link</Nav.Link>
+              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/about">About Us</Nav.Link>
+              <Nav.Link href="/favorate">favorate</Nav.Link>
+
               <NavDropdown title="Link" id="navbarScrollingDropdown">
                 <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action4">
@@ -41,6 +57,28 @@ export class Header extends Component {
               />
               <Button variant="outline-success">Search</Button>
             </Form>
+
+
+            {//******************SideNav******************** */}
+            }
+            <Button variant="primary" onClick={this.props.OpenNav} className="me-2">
+              side nav
+            </Button>
+            <Offcanvas show={this.props.openSideBar} onHide={this.props.closeNav} placement='end' >
+              <Offcanvas.Header closeButton >
+                <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+              </Offcanvas.Header>
+              <Offcanvas.Body>
+              <Nav.Link href="/about" >
+                About
+              </Nav.Link>
+              <Nav.Link href="/favorate" >
+                Favorate
+              </Nav.Link>
+
+              
+              </Offcanvas.Body>
+            </Offcanvas>
           </Navbar.Collapse>
         </Navbar>
       </>

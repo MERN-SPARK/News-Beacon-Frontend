@@ -3,9 +3,9 @@ import React, { Component } from 'react'
 export class Favorate extends Component {
     render() {
         return (
-            <div>
-                
-            </div>
+            <>
+             <h1 style ={{zIndex: 1}}>Favorate</h1>   
+            </>
         )
     }
 }
