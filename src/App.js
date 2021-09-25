@@ -9,10 +9,30 @@ import MoreInfo from "./components/MoreInfo";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      openSideBar : false,
+    }
+  }
+
+  
+  OpenNav = ()=>{
+    this.setState({
+      openSideBar:true
+    })
+  }
+
+  closeNav = ()=>{
+    this.setState({
+      openSideBar:false
+    })
+  }
+
   render() {
     return (
       <>
-      <Header />
+      <Header openSideBar={this.state.openSideBar} OpenNav={this.OpenNav} closeNav={this.closeNav}/>
       
       
       <Router>

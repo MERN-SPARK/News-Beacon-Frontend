@@ -58,24 +58,25 @@ export class Header extends Component {
               <Button variant="outline-success">Search</Button>
             </Form>
 
-            <Button variant="primary"  className="me-2">
+
+            {//******************SideNav******************** */}
+            }
+            <Button variant="primary" onClick={this.props.OpenNav} className="me-2">
               side nav
             </Button>
-            <Offcanvas show="true" placement='end' >
-              <Offcanvas.Header closeButton>
+            <Offcanvas show={this.props.openSideBar} onHide={this.props.closeNav} placement='end' >
+              <Offcanvas.Header closeButton >
                 <Offcanvas.Title>Offcanvas</Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
-              <Nav.Link href="#" >
-                Link
+              <Nav.Link href="/about" >
+                About
               </Nav.Link>
-              <Nav.Link href="#" >
-                Link
+              <Nav.Link href="/favorate" >
+                Favorate
               </Nav.Link>
 
-              <Nav.Link href="#" >
-                Link
-              </Nav.Link>                            
+              
               </Offcanvas.Body>
             </Offcanvas>
           </Navbar.Collapse>
