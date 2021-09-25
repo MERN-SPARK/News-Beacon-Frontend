@@ -2,18 +2,24 @@ import React, { Component } from "react";
 import { Col, Row, Card, Button, Container } from "react-bootstrap";
 
 class TopNews extends Component {
+  constructor(props){
+    super(props)
+    this.state={
+    showmore:6
+    }
+}
   render() {
     return (
-      <>
+      <div>
 
-      <h1 style={{margi:"50px auto" , textAlign:"center"}}>Top News</h1>
+      <h1 style={{margin:"50px auto" , textAlign:"center"}}>Top News</h1>
       <Container>
       <Row xs={1} md={3}>
-{this.props.topNews.map((item, index) => {
-    
-  if (index % 2 === 0) {
+{this.props.topNews.slice(0,this.state.showmore).map((item, index) => {
+    for(let i =0 ; i<6;i++){}
+  if (index % 3 === 1) {
     return (
-      <Col>
+      <Col  key ={index}>
         <Card style={{ width: "18rem" ,height:"400px" }}>
             <Card.Body>
             <Card.Title>{`${item.title}`}</Card.Title>
@@ -24,7 +30,7 @@ class TopNews extends Component {
     );
   }else{
       return(
-        <Col >
+        <Col  key ={index}>
         <Card style={{ width: "18rem",height:"400px" }}>
         
         <Card.Img variant="bottom" src={`${item.image}`} />
@@ -41,7 +47,9 @@ class TopNews extends Component {
 })}
 </Row>
       </Container>
-      </>
+      <Button variant="primary" onClick={()=>{this.setState({showmore:this.state.showmore+3})}}>Primary</Button>
+
+      </div>
     );
   }
 }
