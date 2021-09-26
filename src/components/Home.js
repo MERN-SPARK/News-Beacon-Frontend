@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import CarouselsNews from "./HomeComponent/CarouselsNews";
-import Weather from './HomeComponent/Weather'
+import Weather from "./HomeComponent/Weather";
 // import NewsFeed from './HomeComponent/NewsFeed';
-import MostPopular from './HomeComponent/MostPopular';
+import MostPopular from "./HomeComponent/MostPopular";
 import TopNews from "./HomeComponent/TopNews";
 import CovidNews from './HomeComponent/CovidNews';
+import Loading from "./HomeComponent/Loading";
 import axios from 'axios';
- 
 class Home extends Component {
      constructor(props){
          super(props)
@@ -26,51 +26,43 @@ class Home extends Component {
         let PopularNews = await axios.get('http://localhost:8070/PopularNews')
         
     let arra=(PopularNews.data.filter(function (el) {
+
+  //define function for the most popular and send the data to its component --> most popular api
+  //define function for obtining the top news and send it to its component --> top news api PORT=http://localhost:8070/TopNews
+
         return el != null;
-      }));
+      });
+
+      this.setState({
+        topThree: TopNews.data.slice(0, 3),
+        topNews: TopNews.data.slice(3, TopNews.data.length),
+        loaded: true,
+        most_popular: arra,
+      });
+    } catch (error) {}
+  };
+
+  async componentDidMount() {
+    this.topNewsShow();
+  }
+
+  // function to take the weather data of the searched country and put amman wheather as a default
 
     
-            this.setState({
-               topThree :TopNews.data.slice(0,3),
-               topNews :TopNews.data.slice(3,TopNews.data.length),
-               loaded:true,
-               most_popular:arra
-    
-            })
-            
-           }catch (error) {
-    
-           }
-    
-} 
+  render() {
+    return this.state.loaded ? (
+      <>
+        <CarouselsNews topThree={this.state.topThree} />
+        <Weather />
+        <TopNews topNews={this.state.topNews} />
+        <MostPopular popularNews={this.state.most_popular} />
+          <CovidNews/>
+      </>
+    ) : (
+      <Loading/>
+    );
+  }
 
-    
-async componentDidMount(){
-    this.topNewsShow()
-}
-    
-   
-// function to take the weather data of the searched country and put amman wheather as a default 
-
-    
-
-    render() {
-        return (
-            this.state.loaded ?(
-<>
-                <CarouselsNews topThree={this.state.topThree} />
-                <Weather/>
-                <TopNews topNews={this.state.topNews}/>
-                <MostPopular popularNews={this.state.most_popular}/> 
-                <CovidNews/>
-              </> 
-            ):(<h2>Loading ...</h2>)
-            
-        )
-    }
 }
 
-export default Home
-
-
-    
+export default Home;

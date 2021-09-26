@@ -26,8 +26,8 @@ export class MostPopular extends Component {
   render() {
     return (
       <div>
-        <h1 style={{ margin: "50px auto", textAlign: "center" }} >
-          popular News
+        <h1 style={{ margin: "50px auto", textAlign: "center" ,backgroundColor:"#444444",color:"white",height:'75px' }} >
+          <span style={{verticalAlign: 'middle'}}>popular News</span>
         </h1>
 
         <Container>
@@ -38,7 +38,9 @@ export class MostPopular extends Component {
                
                 if (index % 3 === 1) {
                   return (
-                    <Col key={index}>
+                    <Col key={index}
+                    style={{ display: "flex", justifyContent: "center" }}
+                    >
                       <Card style={{ width: "18rem", height: "400px" }} onClick={() => this.openmodals(item) }>
                         <Card.Body>
                          
@@ -50,7 +52,9 @@ export class MostPopular extends Component {
                   );
                 } else {
                   return (
-                    <Col key={index}>
+                    <Col key={index}
+                    style={{ display: "flex", justifyContent: "center" }}
+                    >
                       <Card style={{ width: "18rem", height: "400px" }} onClick={() => this.openmodals(item) }>
                         <Card.Img variant="bottom" src={`${item.image}`} />
 
@@ -64,20 +68,32 @@ export class MostPopular extends Component {
                 
               })}
           </Row>
+          <Button
+          variant="primary"
+          style={{
+            backgroundColor: "#EDEDED",
+            borderColor: "#EDEDED",
+            fontSize:"20px",
+            color: "#DA0037",
+            display: "block",
+            margin: "auto",
+            width: "90%",
+            textDecoration:"underline"
+          }}
+          onClick={() => {
+            this.setState({ showmore: this.state.showmore + 3 });
+            
+          }}
+        >
+          See More
+        </Button>
         </Container>
         <ModalHomepage
                  news={this.state.newslist}
                 showmodal={this.state.showmodal}
                 handleClose={this.handleClose}
               />;
-        <Button
-          variant="primary"
-          onClick={() => {
-            this.setState({ showmore: this.state.showmore + 3 });
-          }}
-        >
-          Primary
-        </Button>
+        
       </div>
     );
   }
