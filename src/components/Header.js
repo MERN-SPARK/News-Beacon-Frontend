@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import {
   Navbar,
   Nav,
@@ -9,32 +10,67 @@ import {
   Offcanvas,
 } from "react-bootstrap";
 
-export class Header extends Component {
+class Header extends Component {
   render() {
     return (
       <>
         <Navbar
-          bg="light"
+          bg="dark"
           expand="lg"
-          style={{ position: "sticky", top: "0", zIndex: 1 }}
+          style={{
+            backgroundColor: "#444444",
+            position: "sticky",
+            top: "0",
+            zIndex: 1,
+            display: "grid",
+            gridTemplateColumns: "auto auto ",
+            gridGap: "500px",
+          }}
         >
-          <Navbar.Brand href="#home"></Navbar.Brand>
-          <Navbar.Brand href="#">
-            {" "}
-            <img src="../imgs/3346914.png" width="30" height="30" alt="logo" />
+          <Navbar.Brand
+            href="/"
+            style={{
+              color: "white",
+              display: "grid",
+              gridGap: "30px",
+              gridTemplateColumns: "auto auto",
+            }}
+          >
+            <img
+              src="https://e7.pngegg.com/pngimages/28/78/png-clipart-lighthouse-lighthouse-drawing-postcard-miscellaneous-photography-thumbnail.png"
+              width="30"
+              height="30"
+              alt="logo"
+            />
+            {"News Beacon"}
           </Navbar.Brand>
+
           <Navbar.Toggle aria-controls="navbarScroll" />
-          <Navbar.Collapse id="navbarScroll">
+          <Navbar.Collapse
+            id="navbarScroll"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "auto auto auto",
+              gridGap: "100px",
+            }}
+          >
             <Nav
               className="mr-auto my-2 my-lg-0"
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/about">About Us</Nav.Link>
-              <Nav.Link href="/favorate">favorate</Nav.Link>
+              <Nav.Link href="/" style={{ color: "white" }}>
+                Home
+              </Nav.Link>
+              <Nav.Link href="/Link2" style={{ color: "white" }}>
+                Link2
+              </Nav.Link>
+              <Nav.Link href="/favorate" style={{ color: "white" }}>
+                Link3
+              </Nav.Link>
 
-              <NavDropdown title="Link" id="navbarScrollingDropdown">
+              {/* decomment if you need a dropDown list
+               <NavDropdown title="Link" id="navbarScrollingDropdown">
                 <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action4">
                   Another action
@@ -43,10 +79,7 @@ export class Header extends Component {
                 <NavDropdown.Item href="#action5">
                   Something else here
                 </NavDropdown.Item>
-              </NavDropdown>
-              <Nav.Link href="#" disabled>
-                Link
-              </Nav.Link>
+              </NavDropdown> */}
             </Nav>
             <Form className="d-flex">
               <FormControl
@@ -54,33 +87,75 @@ export class Header extends Component {
                 placeholder="Search"
                 className="mr-2"
                 aria-label="Search"
+                onChange={this.props.handelSearchQuery}
               />
-              <Button variant="outline-success">Search</Button>
+              <Button
+                variant="outline-danger"
+                style={{ borderColor: "#DA0037" }}
+              >
+                Search
+              </Button>
             </Form>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "auto auto auto",
+                gridGap: "20px",
+              }}
+            >
+              <Button
+                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
+              >
+                Login
+              </Button>
+              <Button
+                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
+              >
+                SignUp
+              </Button>
 
-
-            {//******************SideNav******************** */}
-            }
-            <Button variant="primary" onClick={this.props.OpenNav} className="me-2">
-              side nav
-            </Button>
-            <Offcanvas show={this.props.openSideBar} onHide={this.props.closeNav} placement='end' >
-              <Offcanvas.Header closeButton >
-                <Offcanvas.Title>Offcanvas</Offcanvas.Title>
-              </Offcanvas.Header>
-              <Offcanvas.Body>
-              <Nav.Link href="/about" >
-                About
-              </Nav.Link>
-              <Nav.Link href="/favorate" >
-                Favorate
-              </Nav.Link>
-
-              
-              </Offcanvas.Body>
-            </Offcanvas>
+              {
+                //button to show the sidenav
+              }
+              <Button
+                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
+                variant="primary"
+                onClick={this.props.OpenNav}
+                className="me-2"
+              >
+                More
+              </Button>
+            </div>
           </Navbar.Collapse>
         </Navbar>
+        {
+          //******************SideNav******************** */
+        }
+        <Offcanvas
+          show={this.props.openSideBar}
+          onHide={this.props.closeNav}
+          placement="end"
+          style={{
+            backgroundColor: "#EDEDED",
+          }}
+        >
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title style={{ color: "#DA0037", fontSize: "50px" }}>
+              More
+            </Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body style={{ fontSize: "30px" }}>
+            <Nav.Link href="/about" style={{ color: "#171717" }}>
+              About
+            </Nav.Link>
+            <Nav.Link href="/favorate" style={{ color: "#171717" }}>
+              Favorate
+            </Nav.Link>
+            <Nav.Link href="/sports" style={{ color: "#171717" }}>
+              Sports
+            </Nav.Link>
+          </Offcanvas.Body>
+        </Offcanvas>
       </>
     );
   }

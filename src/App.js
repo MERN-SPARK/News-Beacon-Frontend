@@ -6,14 +6,16 @@ import Home from "./components/Home";
 import AboutUs from "./components/AboutUs";
 import Favorate from "./components/Favorate";
 import MoreInfo from "./components/MoreInfo";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Sports from "./components/Sports";
+import CountryNews from "./components/CountryNews";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       openSideBar: false,
+      searchQuery: "",
     };
   }
 
@@ -29,6 +31,19 @@ export class App extends Component {
     });
   };
 
+  // handle the search form and put it in the header
+
+  handelSearchQuery = (e) => {
+    this.setState({
+      searchQuery: e.target.value,
+    });
+    console.log(this.state.searchQuery);
+  };
+  // handle submit which will use the search api and gives a q as a variable and then direct the user to a result page
+
+  HandelSubmit = (e) => {
+    e.preventDefault();
+  };
   render() {
     return (
       <>
@@ -36,6 +51,7 @@ export class App extends Component {
           openSideBar={this.state.openSideBar}
           OpenNav={this.OpenNav}
           closeNav={this.closeNav}
+          handelSearchQuery={this.handelSearchQuery}
         />
 
         <Router>
@@ -47,13 +63,17 @@ export class App extends Component {
               <AboutUs />
             </Route>
             <Route path="/favorate">
-              <div>
-                <Sports />
-              </div>
+              <Favorate />
             </Route>
-            {/* <Route path="/moreInfo">
-            <Sports />
-          </Route> */}
+
+            <Route path="/moreInfo">
+              <MoreInfo />
+            </Route>
+
+            <Route path="/sports">
+              <Sports />
+            </Route>
+
           </Switch>
         </Router>
 
