@@ -14,36 +14,40 @@ class Header extends Component {
     return (
       <>
         <Navbar
-          bg="light"
+          bg="dark"
           expand="lg"
           style={{
+            backgroundColor:"#444444",
             position: "sticky",
             top: "0",
             zIndex: 1,
             display: "grid",
             gridTemplateColumns: "auto auto ",
-            gridGap: "200px",
+            gridGap: "500px",
           }}
         >
-          <Navbar.Brand href="/">
-            <img src="../imgs/3346914.png" width="30" height="30" alt="logo" />
+          <Navbar.Brand href="/" style={{color:"white",display:"grid",gridGap:"30px",gridTemplateColumns:"auto auto"}}>
+            <img src="https://e7.pngegg.com/pngimages/28/78/png-clipart-lighthouse-lighthouse-drawing-postcard-miscellaneous-photography-thumbnail.png" width="30" height="30" alt="logo" />
             {"News Beacon"}
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse
             id="navbarScroll"
-            style={{ display: "grid", gridTemplateColumns: "auto auto auto",gridGap:'100px' , }}
+            style={{
+              display: "grid",
+              gridTemplateColumns: "auto auto auto",
+              gridGap: "100px",
+            }}
           >
             <Nav
               className="mr-auto my-2 my-lg-0"
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/Link2">Link2</Nav.Link>
-              <Nav.Link href="/favorate">Link3</Nav.Link>
-              
+              <Nav.Link href="/" style={{color:"white"}}>Home</Nav.Link>
+              <Nav.Link href="/Link2" style={{color:"white"}}>Link2</Nav.Link>
+              <Nav.Link href="/favorate" style={{color:"white"}}>Link3</Nav.Link>
 
               {/* decomment if you need a dropDown list
                <NavDropdown title="Link" id="navbarScrollingDropdown">
@@ -65,15 +69,31 @@ class Header extends Component {
                 aria-label="Search"
                 onChange={this.props.handelSearchQuery}
               />
-              <Button variant="outline-success">Search</Button>
+              <Button variant="outline-danger" style={{borderColor:"#DA0037"}}>Search</Button>
             </Form>
-            <div>
-              <Button>Login</Button>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "auto auto auto",
+                gridGap: "20px",
+              }}
+            >
+              <Button
+                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
+              >
+                Login
+              </Button>
+              <Button
+                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
+              >
+                SignUp
+              </Button>
 
               {
                 //button to show the sidenav
               }
               <Button
+                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
                 variant="primary"
                 onClick={this.props.OpenNav}
                 className="me-2"
@@ -90,13 +110,16 @@ class Header extends Component {
           show={this.props.openSideBar}
           onHide={this.props.closeNav}
           placement="end"
+          style={{
+            backgroundColor:"#EDEDED"
+          }}
         >
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+            <Offcanvas.Title style={{color:"#DA0037", fontSize:"50px"}}>More</Offcanvas.Title>
           </Offcanvas.Header>
-          <Offcanvas.Body style={{fontSize:"30px"}}>
-            <Nav.Link href="/about">About</Nav.Link>
-            <Nav.Link href="/favorate">Favorate</Nav.Link>
+          <Offcanvas.Body style={{ fontSize: "30px" }}>
+            <Nav.Link href="/about" style={{color:"#171717"}}>About</Nav.Link>
+            <Nav.Link href="/favorate" style={{color:"#171717"}}>Favorate</Nav.Link>
           </Offcanvas.Body>
         </Offcanvas>
       </>
