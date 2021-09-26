@@ -31,7 +31,7 @@ class Home extends Component {
   //define function for obtining the top news and send it to its component --> top news api PORT=http://localhost:8070/TopNews
 
         return el != null;
-      });
+      }))
 
       this.setState({
         topThree: TopNews.data.slice(0, 3),
