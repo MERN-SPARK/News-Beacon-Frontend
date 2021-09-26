@@ -37,7 +37,6 @@ export class App extends Component {
     this.setState({
       searchQuery: e.target.value,
     });
-    console.log(this.state.searchQuery);
   };
   // handle submit which will use the search api and gives a q as a variable and then direct the user to a result page
 
