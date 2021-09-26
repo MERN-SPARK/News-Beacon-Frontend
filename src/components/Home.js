@@ -4,27 +4,32 @@ import Weather from "./HomeComponent/Weather";
 // import NewsFeed from './HomeComponent/NewsFeed';
 import MostPopular from "./HomeComponent/MostPopular";
 import TopNews from "./HomeComponent/TopNews";
-import axios from "axios";
+import CovidNews from './HomeComponent/CovidNews';
 import Loading from "./HomeComponent/Loading";
-
+import axios from 'axios';
 class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loaded: false,
-      topNews: [],
-      topThree: [],
-      most_popular: [],
-    };
-  }
+     constructor(props){
+         super(props)
+         this.state={
+            loaded:false,
+            topNews:[],
+            topThree:[],
+            most_popular:[],
+         }
+     }
+     
+    //define function for the most popular and send the data to its component --> most popular api 
+   //define function for obtining the top news and send it to its component --> top news api PORT=http://localhost:8070/TopNews
+   topNewsShow=async ()=>{
+    try{
+        let TopNews = await axios.get(`http://localhost:8070/TopNews`)
+        let PopularNews = await axios.get('http://localhost:8070/PopularNews')
+        
+    let arra=(PopularNews.data.filter(function (el) {
 
   //define function for the most popular and send the data to its component --> most popular api
   //define function for obtining the top news and send it to its component --> top news api PORT=http://localhost:8070/TopNews
-  topNewsShow = async () => {
-    try {
-      let TopNews = await axios.get(`http://localhost:8070/TopNews`);
-      let PopularNews = await axios.get("http://localhost:8070/PopularNews");
-      let arra = PopularNews.data.filter(function (el) {
+
         return el != null;
       });
 
@@ -43,6 +48,7 @@ class Home extends Component {
 
   // function to take the weather data of the searched country and put amman wheather as a default
 
+    
   render() {
     return this.state.loaded ? (
       <>
@@ -50,11 +56,13 @@ class Home extends Component {
         <Weather />
         <TopNews topNews={this.state.topNews} />
         <MostPopular popularNews={this.state.most_popular} />
+          <CovidNews/>
       </>
     ) : (
       <Loading/>
     );
   }
+
 }
 
 export default Home;
