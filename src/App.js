@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import AboutUs from "./components/AboutUs";
 import Favorate from "./components/Favorate";
 import MoreInfo from "./components/MoreInfo";
+import Sports from "./components/Sports";
 import CountryNews from "./components/CountryNews";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -14,7 +15,7 @@ export class App extends Component {
     super(props);
     this.state = {
       openSideBar: false,
-      searchQuery:""
+      searchQuery: "",
     };
   }
 
@@ -40,10 +41,9 @@ export class App extends Component {
   };
   // handle submit which will use the search api and gives a q as a variable and then direct the user to a result page
 
-  HandelSubmit =(e)=>{
-      e.preventDefault()
-
-  }
+  HandelSubmit = (e) => {
+    e.preventDefault();
+  };
   render() {
     return (
       <>
@@ -64,10 +64,14 @@ export class App extends Component {
             </Route>
             <Route path="/favorate">
               <Favorate />
-              </Route>
-              
+            </Route>
+
             <Route path="/moreInfo">
               <MoreInfo />
+            </Route>
+
+            <Route path="/sports">
+              <Sports />
             </Route>
 
           </Switch>
