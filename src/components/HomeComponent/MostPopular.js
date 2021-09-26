@@ -26,7 +26,7 @@ export class MostPopular extends Component {
   render() {
     return (
       <div>
-        <h1 style={{ margin: "50px auto", textAlign: "center" }}>
+        <h1 style={{ margin: "50px auto", textAlign: "center" }} >
           popular News
         </h1>
 
@@ -39,14 +39,9 @@ export class MostPopular extends Component {
                 if (index % 3 === 1) {
                   return (
                     <Col key={index}>
-                      <Card style={{ width: "18rem", height: "400px" }}>
+                      <Card style={{ width: "18rem", height: "400px" }} onClick={() => this.openmodals(item) }>
                         <Card.Body>
-                          <Button
-                            variant="primary"
-                            onClick={() => this.openmodals(item) }
-                          >
-                            description
-                          </Button>
+                         
                           <Card.Title>{`${item.title}`}</Card.Title>
                         </Card.Body>
                         <Card.Img variant="top" src={`${item.image}`} />
@@ -56,17 +51,11 @@ export class MostPopular extends Component {
                 } else {
                   return (
                     <Col key={index}>
-                      <Card style={{ width: "18rem", height: "400px" }}>
+                      <Card style={{ width: "18rem", height: "400px" }} onClick={() => this.openmodals(item) }>
                         <Card.Img variant="bottom" src={`${item.image}`} />
 
                         <Card.Body>
                           <Card.Title>{`${item.title}`}</Card.Title>
-                          <Button
-                            variant="primary"
-                            onClick={() => this.openmodals(item) }
-                          >
-                            description
-                          </Button>
                         </Card.Body>
                       </Card>
                     </Col>

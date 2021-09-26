@@ -10,9 +10,9 @@ export class ModalHomepage extends Component {
             <div>
                  <Modal show={this.props.showmodal} fullscreen={true} onHide={this.props.handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal</Modal.Title>
+          <Modal.Title>{this.props.news.title}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{this.props.news.title}</Modal.Body>
+        <Modal.Body>{this.props.news.abstract}</Modal.Body>
       </Modal>
             </div>
         )

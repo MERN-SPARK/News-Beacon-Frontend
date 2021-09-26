@@ -34,14 +34,8 @@ class TopNews extends Component {
                 if (index % 3 === 1) {
                   return (
                     <Col key={index}>
-                      <Card style={{ width: "18rem", height: "400px" }}>
+                      <Card style={{ width: "18rem", height: "400px" }} onClick={() => this.openmodals(item)}>
                         <Card.Body>
-                          <Button
-                            variant="primary"
-                            onClick={() => this.openmodals(item)}
-                          >
-                            description
-                          </Button>
                           <Card.Title>{`${item.title}`}</Card.Title>
                         </Card.Body>
                         <Card.Img variant="top" src={`${item.image}`} />
@@ -51,17 +45,12 @@ class TopNews extends Component {
                 } else {
                   return (
                     <Col key={index}>
-                      <Card style={{ width: "18rem", height: "400px" }}>
+                      <Card style={{ width: "18rem", height: "400px" }} onClick={() => this.openmodals(item)}>
                         <Card.Img variant="bottom" src={`${item.image}`} />
 
                         <Card.Body>
                           <Card.Title>{`${item.title}`}</Card.Title>
-                          <Button
-                            variant="primary"
-                            onClick={() => this.openmodals(item)}
-                          >
-                            description
-                          </Button>
+                         
                         </Card.Body>
                       </Card>
                     </Col>
