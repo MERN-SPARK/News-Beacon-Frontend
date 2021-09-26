@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import AboutUs from "./components/AboutUs";
 import Favorate from "./components/Favorate";
 import MoreInfo from "./components/MoreInfo";
+import CountryNews from "./components/CountryNews";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export class App extends Component {
@@ -63,10 +64,12 @@ export class App extends Component {
             </Route>
             <Route path="/favorate">
               <Favorate />
-            </Route>
+              </Route>
+              
             <Route path="/moreInfo">
               <MoreInfo />
             </Route>
+
           </Switch>
         </Router>
 

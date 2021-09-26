@@ -4,6 +4,7 @@ import Weather from './HomeComponent/Weather'
 // import NewsFeed from './HomeComponent/NewsFeed';
 import MostPopular from './HomeComponent/MostPopular';
 import TopNews from "./HomeComponent/TopNews";
+import CovidNews from './HomeComponent/CovidNews';
 import axios from 'axios';
  
 class Home extends Component {
@@ -23,6 +24,7 @@ class Home extends Component {
     try{
         let TopNews = await axios.get(`http://localhost:8070/TopNews`)
         let PopularNews = await axios.get('http://localhost:8070/PopularNews')
+        
     let arra=(PopularNews.data.filter(function (el) {
         return el != null;
       }));
@@ -60,6 +62,7 @@ async componentDidMount(){
                 <Weather/>
                 <TopNews topNews={this.state.topNews}/>
                 <MostPopular popularNews={this.state.most_popular}/> 
+                <CovidNews/>
               </> 
             ):(<h2>Loading ...</h2>)
             
