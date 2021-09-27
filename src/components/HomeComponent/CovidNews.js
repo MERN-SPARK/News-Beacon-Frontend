@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-var countryList = require("iso-3166-country-list")
+import countryList from "iso-3166-country-list"
 // countryList.name("DE"); // 'Germany'
 // countryList.code("Germany"); // 'DE'
 
