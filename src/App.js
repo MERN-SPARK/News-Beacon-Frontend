@@ -7,6 +7,7 @@ import AboutUs from "./components/AboutUs";
 import Favorate from "./components/Favorate";
 import MoreInfo from "./components/MoreInfo";
 import CountryNews from "./components/CountryNews";
+import Signup from "./components/HomeComponent/Signup"
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export class App extends Component {
@@ -47,7 +48,8 @@ export class App extends Component {
   render() {
     return (
       <>
-        <Header
+      <Signup/>
+        {/* <Header
           openSideBar={this.state.openSideBar}
           OpenNav={this.OpenNav}
           closeNav={this.closeNav}
@@ -73,7 +75,7 @@ export class App extends Component {
           </Switch>
         </Router>
 
-        <Footer />
+        <Footer /> */}
       </>
     );
   }
