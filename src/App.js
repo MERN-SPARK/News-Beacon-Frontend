@@ -9,6 +9,13 @@ import MoreInfo from "./components/MoreInfo";
 import Sports from "./components/Sports";
 import CountryNews from "./components/CountryNews";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Arts from "./components/Arts";
+import Business from "./components/Business";
+import axios from "axios";
+import Food from "./components/Food";
+import Politics from "./components/Politics";
+import Travel from "./components/Travel";
+import Result from "./components/Result";
 
 export class App extends Component {
   constructor(props) {
@@ -16,6 +23,9 @@ export class App extends Component {
     this.state = {
       openSideBar: false,
       searchQuery: "",
+      results: [],
+      resultFlag: false,
+      target:""
     };
   }
 
@@ -35,6 +45,7 @@ export class App extends Component {
 
   handelSearchQuery = (e) => {
     this.setState({
+      resultFlag:false,
       searchQuery: e.target.value,
     });
   };
@@ -42,7 +53,17 @@ export class App extends Component {
 
   HandelSubmit = (e) => {
     e.preventDefault();
+    let target = e.target.search.value;
+    axios.get(`http://localhost:8070/APIOneSearch?q=${target}`).then((res) => {
+      this.setState({
+        resultFlag: true,
+        results: res.data,
+        target:target
+      });
+    });
+    // console.log(this.state.resultFlag)
   };
+
   render() {
     return (
       <>
@@ -51,30 +72,60 @@ export class App extends Component {
           OpenNav={this.OpenNav}
           closeNav={this.closeNav}
           handelSearchQuery={this.handelSearchQuery}
+          HandelSubmit={this.HandelSubmit}
         />
+        {this.state.resultFlag ? (
+            <Result results={this.state.results} target={this.state.target}/>
+          
+        ) : (
+          <>
+            <Router>
+              <Switch>
+                <Route exact path="/">
+                  <Home />
+                </Route>
+                <Route path="/about">
+                  <AboutUs />
+                </Route>
+                <Route path="/favorate">
+                  <Favorate />
+                </Route>
 
-        <Router>
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/about">
-              <AboutUs />
-            </Route>
-            <Route path="/favorate">
-              <Favorate />
-            </Route>
+                <Route exact path="/country">
+                  <CountryNews />
+                </Route>
 
-            <Route path="/moreInfo">
-              <MoreInfo />
-            </Route>
+                <Route path="/moreInfo">
+                  <MoreInfo />
+                </Route>
 
-            <Route path="/sports">
-              <Sports />
-            </Route>
+                <Route path="/sports">
+                  <Sports />
+                </Route>
 
-          </Switch>
-        </Router>
+                <Route path="/arts">
+                  <Arts />
+                </Route>
+
+                <Route path="/business">
+                  <Business />
+                </Route>
+
+                <Route path="/food">
+                  <Food />
+                </Route>
+
+                <Route path="/politics">
+                  <Politics />
+                </Route>
+
+                <Route path="/travel">
+                  <Travel />
+                </Route>
+              </Switch>
+            </Router>
+          </>
+        )}
 
         <Footer />
       </>
