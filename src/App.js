@@ -8,7 +8,9 @@ import Favorate from "./components/Favorate";
 import MoreInfo from "./components/MoreInfo";
 import Sports from "./components/Sports";
 import CountryNews from "./components/CountryNews";
+import Signup from "./components/HomeComponent/Signup"
 import "bootstrap/dist/css/bootstrap.min.css";
+import Login from "./components/HomeComponent/Login";
 import Arts from "./components/Arts";
 import Business from "./components/Business";
 import axios from "axios";
@@ -67,6 +69,7 @@ export class App extends Component {
   render() {
     return (
       <>
+      
         <Header
           openSideBar={this.state.openSideBar}
           OpenNav={this.OpenNav}
@@ -118,6 +121,31 @@ export class App extends Component {
                 <Route path="/politics">
                   <Politics />
                 </Route>
+
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/about">
+              <AboutUs />
+            </Route>
+            <Route path="/favorate">
+              <Favorate />
+              </Route>
+              
+            <Route path="/moreInfo">
+              <MoreInfo />
+            </Route>
+
+            <Route path="/login">
+              <Login />
+              </Route>
+            <Route path="/signup">
+              <Signup />
+              </Route>
+          </Switch>
+        </Router>
 
                 <Route path="/travel">
                   <Travel />

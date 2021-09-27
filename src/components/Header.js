@@ -109,11 +109,13 @@ class Header extends Component {
             >
               <Button
                 style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
+                href='/login'
               >
                 Login
               </Button>
               <Button
                 style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
+                href='/signup'
               >
                 SignUp
               </Button>
