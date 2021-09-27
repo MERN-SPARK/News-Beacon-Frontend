@@ -19,7 +19,6 @@ export class Weather extends Component {
               <h4>{this.props.weatherData[0].place}</h4>
               <p>{this.props.weatherData[0].description}</p>
               <ul>
-              
                 <li>{`temp: ${this.props.weatherData[0].temp}`}</li>
                 <li>{`min: ${this.props.weatherData[0].min}`}</li>
                 <li>{`max: ${this.props.weatherData[0].max}`}</li>

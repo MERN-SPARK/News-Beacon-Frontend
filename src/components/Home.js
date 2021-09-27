@@ -55,9 +55,9 @@ class Home extends Component {
           weatherData: weatherInfo,
         })
       })
-    console.log(this.state.weatherData)
   }
 
+  
   async componentDidMount() {
     this.topNewsShow()
     this.weather()

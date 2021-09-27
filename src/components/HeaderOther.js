@@ -62,19 +62,9 @@ class Header extends Component {
               <Nav.Link href="/" style={{ color: "white" }}>
                 Home
               </Nav.Link>
-              {this.props.isHomePage && (
-                <>
-                  <Nav.Link href="#popular" style={{ color: "white" }}>
-                    PopularNews
-                  </Nav.Link>
-                  <Nav.Link href="#topnews" style={{ color: "white" }}>
-                    Top News
-                  </Nav.Link>
-                  <Nav.Link href="#covid19" style={{ color: "white" }}>
-                    Covid19
-                  </Nav.Link>
-                </>
-              )}
+               
+              
+              
 
               {/* decomment if you need a dropDown list
                <NavDropdown title="Link" id="navbarScrollingDropdown">
