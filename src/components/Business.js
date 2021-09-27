@@ -14,7 +14,7 @@ export class Sports extends Component {
       seachedToken: "",
       searched_topics: [],
       flag_search: false,
-      news_type : "sports",
+      news_type : "business",
     };
   }
   // [{title:"", description:""},{},{},{}]
