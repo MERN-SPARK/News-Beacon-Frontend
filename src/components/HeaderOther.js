@@ -29,7 +29,7 @@ class Header extends Component {
             zIndex: 1,
             display: "grid",
             gridTemplateColumns: "1fr 5fr ",
-            gridGap: "50px",
+            gridGap: "400px",
           }}
         >
           <Navbar.Brand
@@ -47,7 +47,7 @@ class Header extends Component {
             style={{
               display: "grid",
               gridTemplateColumns: "auto auto auto ",
-              gridGap: "100px",
+              gridGap: "150px",
               
             }}
           >
@@ -55,11 +55,11 @@ class Header extends Component {
             //grid-template-columns: auto auto auto;gap: 50px;
             
               className="mr-auto my-2 my-lg-0"
-              style={{ maxHeight: "100px",display: 'grid',gridTemplateColumns:"auto auto auto auto" ,gridGap:"50px"
+              style={{ maxHeight: "100px"
               }}
               navbarScroll
             >
-              <Nav.Link href="/" style={{ color: "white" }}>
+              <Nav.Link href="/" style={{ color: "white", fontSize:"30px" }}>
                 Home
               </Nav.Link>
                

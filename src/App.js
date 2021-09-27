@@ -78,8 +78,15 @@ export class App extends Component {
   render() {
     return (
       <>
-        {this.state.resultFlag ? (
-          <Result results={this.state.results} target={this.state.target} />
+        {this.state.resultFlag ? (<>
+          <HeaderOther
+          openSideBar={this.state.openSideBar}
+          OpenNav={this.OpenNav}
+          closeNav={this.closeNav}
+          handelSearchQuery={this.handelSearchQuery}
+          HandelSubmit={this.HandelSubmit}
+        />
+          <Result results={this.state.results} target={this.state.target} /></>
         ) : (
           <>
             <Router>
@@ -106,7 +113,7 @@ export class App extends Component {
                   <AboutUs />
                 </Route>
                 <Route path="/favorate">
-                <HeaderOther
+                  <HeaderOther
                     openSideBar={this.state.openSideBar}
                     OpenNav={this.OpenNav}
                     closeNav={this.closeNav}
@@ -117,7 +124,7 @@ export class App extends Component {
                 </Route>
 
                 <Route exact path="/country">
-                <HeaderOther
+                  <HeaderOther
                     openSideBar={this.state.openSideBar}
                     OpenNav={this.OpenNav}
                     closeNav={this.closeNav}
@@ -128,7 +135,7 @@ export class App extends Component {
                 </Route>
 
                 <Route path="/moreInfo">
-                <HeaderOther
+                  <HeaderOther
                     openSideBar={this.state.openSideBar}
                     OpenNav={this.OpenNav}
                     closeNav={this.closeNav}
@@ -139,7 +146,7 @@ export class App extends Component {
                 </Route>
 
                 <Route path="/sports">
-                <HeaderOther
+                  <HeaderOther
                     openSideBar={this.state.openSideBar}
                     OpenNav={this.OpenNav}
                     closeNav={this.closeNav}
@@ -150,7 +157,7 @@ export class App extends Component {
                 </Route>
 
                 <Route path="/arts">
-                <HeaderOther
+                  <HeaderOther
                     openSideBar={this.state.openSideBar}
                     OpenNav={this.OpenNav}
                     closeNav={this.closeNav}
@@ -161,7 +168,7 @@ export class App extends Component {
                 </Route>
 
                 <Route path="/business">
-                <HeaderOther
+                  <HeaderOther
                     openSideBar={this.state.openSideBar}
                     OpenNav={this.OpenNav}
                     closeNav={this.closeNav}
@@ -172,7 +179,7 @@ export class App extends Component {
                 </Route>
 
                 <Route path="/food">
-                <HeaderOther
+                  <HeaderOther
                     openSideBar={this.state.openSideBar}
                     OpenNav={this.OpenNav}
                     closeNav={this.closeNav}
@@ -183,7 +190,7 @@ export class App extends Component {
                 </Route>
 
                 <Route path="/politics">
-                <HeaderOther
+                  <HeaderOther
                     openSideBar={this.state.openSideBar}
                     OpenNav={this.OpenNav}
                     closeNav={this.closeNav}
@@ -193,18 +200,46 @@ export class App extends Component {
                   <Politics />
                 </Route>
 
-                    <Route path="/moreInfo">
-                      <MoreInfo />
-                    </Route>
+                <Route path="/moreInfo">
+                  <HeaderOther
+                    openSideBar={this.state.openSideBar}
+                    OpenNav={this.OpenNav}
+                    closeNav={this.closeNav}
+                    handelSearchQuery={this.handelSearchQuery}
+                    HandelSubmit={this.HandelSubmit}
+                  />
+                  <MoreInfo />
+                </Route>
 
-                    <Route path="/login">
-                      <Login />
-                    </Route>
-                    <Route path="/signup">
-                      <Signup />
-                    </Route>
+                <Route path="/login">
+                  <HeaderOther
+                    openSideBar={this.state.openSideBar}
+                    OpenNav={this.OpenNav}
+                    closeNav={this.closeNav}
+                    handelSearchQuery={this.handelSearchQuery}
+                    HandelSubmit={this.HandelSubmit}
+                  />
+                  <Login />
+                </Route>
+                <Route path="/signup">
+                  <HeaderOther
+                    openSideBar={this.state.openSideBar}
+                    OpenNav={this.OpenNav}
+                    closeNav={this.closeNav}
+                    handelSearchQuery={this.handelSearchQuery}
+                    HandelSubmit={this.HandelSubmit}
+                  />
+                  <Signup />
+                </Route>
 
                 <Route path="/travel">
+                  <HeaderOther
+                    openSideBar={this.state.openSideBar}
+                    OpenNav={this.OpenNav}
+                    closeNav={this.closeNav}
+                    handelSearchQuery={this.handelSearchQuery}
+                    HandelSubmit={this.HandelSubmit}
+                  />
                   <Travel />
                 </Route>
               </Switch>
