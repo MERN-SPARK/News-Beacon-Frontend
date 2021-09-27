@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
+import logoImage from "../../src/logo.png"
 
 import {
   Navbar,
@@ -8,13 +9,12 @@ import {
   Button,
   FormControl,
   Offcanvas,
-} from "react-bootstrap";
+} from "react-bootstrap"
 
 class Header extends Component {
   render() {
     return (
       <>
-      
         <Navbar
           bg="dark"
           expand="lg"
@@ -37,13 +37,7 @@ class Header extends Component {
               gridTemplateColumns: "auto auto",
             }}
           >
-            <img
-              src="https://e7.pngegg.com/pngimages/28/78/png-clipart-lighthouse-lighthouse-drawing-postcard-miscellaneous-photography-thumbnail.png"
-              width="30"
-              height="30"
-              alt="logo"
-            />
-            {"News Beacon"}
+            <img src={logoImage} width="150" height="50" alt="logo" />
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="navbarScroll" />
@@ -63,11 +57,11 @@ class Header extends Component {
               <Nav.Link href="/" style={{ color: "white" }}>
                 Home
               </Nav.Link>
-              <Nav.Link href="/Link2" style={{ color: "white" }}>
-                Link2
+              <Nav.Link href="/about" style={{ color: "white" }}>
+                AboutUs
               </Nav.Link>
-              <Nav.Link href="/favorate" style={{ color: "white" }}>
-                Link3
+              <Nav.Link href="/Favourites" style={{ color: "white" }}>
+                Favourites
               </Nav.Link>
 
               {/* decomment if you need a dropDown list
@@ -82,8 +76,7 @@ class Header extends Component {
                 </NavDropdown.Item>
               </NavDropdown> */}
             </Nav>
-            <Form className="d-flex" onSubmit={this.props.HandelSubmit}
->
+            <Form className="d-flex" onSubmit={this.props.HandelSubmit}>
               <FormControl
                 type="search"
                 placeholder="Search"
@@ -109,13 +102,13 @@ class Header extends Component {
             >
               <Button
                 style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
-                href='/login'
+                href="/login"
               >
                 Login
               </Button>
               <Button
                 style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
-                href='/signup'
+                href="/signup"
               >
                 SignUp
               </Button>
@@ -164,22 +157,22 @@ class Header extends Component {
               Arts
             </Nav.Link>
             <Nav.Link href="/business" style={{ color: "#171717" }}>
-            Business
+              Business
             </Nav.Link>
             <Nav.Link href="/travel" style={{ color: "#171717" }}>
-            travel
+              travel
             </Nav.Link>
             <Nav.Link href="/politics" style={{ color: "#171717" }}>
-            Politics
+              Politics
             </Nav.Link>
             <Nav.Link href="/food" style={{ color: "#171717" }}>
-            Food
+              Food
             </Nav.Link>
           </Offcanvas.Body>
         </Offcanvas>
       </>
-    );
+    )
   }
 }
 
-export default Header;
+export default Header
