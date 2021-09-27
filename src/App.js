@@ -9,6 +9,7 @@ import MoreInfo from "./components/MoreInfo";
 import CountryNews from "./components/CountryNews";
 import Signup from "./components/HomeComponent/Signup"
 import "bootstrap/dist/css/bootstrap.min.css";
+import Login from "./components/HomeComponent/Login";
 
 export class App extends Component {
   constructor(props) {
@@ -48,7 +49,8 @@ export class App extends Component {
   render() {
     return (
       <>
-      <Signup/>
+      <Login/>
+      {/* <Signup/> */}
         {/* <Header
           openSideBar={this.state.openSideBar}
           OpenNav={this.OpenNav}
