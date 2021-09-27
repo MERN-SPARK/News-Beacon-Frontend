@@ -2,18 +2,19 @@ import React, { Component } from "react"
 import { Row, Image, Container } from "react-bootstrap"
 
 export class AboutUs extends Component {
+
   render() {
     return (
-      <div style={{ backgroundColor: "black" }}>
+      <div >
         <div style={{ textAlign: "center" }}>
-          <h1 style={{ fontSize: "70px", color: "#DA0037" }}>
+          <h1 style={{ fontSize: "70px", color: "#DA0037" ,marginTop:"150px" }}>
             MERN-SPARK Organization
           </h1>
         </div>
         <div style={{ marginTop: "50px" }}>
           <h2 style={{ textAlign: "center", color: "#DA0037" }}>Who are we?</h2>
           <p
-            style={{ fontSize: "25px", textAlign: "center", color: "#DA0037" }}
+            style={{ fontSize: "25px", textAlign: "center", color: "#DA0037" ,padding:"50px",lineHeight:"45px" }}
           >
             We are 5 Full-Stack Developers, Based in Amman-Jordan, Looking
             Forward for our First Job Opportunity as a JavaScript MERN
@@ -86,7 +87,7 @@ export class AboutUs extends Component {
                   }}
                 />
                 <p style={{ textAlign: "center", color: "#DA0037" }}>
-                  Abrar Zubeidi
+                  Abrar AL Zubaidi
                 </p>
                 <p style={{ textAlign: "center" }}>
                   <a

@@ -9,7 +9,7 @@ export class CountryNews extends Component {
       countryvalue: "us",
       countryNewsList: [],
       showmore: 6,
-      newslist:[]
+      newslist: [],
     };
   }
 
@@ -57,11 +57,22 @@ export class CountryNews extends Component {
     return (
       <div>
         <div>
-          <form onSubmit={this.countrySubmit}>
+          <h1 style={{ margin: "50px auto", textAlign: "center" }}>
+            country News
+          </h1>
+          <div>
+          <form onSubmit={this.countrySubmit} style={{marginLeft:"160px"}}>
             <select
               name="country"
               onChange={this.setCountry}
               value={this.state.countryvalue}
+              style={{border: '0px',
+                borderRadius: '5px',
+                backgroundColor: '#444444',
+                padding: '5px',
+                marginRight: '7px',
+                color: 'white'
+            }}
             >
               <option value="ae">United Arab Emirates</option>
               <option value="ar">Argentina</option>
@@ -110,24 +121,38 @@ export class CountryNews extends Component {
               <option value="ua">Ukraine</option>
               <option value="za">South Africa</option>
             </select>
-            <input type="submit" value="Explorer" />
+            <input type="submit" value="Explorer"  style={{  borderRadius:'5px',
+    border: '0px',
+    padding: '5px',
+    backgroundColor: '#ededed',
+    color: '#444444'}}/>
           </form>
         </div>
-        <div>
-          <h1 style={{ margin: "50px auto", textAlign: "center" }}>
-            country News
-          </h1>
-
-          <Container>
+          <Container
+            style={{ display: "block", margin: "auto", width: "100%" }}
+          >
             <Row xs={1} md={3}>
               {this.state.countryNewsList.map((item, index) => {
-                  if(item.image===null){
-                      item.image='http://www.sevengatellc.com/UploadFiles/Article_Images/201822712916.jpg'
-                  }
+                if (item.image === null) {
+                  item.image =
+                    "http://www.sevengatellc.com/UploadFiles/Article_Images/201822712916.jpg";
+                }
                 if (index % 3 === 1) {
                   return (
-                    <Col key={index}>
-                      <Card style={{ width: "18rem", height: "400px" }} onClick={() => this.openmodals(item)} >
+                    <Col
+                      key={index}
+                      style={{ display: "flex", justifyContent: "center" }}
+                    >
+                      <Card
+                        style={{
+                          width: "20rem",
+                          height: "350px",
+                          marginTop: "50px",
+                          boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
+
+                        }}
+                        onClick={() => this.openmodals(item)}
+                      >
                         <Card.Body>
                           <Card.Title>{`${item.title}`}</Card.Title>
                         </Card.Body>
@@ -137,9 +162,24 @@ export class CountryNews extends Component {
                   );
                 } else {
                   return (
-                    <Col key={index}>
-                      <Card style={{ width: "18rem", height: "400px" }}>
-                        <Card.Img variant="bottom" src={`${item.image}`} onClick={() => this.openmodals(item) }/>
+                    <Col
+                      key={index}
+                      style={{ display: "flex", justifyContent: "center" }}
+                    >
+                      <Card
+                        style={{
+                          width: "20rem",
+                          height: "350px",
+                          marginTop: "50px",
+                          boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
+
+                        }}
+                      >
+                        <Card.Img
+                          variant="bottom"
+                          src={`${item.image}`}
+                          onClick={() => this.openmodals(item)}
+                        />
 
                         <Card.Body>
                           <Card.Title>{`${item.title}`}</Card.Title>
@@ -153,10 +193,11 @@ export class CountryNews extends Component {
           </Container>
         </div>
         <ModalHomepage
-                 news={this.state.newslist}
-                showmodal={this.state.showmodal}
-                handleClose={this.handleClose}
-              />;
+          news={this.state.newslist}
+          showmodal={this.state.showmodal}
+          handleClose={this.handleClose}
+        />
+        ;
       </div>
     );
   }
