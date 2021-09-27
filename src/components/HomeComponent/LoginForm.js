@@ -23,7 +23,7 @@ form=(props)=>{
         <ErrorMessage name="email" /> 
         <br/>
         <hr/>
-        <Button type="submit"  variant="dark" >sign up  </Button>
+        <Button type="submit"  variant="dark" >Login </Button>
     </form>
     
 }

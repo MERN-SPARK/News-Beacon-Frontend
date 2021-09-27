@@ -49,9 +49,8 @@ export class App extends Component {
   render() {
     return (
       <>
-      <Login/>
-      {/* <Signup/> */}
-        {/* <Header
+      
+        <Header
           openSideBar={this.state.openSideBar}
           OpenNav={this.OpenNav}
           closeNav={this.closeNav}
@@ -74,10 +73,16 @@ export class App extends Component {
               <MoreInfo />
             </Route>
 
+            <Route path="/login">
+              <Login />
+              </Route>
+            <Route path="/signup">
+              <Signup />
+              </Route>
           </Switch>
         </Router>
 
-        <Footer /> */}
+        <Footer />
       </>
     );
   }
