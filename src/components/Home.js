@@ -15,6 +15,7 @@ class Home extends Component {
       topNews: [],
       topThree: [],
       most_popular: [],
+      wheather_data : []
     };
   }
 
@@ -42,6 +43,8 @@ class Home extends Component {
       console.error(err);
     }
   };
+  
+  
 
   async componentDidMount() {
     this.topNewsShow();
