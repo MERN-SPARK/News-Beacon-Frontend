@@ -15,6 +15,8 @@ class Home extends Component {
       topNews: [],
       topThree: [],
       most_popular: [],
+      weatherData: [],
+      city: "amman",
     };
   }
 
@@ -43,8 +45,22 @@ class Home extends Component {
     }
   };
 
+  weather = () => {
+    let weatherInfo = [];
+    axios
+      .get(`http://localhost:8070/WeatherNews?city=${this.state.city}`)
+      .then((res) => {
+        weatherInfo = res.data;
+        this.setState({
+          weatherData: weatherInfo,
+        });
+      });
+    console.log(this.state.weatherData);
+  };
+
   async componentDidMount() {
     this.topNewsShow();
+    this.weather();
   }
 
   // function to take the weather data of the searched country and put amman wheather as a default
@@ -53,7 +69,7 @@ class Home extends Component {
     return this.state.loaded ? (
       <>
         <CarouselsNews topThree={this.state.topThree} />
-        <Weather />
+        <Weather weatherData={this.state.weatherData} />
         <TopNews topNews={this.state.topNews} />
         <MostPopular popularNews={this.state.most_popular} />
         <CovidNews />

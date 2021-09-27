@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { ToastContainer,Toast } from "react-bootstrap";
+import { ToastContainer, Toast } from "react-bootstrap";
 
 export class Weather extends Component {
   render() {
     return (
-
-      <div style ={{display:"flex",justifyContent:"center"}}>
-         <ToastContainer className="p-3" >
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <ToastContainer className="p-3">
           <Toast>
             <Toast.Header closeButton={false}>
               <img
@@ -14,9 +13,18 @@ export class Weather extends Component {
                 className="rounded me-2"
                 alt=""
               />
-              <strong className="me-auto">Bootstrap</strong>
+              <strong className="me-auto">Weather Forecasting</strong>
             </Toast.Header>
-            <Toast.Body>Hello, world! This is a toast message.</Toast.Body>
+            <Toast.Body>
+              <h4>{this.props.weatherData[0].place}</h4>
+              <p>{this.props.weatherData[0].description}</p>
+              <ul>
+              
+                <li>{`temp: ${this.props.weatherData[0].temp}`}</li>
+                <li>{`min: ${this.props.weatherData[0].min}`}</li>
+                <li>{`max: ${this.props.weatherData[0].max}`}</li>
+              </ul>
+            </Toast.Body>
           </Toast>
         </ToastContainer>
       </div>
