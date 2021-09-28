@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import logoImage from "../../src/logo.png";
+import axios from "axios";
 
 import {
   Navbar,
@@ -13,7 +14,18 @@ import {
 } from "react-bootstrap";
 
 class Header extends Component {
- 
+
+  Logout = async (values) => {
+    
+    
+      let logoutUSer = await axios.get(
+        `http://localhost:8070/signout-user`
+      )
+      console.log(logoutUSer);
+      
+      
+   
+  };
 
   render() {
     return (
@@ -118,6 +130,13 @@ class Header extends Component {
                 href="/login"
               >
                 Login
+              </Button>
+              <Button
+                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
+                href="/login"
+                onClick={this.Logout}
+              >
+                logout
               </Button>
               <Button
                 style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}

@@ -28,11 +28,13 @@ import Home from '../Home';
             `http://localhost:8070/signup-user`,
             Userdata
           )
+          let check =  await axios.get('http://localhost:8070/check-user')
+          console.log(check);
           this.setState({
               goHome:true,
-              UserData:newUser.data.user
+              UserData:newUser.data
           })
-          console.log(newUser.data);
+          // console.log(newUser.data.data.user);
           
         } catch(err){
             let errvalidate

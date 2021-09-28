@@ -33,7 +33,7 @@ export class CountryNews extends Component {
 
   componentDidMount = async () => {
     let CountryNews = await axios.get(
-      `http://localhost:8070/CountryNews?country=${this.state.countryvalue} `
+      `https://mern-spark-project.herokuapp.com/CountryNews?country=${this.state.countryvalue} `
     );
     this.setState({
       countryNewsList: CountryNews.data,
@@ -44,7 +44,7 @@ export class CountryNews extends Component {
     e.preventDefault();
     try {
       let CountryNews = await axios.get(
-        `http://localhost:8070/CountryNews?country=${this.state.countryvalue} `
+        `https://mern-spark-project.herokuapp.com/CountryNews?country=${this.state.countryvalue} `
       );
       this.setState({
         countryNewsList: CountryNews.data,

@@ -76,8 +76,11 @@ export class App extends Component {
       });
     }
   };
+  
+   
 
   render() {
+   
     return (
       <>
         {this.state.resultFlag ? (<>
@@ -221,7 +224,7 @@ export class App extends Component {
                     handelSearchQuery={this.handelSearchQuery}
                     HandelSubmit={this.HandelSubmit}
                   />
-                  <Login />
+                  <Login setuser={this.setuser}/>
                 </Route>
                 <Route path="/signup">
                   <HeaderOther
