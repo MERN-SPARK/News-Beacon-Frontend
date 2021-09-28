@@ -52,7 +52,7 @@ checksign=async()=>{
   weather = () => {
     let weatherInfo = []
     axios
-      .get(`http://localhost:8070/WeatherNews?city=${this.state.city}`)
+      .get(`https://mern-spark-project.herokuapp.com/WeatherNews?city=${this.state.city}`)
       .then((res) => {
         weatherInfo = res.data
         this.setState({

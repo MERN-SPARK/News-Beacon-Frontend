@@ -53,7 +53,7 @@ export class Sports extends Component {
   componentDidMount = () => {
     let result = [];
     axios
-      .get(`http://localhost:8070/APIOneFilter?section=${this.state.news_type}`)
+      .get(`https://mern-spark-project.herokuapp.com/APIOneFilter?section=${this.state.news_type}`)
       .then((res) => {
         result = res.data;
         // console.log(this.state.sportsInfo);
