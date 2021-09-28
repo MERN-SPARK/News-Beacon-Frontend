@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import { Card, Row, Col, Button, Form } from "react-bootstrap";
 import SportsStyle from "./SportsStyle.css";
+import { withAuth0 } from "@auth0/auth0-react";
 
 export class Sports extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ export class Sports extends Component {
       seachedToken: "",
       searched_topics: [],
       flag_search: false,
-      news_type : "politics",
+      news_type: "politics",
     };
   }
   // [{title:"", description:""},{},{},{}]
@@ -38,12 +39,14 @@ export class Sports extends Component {
   handelSubmit = (e) => {
     e.preventDefault();
     let token = e.target.inlineFormInputName.value;
-    
+
     let arr = this.state.sportsInfo.filter((item) =>
-      item.title.split(" ").map(item=>item.toLowerCase()).includes(token.toLowerCase())
+      item.title
+        .split(" ")
+        .map((item) => item.toLowerCase())
+        .includes(token.toLowerCase())
     );
- 
-    
+
     this.setState({
       flag_search: true,
       searched_topics: arr,
@@ -53,7 +56,9 @@ export class Sports extends Component {
   componentDidMount = () => {
     let result = [];
     axios
-      .get(`https://mern-spark-project.herokuapp.com/APIOneFilter?section=${this.state.news_type}`)
+      .get(
+        `https://mern-spark-project.herokuapp.com/APIOneFilter?section=${this.state.news_type}`
+      )
       .then((res) => {
         result = res.data;
         // console.log(this.state.sportsInfo);
@@ -77,18 +82,26 @@ export class Sports extends Component {
   };
 
   render() {
+    const { isAuthenticated } = this.props.auth0;
+
     return (
       <div className={SportsStyle.mainSection}>
-        <h1>{this.state.news_type[0].toUpperCase() + this.state.news_type.substring(1)}</h1>
+        <h1>
+          {this.state.news_type[0].toUpperCase() +
+            this.state.news_type.substring(1)}
+        </h1>
         <Form onSubmit={this.handelSubmit}>
           <Row>
             <Col>
-              <Form.Label htmlFor="inlineFormInputName" visuallyHidden >
+              <Form.Label htmlFor="inlineFormInputName" visuallyHidden>
                 Name
               </Form.Label>
               <Form.Control
                 id="inlineFormInputName"
-                placeholder={`Search by ${this.state.news_type[0].toUpperCase() + this.state.news_type.substring(1)}`}
+                placeholder={`Search by ${
+                  this.state.news_type[0].toUpperCase() +
+                  this.state.news_type.substring(1)
+                }`}
                 onChange={this.handelSearchQuery}
               />
             </Col>
@@ -124,7 +137,11 @@ export class Sports extends Component {
                             <Card.Text>
                               <strong>{item.byline}</strong>
                             </Card.Text>
+                            {(isAuthenticated || this.props.userData) && (
+                            <button onClick={this.favourite}>Like</button>
+                          )}
                           </div>
+                         
                         </Card.ImgOverlay>
                       </Card>
                     </>
@@ -159,6 +176,9 @@ export class Sports extends Component {
                               <a href={item.url}>Show more</a>
                             </p>
                           </Card.Body>
+                          {(isAuthenticated || this.props.userData) && (
+                            <button onClick={this.favourite}>Like</button>
+                          )}
                           <Card.Footer>
                             <small className="text-muted">{item.byline}</small>{" "}
                             <br />
@@ -198,6 +218,9 @@ export class Sports extends Component {
                           />
                           <Card.Text>{item.byline}</Card.Text>
                         </Card.Body>
+                        {(isAuthenticated || this.props.userData) && (
+                          <button onClick={this.favourite}>Like</button>
+                        )}
                       </Card>
                     </>
                   );
@@ -225,6 +248,9 @@ export class Sports extends Component {
                     />
                     <Card.Text>{item.byline}</Card.Text>
                   </Card.Body>
+                  {(isAuthenticated || this.props.userData) && (
+                    <button onClick={this.favourite}>Like</button>
+                  )}
                 </Card>
               </>
             );
@@ -235,4 +261,4 @@ export class Sports extends Component {
   }
 }
 
-export default Sports;
+export default withAuth0(Sports);

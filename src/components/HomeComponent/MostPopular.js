@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import { Col, Row, Card, Button, Container } from "react-bootstrap";
 import ModalHomepage from "./ModalHomepage";
+import { withAuth0 } from "@auth0/auth0-react";
 
 export class MostPopular extends Component {
   constructor(props) {
@@ -24,6 +25,8 @@ export class MostPopular extends Component {
     });
   };
   render() {
+    const { isAuthenticated } = this.props.auth0;
+
     return (
       <div id="popular">
         <h1
@@ -56,6 +59,9 @@ export class MostPopular extends Component {
                         }}
                       >
                         <Card.Body>
+                          {(isAuthenticated || this.props.userData) && (
+                            <button>Like</button>
+                          )}
                           <Card.Title>{`${item.title}`}</Card.Title>
                         </Card.Body>
                         <Card.Img variant="top" src={`${item.image}`} />
@@ -69,12 +75,19 @@ export class MostPopular extends Component {
                       style={{ display: "flex", justifyContent: "center" }}
                     >
                       <Card
-                        style={{ width: "20rem", height: "350px" ,marginTop:"50px"}}
+                        style={{
+                          width: "20rem",
+                          height: "350px",
+                          marginTop: "50px",
+                        }}
                         onClick={() => this.openmodals(item)}
                       >
                         <Card.Img variant="bottom" src={`${item.image}`} />
 
                         <Card.Body>
+                          {(isAuthenticated || this.props.userData) && (
+                            <button>Like</button>
+                          )}
                           <Card.Title>{`${item.title}`}</Card.Title>
                         </Card.Body>
                       </Card>
@@ -88,12 +101,12 @@ export class MostPopular extends Component {
             style={{
               backgroundColor: "#EDEDED",
               borderColor: "#EDEDED",
-              fontSize:"20px",
+              fontSize: "20px",
               color: "#DA0037",
               display: "block",
               margin: "auto",
               width: "95%",
-              marginTop:"30px",
+              marginTop: "30px",
             }}
             onClick={() => {
               this.setState({ showmore: this.state.showmore + 3 });
@@ -113,4 +126,4 @@ export class MostPopular extends Component {
   }
 }
 
-export default MostPopular;
+export default withAuth0(MostPopular);
