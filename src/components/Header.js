@@ -19,7 +19,7 @@ class Header extends Component {
     
     
       let logoutUSer = await axios.get(
-        `http://localhost:8070/signout-user`
+        `https://mern-spark-project.herokuapp.com/signout-user`
       )
       console.log(logoutUSer);
       

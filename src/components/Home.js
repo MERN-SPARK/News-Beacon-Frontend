@@ -20,7 +20,7 @@ class Home extends Component {
     }
   }
 checksign=async()=>{
-  let check =  await axios.get('http://localhost:8070/check-user')
+  let check =  await axios.get('https://mern-spark-project.herokuapp.com/check-user')
   console.log(check);
 }
 
