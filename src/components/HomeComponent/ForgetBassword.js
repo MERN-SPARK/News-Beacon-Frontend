@@ -42,7 +42,7 @@ export class ForgetBassword extends Component {
       email: this.state.forgetPassword,
     };
     let resetPassword = await axios.post(
-      `https://mern-spark-project.herokuapp.com/forget-user`,
+      `http://localhost:8070/forget-user`,
       email
     );
     this.setState({
@@ -63,7 +63,7 @@ export class ForgetBassword extends Component {
             password:this.state.newpassword,
             passwordConfirm:this.state.newconfirm
         }
-    
+
     let resetToken= await axios.patch(
       `https://mern-spark-project.herokuapp.com/reset-use/${this.state.forgetToken}`,password
     );
@@ -76,7 +76,6 @@ export class ForgetBassword extends Component {
 }
   };
 
-
   render() {
     return (
       <div>
@@ -87,7 +86,7 @@ export class ForgetBassword extends Component {
               placeholder="Please enter a the url..."
               onChange={this.handleLocation}
             />
-            <input type="submit" value="forget password" />
+            <input type="submit" value="sent token" />
           </form>
         </div>
         {this.state.signupError}
@@ -109,7 +108,7 @@ export class ForgetBassword extends Component {
               placeholder="Please enter a the passwordconfirm"
               onChange={this.handleLocation4}
             />
-            <input type="submit" value="forget password" />
+            <input type="submit" value="change password" />
           </form>}
         </div>
       </div>
