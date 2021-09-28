@@ -1,49 +1,158 @@
-import React, { Component } from 'react'
-import {Row,Col,Image, Container} from "react-bootstrap"
+import React, { Component } from "react"
+import { Row, Image, Container } from "react-bootstrap"
 
 export class AboutUs extends Component {
-    render() {
-        return (
-            <>
-            <div style ={{textAlign:'center' ,marginTop:"100px"}}>
-                <h1 style={{fontSize : "70px"}}>About Us</h1>
-            </div>
-            <div style={{marginTop:"100px"}}>
-            <h1>wCcIoWnGvL1ZvobNMlo</h1>
-              <p>PNKzSAhaSCLSS
-                  DjUzGqZiSGNUzPbWTlMxhDFaZjCGYpGBmxBgzQMC1eS8yTM5pEW
-                  80rQGaWrSMpxGh0MSVowjTNah1DCCLo0MGhWo2YJ5vNHMFTHtHU8uyH21zz5FaGy3fVvUXt1bynRobLo09cudur</p> 
 
-            </div>
-            <div style={{marginTop:"100px"}}>
-                <Container>
-                <Row>
-                    <Col>
-                    <Image src="https://toppng.com/public/uploads/thumbnail/blue-person-icon-blue-person-icon-11562903982ibmz5x4ndc.png" roundedCircle style={{display:"block",margin:"auto",marginBottom:"30px"}}/>
-                    <p style={{textAlign:"center"}}>person Name</p>
-                    </Col>
-                    <Col>
-                    <Image src="https://toppng.com/public/uploads/thumbnail/blue-person-icon-blue-person-icon-11562903982ibmz5x4ndc.png" roundedCircle style={{display:"block",margin:"auto",marginBottom:"30px"}}/>
-                    <p style={{textAlign:"center"}}>person Name</p>
-                    </Col>
-                    <Col>
-                    <Image src="https://toppng.com/public/uploads/thumbnail/blue-person-icon-blue-person-icon-11562903982ibmz5x4ndc.png" roundedCircle style={{display:"block",margin:"auto",marginBottom:"30px"}}/>
-                    <p style={{textAlign:"center"}}>person Name</p>
-                    </Col>
-                    <Col>
-                    <Image src="https://toppng.com/public/uploads/thumbnail/blue-person-icon-blue-person-icon-11562903982ibmz5x4ndc.png" roundedCircle style={{display:"block",margin:"auto",marginBottom:"30px"}}/>
-                    <p style={{textAlign:"center"}}>person Name</p>
-                    </Col>
-                    <Col>
-                    <Image src="https://toppng.com/public/uploads/thumbnail/blue-person-icon-blue-person-icon-11562903982ibmz5x4ndc.png" roundedCircle style={{display:"block",margin:"auto",marginBottom:"30px"}}/>
-                    <p style={{textAlign:"center"}}>person Name</p>
-                    </Col>
-                </Row>
-                </Container>
-            </div>
-            </>
-        )
-    }
+  render() {
+    return (
+      <div >
+        <div style={{ textAlign: "center" }}>
+          <h1 style={{ fontSize: "70px", color: "#DA0037" ,marginTop:"150px" }}>
+            MERN-SPARK Organization
+          </h1>
+        </div>
+        <div style={{ marginTop: "50px" }}>
+          <h2 style={{ textAlign: "center", color: "#DA0037" }}>Who are we?</h2>
+          <p
+            style={{ fontSize: "25px", textAlign: "center", color: "#DA0037" ,padding:"50px",lineHeight:"45px" }}
+          >
+            We are 5 Full-Stack Developers, Based in Amman-Jordan, Looking
+            Forward for our First Job Opportunity as a JavaScript MERN
+            Developers, NewsBeacon was our Graduation Project for 301 Course
+            with ASAC, Please Take a Look Below to get to Know us Better, Check
+            our GitHub Accounts and You Will also Find our Contacts if you are
+            Interested in Hiring anyone of us.
+          </p>
+        </div>
+        <div style={{ marginTop: "100px" }}>
+          <Container>
+            <Row>
+              <Row>
+                <Image
+                  src="https://avatars.githubusercontent.com/u/85874246?v=4"
+                  roundedCircle
+                  style={{
+                    display: "block",
+                    width: "500px",
+                    margin: "auto",
+                    marginBottom: "30px",
+                  }}
+                />
+                <p style={{ textAlign: "center", color: "#DA0037" }}>
+                  Feras Nawafleh
+                </p>
+                <p style={{ textAlign: "center" }}>
+                  <a
+                    href="https://github.com/feras98nawafleh"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    GitHub
+                  </a>
+                </p>
+              </Row>
+              <Row>
+                <Image
+                  src="https://avatars.githubusercontent.com/u/86142826?v=4"
+                  roundedCircle
+                  style={{
+                    display: "block",
+                    width: "500px",
+                    margin: "auto",
+                    marginBottom: "30px",
+                  }}
+                />
+                <p style={{ textAlign: "center", color: "#DA0037" }}>
+                  Yaseen Kouteh
+                </p>
+                <p style={{ textAlign: "center" }}>
+                  <a
+                    href="https://github.com/yaseen1998"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    GitHub
+                  </a>
+                </p>
+              </Row>
+              <Row>
+                <Image
+                  src="https://avatars.githubusercontent.com/u/86603698?v=4"
+                  roundedCircle
+                  style={{
+                    display: "block",
+                    width: "500px",
+                    margin: "auto",
+                    marginBottom: "30px",
+                  }}
+                />
+                <p style={{ textAlign: "center", color: "#DA0037" }}>
+                  Abrar AL Zubaidi
+                </p>
+                <p style={{ textAlign: "center" }}>
+                  <a
+                    href="https://github.com/AbrarAlzubaidi"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    GitHub
+                  </a>
+                </p>
+              </Row>
+              <Row>
+                <Image
+                  src="https://avatars.githubusercontent.com/u/86603685?v=4"
+                  roundedCircle
+                  style={{
+                    display: "block",
+                    width: "500px",
+                    margin: "auto",
+                    marginBottom: "30px",
+                  }}
+                />
+                <p style={{ textAlign: "center", color: "#DA0037" }}>
+                  Emmad Beshtawi
+                </p>
+                <p style={{ textAlign: "center" }}>
+                  <a
+                    href="https://github.com/Emadeddin-Beshtawi"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    GitHub
+                  </a>
+                </p>
+              </Row>
+              <Row>
+                <Image
+                  src="https://avatars.githubusercontent.com/u/45520355?v=4"
+                  roundedCircle
+                  style={{
+                    display: "block",
+                    width: "500px",
+                    margin: "auto",
+                    marginBottom: "30px",
+                  }}
+                />
+                <p style={{ textAlign: "center", color: "#DA0037" }}>
+                  Haya Lawanseh
+                </p>
+                <p style={{ textAlign: "center" }}>
+                  <a
+                    href="https://github.com/hayaa123"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    GitHub
+                  </a>
+                </p>
+              </Row>
+            </Row>
+          </Container>
+        </div>
+      </div>
+    )
+  }
 }
 
 export default AboutUs

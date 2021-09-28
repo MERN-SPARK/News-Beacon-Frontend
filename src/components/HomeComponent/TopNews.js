@@ -23,7 +23,8 @@ class TopNews extends Component {
   };
   render() {
     return (
-      <div>
+      <div id="topnews">
+        <div >
         <h1 style={{ margin: "50px auto", textAlign: "center" }}>Top News</h1>
         <Container style={{ display: "block", margin: "auto", width: "100%" }}>
           <Row xs={1} md={3}>
@@ -38,7 +39,7 @@ class TopNews extends Component {
                       style={{ display: "flex", justifyContent: "center" }}
                     >
                       <Card
-                        style={{ width: "18rem", height: "400px" }}
+                        style={{ width: "20rem", height: "350px" ,marginTop:"50px"}}
                         onClick={() => this.openmodals(item)}
                       >
                         <Card.Body>
@@ -55,7 +56,7 @@ class TopNews extends Component {
                       style={{ display: "flex", justifyContent: "center" }}
                     >
                       <Card
-                        style={{ width: "18rem", height: "400px" }}
+                        style={{ width: "20rem", height: "350px",marginTop:"50px" }}
                         onClick={() => this.openmodals(item)}
                       >
                         <Card.Img variant="bottom" src={`${item.image}`} />
@@ -78,8 +79,8 @@ class TopNews extends Component {
               color: "#DA0037",
               display: "block",
               margin: "auto",
-              width: "90%",
-              textDecoration:"underline"
+              width: "95%",
+              marginTop:"30px",
             }}
             onClick={() => {
               this.setState({ showmore: this.state.showmore + 3 });
@@ -95,6 +96,8 @@ class TopNews extends Component {
         />
         ;
       </div>
+      </div>
+      
     );
   }
 }

@@ -4,11 +4,11 @@ import Header from "./components/Header";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import Home from "./components/Home";
 import AboutUs from "./components/AboutUs";
-import Favorate from "./components/Favorate";
+import Favourites from "./components/Favourites";
 import MoreInfo from "./components/MoreInfo";
 import Sports from "./components/Sports";
 import CountryNews from "./components/CountryNews";
-import Signup from "./components/HomeComponent/Signup"
+import Signup from "./components/HomeComponent/Signup";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/HomeComponent/Login";
 import Arts from "./components/Arts";
@@ -19,6 +19,8 @@ import Politics from "./components/Politics";
 import Travel from "./components/Travel";
 import Result from "./components/Result";
 import ForgetBassword from "./components/HomeComponent/ForgetBassword"
+import HeaderOther from "./components/HeaderOther";
+
 
 export class App extends Component {
   constructor(props) {
@@ -28,7 +30,8 @@ export class App extends Component {
       searchQuery: "",
       results: [],
       resultFlag: false,
-      target:""
+      target: "",
+      isHomePage: true,
     };
   }
 
@@ -48,7 +51,7 @@ export class App extends Component {
 
   handelSearchQuery = (e) => {
     this.setState({
-      resultFlag:false,
+      resultFlag: false,
       searchQuery: e.target.value,
     });
   };
@@ -61,94 +64,184 @@ export class App extends Component {
       this.setState({
         resultFlag: true,
         results: res.data,
-        target:target
+        target: target,
       });
     });
-    // console.log(this.state.resultFlag)
+  };
+
+  homepageCheck = () => {
+    if (window.location.pathname === "/") {
+      this.setState({
+        isHomePage: false,
+      });
+    }
   };
 
   render() {
     return (
       <>
-      
-        <Header
+        {this.state.resultFlag ? (<>
+          <HeaderOther
           openSideBar={this.state.openSideBar}
           OpenNav={this.OpenNav}
           closeNav={this.closeNav}
           handelSearchQuery={this.handelSearchQuery}
           HandelSubmit={this.HandelSubmit}
         />
-        {this.state.resultFlag ? (
-            <Result results={this.state.results} target={this.state.target}/>
-          
+          <Result results={this.state.results} target={this.state.target} /></>
         ) : (
           <>
             <Router>
               <Switch>
                 <Route exact path="/">
+                  <Header
+                    openSideBar={this.state.openSideBar}
+                    OpenNav={this.OpenNav}
+                    closeNav={this.closeNav}
+                    handelSearchQuery={this.handelSearchQuery}
+                    HandelSubmit={this.HandelSubmit}
+                    isHomePage={this.state.isHomePage}
+                  />
                   <Home />
                 </Route>
                 <Route path="/about">
+                  <HeaderOther
+                    openSideBar={this.state.openSideBar}
+                    OpenNav={this.OpenNav}
+                    closeNav={this.closeNav}
+                    handelSearchQuery={this.handelSearchQuery}
+                    HandelSubmit={this.HandelSubmit}
+                  />
                   <AboutUs />
                 </Route>
                 <Route path="/favorate">
-                  <Favorate />
+                  <HeaderOther
+                    openSideBar={this.state.openSideBar}
+                    OpenNav={this.OpenNav}
+                    closeNav={this.closeNav}
+                    handelSearchQuery={this.handelSearchQuery}
+                    HandelSubmit={this.HandelSubmit}
+                  />
+                  <Favourites />
                 </Route>
 
                 <Route exact path="/country">
+                  <HeaderOther
+                    openSideBar={this.state.openSideBar}
+                    OpenNav={this.OpenNav}
+                    closeNav={this.closeNav}
+                    handelSearchQuery={this.handelSearchQuery}
+                    HandelSubmit={this.HandelSubmit}
+                  />
                   <CountryNews />
                 </Route>
 
                 <Route path="/moreInfo">
+                  <HeaderOther
+                    openSideBar={this.state.openSideBar}
+                    OpenNav={this.OpenNav}
+                    closeNav={this.closeNav}
+                    handelSearchQuery={this.handelSearchQuery}
+                    HandelSubmit={this.HandelSubmit}
+                  />
                   <MoreInfo />
                 </Route>
 
                 <Route path="/sports">
+                  <HeaderOther
+                    openSideBar={this.state.openSideBar}
+                    OpenNav={this.OpenNav}
+                    closeNav={this.closeNav}
+                    handelSearchQuery={this.handelSearchQuery}
+                    HandelSubmit={this.HandelSubmit}
+                  />
                   <Sports />
                 </Route>
 
                 <Route path="/arts">
+                  <HeaderOther
+                    openSideBar={this.state.openSideBar}
+                    OpenNav={this.OpenNav}
+                    closeNav={this.closeNav}
+                    handelSearchQuery={this.handelSearchQuery}
+                    HandelSubmit={this.HandelSubmit}
+                  />
                   <Arts />
                 </Route>
 
                 <Route path="/business">
+                  <HeaderOther
+                    openSideBar={this.state.openSideBar}
+                    OpenNav={this.OpenNav}
+                    closeNav={this.closeNav}
+                    handelSearchQuery={this.handelSearchQuery}
+                    HandelSubmit={this.HandelSubmit}
+                  />
                   <Business />
                 </Route>
 
                 <Route path="/food">
+                  <HeaderOther
+                    openSideBar={this.state.openSideBar}
+                    OpenNav={this.OpenNav}
+                    closeNav={this.closeNav}
+                    handelSearchQuery={this.handelSearchQuery}
+                    HandelSubmit={this.HandelSubmit}
+                  />
                   <Food />
                 </Route>
 
                 <Route path="/politics">
+                  <HeaderOther
+                    openSideBar={this.state.openSideBar}
+                    OpenNav={this.OpenNav}
+                    closeNav={this.closeNav}
+                    handelSearchQuery={this.handelSearchQuery}
+                    HandelSubmit={this.HandelSubmit}
+                  />
                   <Politics />
                 </Route>
 
-        <Router>
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/about">
-              <AboutUs />
-            </Route>
-            <Route path="/favorate">
-              <Favorate />
-              </Route>
-              
-            <Route path="/moreInfo">
-              <MoreInfo />
-            </Route>
+                <Route path="/moreInfo">
+                  <HeaderOther
+                    openSideBar={this.state.openSideBar}
+                    OpenNav={this.OpenNav}
+                    closeNav={this.closeNav}
+                    handelSearchQuery={this.handelSearchQuery}
+                    HandelSubmit={this.HandelSubmit}
+                  />
+                  <MoreInfo />
+                </Route>
 
-            <Route path="/login">
-              <Login />
-              </Route>
-            <Route path="/signup">
-              <Signup />
-              </Route>
-          </Switch>
-        </Router>
+                <Route path="/login">
+                  <HeaderOther
+                    openSideBar={this.state.openSideBar}
+                    OpenNav={this.OpenNav}
+                    closeNav={this.closeNav}
+                    handelSearchQuery={this.handelSearchQuery}
+                    HandelSubmit={this.HandelSubmit}
+                  />
+                  <Login />
+                </Route>
+                <Route path="/signup">
+                  <HeaderOther
+                    openSideBar={this.state.openSideBar}
+                    OpenNav={this.OpenNav}
+                    closeNav={this.closeNav}
+                    handelSearchQuery={this.handelSearchQuery}
+                    HandelSubmit={this.HandelSubmit}
+                  />
+                  <Signup />
+                </Route>
 
                 <Route path="/travel">
+                  <HeaderOther
+                    openSideBar={this.state.openSideBar}
+                    OpenNav={this.OpenNav}
+                    closeNav={this.closeNav}
+                    handelSearchQuery={this.handelSearchQuery}
+                    HandelSubmit={this.HandelSubmit}
+                  />
                   <Travel />
                 </Route>
                 <Route path="/forgetBassword">
