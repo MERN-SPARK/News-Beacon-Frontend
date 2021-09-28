@@ -19,7 +19,7 @@ class Header extends Component {
     
     
       let logoutUSer = await axios.get(
-        `https://mern-spark-project.herokuapp.com/signout-user`
+        `http://localhost:8070/signout-user`
       )
       console.log(logoutUSer);
       
@@ -133,7 +133,7 @@ class Header extends Component {
               </Button>
               <Button
                 style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
-                href="/login"
+                href="/"
                 onClick={this.Logout}
               >
                 logout
