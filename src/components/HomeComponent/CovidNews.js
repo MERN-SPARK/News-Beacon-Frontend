@@ -1,6 +1,5 @@
-import React, { Component } from "react";
-import axios from "axios";
-import countryList from "iso-3166-country-list";
+import React, { Component } from 'react'
+import countryList from "iso-3166-country-list"
 // countryList.name("DE"); // 'Germany'
 // countryList.code("Germany"); // 'DE'
 

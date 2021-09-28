@@ -60,6 +60,7 @@ export class Sports extends Component {
       })
       .then(() => {
         let array = [];
+        // eslint-disable-next-line
         result.map((data, index) => {
           if (data.updated_date.split("T")[0] === this.getCurrentDate()) {
             array.push(data);
