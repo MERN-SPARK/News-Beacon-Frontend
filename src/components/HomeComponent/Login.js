@@ -3,6 +3,7 @@ import { Formik, Field, ErrorMessage} from "formik"
 import * as Yup from "yup"
 import {Button} from 'react-bootstrap'
 import axios from "axios";
+import Home from '../Home';
 
  class Login extends Component {
     constructor(props){
@@ -10,7 +11,8 @@ import axios from "axios";
         this.state={
           signupError:'',
           go:false,
-          showforget:false
+          showforget:false,
+          UserDate:[]
 
         }
       }
@@ -26,11 +28,13 @@ import axios from "axios";
             `http://localhost:8070/login-user`,
             Userdata
           )
-          console.log(loginUSer);
+          console.log(loginUSer.data);
           this.setState({
-            go:true
+            go:true,
+            Userdata:loginUSer.data
     
           })
+
         }catch(err){
             this.setState({
               showforget:true,
@@ -40,6 +44,13 @@ import axios from "axios";
           
        
       };
+    //   checksign=async()=>{
+        
+    //   };
+    //   componentDidUpdate() {
+    // this.checksign()
+    
+    // }
 form=(props)=>{
     return  <form onSubmit={props.handleSubmit} >
          <label htmlFor=""> password</label>
@@ -58,8 +69,8 @@ form=(props)=>{
         <Button type="submit"  variant="dark" >login </Button>}
 
         {this.state.go &&
-        <Button type="submit"  variant="dark" href='/'>Home page </Button>}
-        {this.state.showforget&&<Button type="submit"  variant="dark" href='/'>Home page </Button>}
+        <Button type="submit"  variant="dark" href='/'>Home page </Button>}{' '}
+        {this.state.showforget&&<Button type="submit"  variant="dark" href='/forgetBassword'>forget Password </Button>}
     </form>
     
 }
@@ -88,8 +99,11 @@ schema = () => {
           <div>
           <h1>{this.state.signupError}</h1>
           </div>
+          {this.state.go&&<Home UserDate={this.UserDate}/>}
             </>
         )
     }
 }
 export default Login
+
+
