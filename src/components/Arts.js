@@ -31,7 +31,7 @@ export class Sports extends Component {
 
   handelSearchQuery = (e) => {
     this.setState({
-      flag_search: false,
+      flag_search: false, // eslint-disable-next-line
     });
   };
 
@@ -60,7 +60,8 @@ export class Sports extends Component {
       })
       .then(() => {
         let array = [];
-        result.map((data, index) => {
+        // eslint-disable-next-line
+        result.map((data, index) => { 
           if (data.updated_date.split("T")[0] === this.getCurrentDate()) {
             array.push(data);
             result.splice(index, 1);

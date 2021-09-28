@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {
     Modal,
-    Button
   } from "react-bootstrap"
 
 export class ModalHomepage extends Component {

@@ -25,6 +25,7 @@ class Home extends Component {
   topNewsShow = async () => {
     try {
       let TopNews = await axios.get(`http://localhost:8070/TopNews`);
+      console.log(TopNews.data);
       let PopularNews = await axios.get("http://localhost:8070/PopularNews");
 
       let arra = PopularNews.data.filter(function (el) {
@@ -32,7 +33,7 @@ class Home extends Component {
         //define function for obtining the top news and send it to its component --> top news api PORT=http://localhost:8070/TopNews
 
         return el != null;
-      }))
+      });
 
       this.setState({
         topThree: TopNews.data.slice(0, 3),

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Col, Row, Card, Button, Container } from "react-bootstrap";
+import { Col, Row, Card, Container } from "react-bootstrap";
 import ModalHomepage from "./HomeComponent/ModalHomepage";
 export class CountryNews extends Component {
   constructor(props) {

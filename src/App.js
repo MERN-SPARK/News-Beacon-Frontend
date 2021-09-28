@@ -18,6 +18,7 @@ import Food from "./components/Food";
 import Politics from "./components/Politics";
 import Travel from "./components/Travel";
 import Result from "./components/Result";
+import ForgetBassword from "./components/HomeComponent/ForgetBassword"
 
 export class App extends Component {
   constructor(props) {
@@ -149,6 +150,9 @@ export class App extends Component {
 
                 <Route path="/travel">
                   <Travel />
+                </Route>
+                <Route path="/forgetBassword">
+                  <ForgetBassword />
                 </Route>
               </Switch>
             </Router>
