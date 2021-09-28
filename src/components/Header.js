@@ -133,7 +133,7 @@ class Header extends Component {
               </Button>
               <Button
                 style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
-                href="/login"
+                href=""
                 onClick={this.Logout}
               >
                 logout

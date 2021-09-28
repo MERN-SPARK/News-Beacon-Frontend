@@ -21,7 +21,7 @@ class Home extends Component {
   }
 checksign=async()=>{
   let check =  await axios.get('http://localhost:8070/check-user')
-  console.log(check);
+  console.log(check.data);
 }
 
   //define function for the most popular and send the data to its component --> most popular api
