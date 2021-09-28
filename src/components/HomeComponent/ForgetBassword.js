@@ -42,7 +42,7 @@ export class ForgetBassword extends Component {
       email: this.state.forgetPassword,
     };
     let resetPassword = await axios.post(
-      `http://localhost:8070/forget-user`,
+      `https://mern-spark-project.herokuapp.com/forget-user`,
       email
     );
     this.setState({

@@ -59,7 +59,7 @@ class Signup extends Component {
       };
       // eslint-disable-next-line
       let newUser = await axios.post(
-        `http://localhost:8070/signup-user`,
+        `https://mern-spark-project.herokuapp.com/signup-user`,
         Userdata
       );
       // let check = await axios.get("http://localhost:8070/check-user");
