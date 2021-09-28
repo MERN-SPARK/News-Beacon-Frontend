@@ -19,10 +19,10 @@ class Home extends Component {
       city: "amman",
     }
   }
-checksign=async()=>{
-  let check =  await axios.get('http://localhost:8070/check-user')
-  console.log(check);
-}
+// checksign=async()=>{
+//   let check =  await axios.get('http://localhost:8070/check-user')
+//   console.log(check);
+// }
 
   //define function for the most popular and send the data to its component --> most popular api
   //define function for obtining the top news and send it to its component --> top news api PORT=http://localhost:8070/TopNews
@@ -65,7 +65,7 @@ checksign=async()=>{
   async componentDidMount() {
     this.topNewsShow()
     this.weather()
-    this.checksign()
+    // this.checksign()
   }
  
 
@@ -77,8 +77,8 @@ checksign=async()=>{
       <h1>{this.props.user}</h1>
         <CarouselsNews topThree={this.state.topThree} />
         <Weather weatherData={this.state.weatherData} />
-        <TopNews topNews={this.state.topNews} />
-        <MostPopular popularNews={this.state.most_popular} />
+        <TopNews topNews={this.state.topNews} userData = {this.props.userData}/>
+        <MostPopular popularNews={this.state.most_popular} userData = {this.props.userData} />
         <CovidNews />
       </>
       

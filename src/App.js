@@ -18,9 +18,10 @@ import Food from "./components/Food";
 import Politics from "./components/Politics";
 import Travel from "./components/Travel";
 import Result from "./components/Result";
-import ForgetBassword from "./components/HomeComponent/ForgetBassword"
+import ForgetBassword from "./components/HomeComponent/ForgetBassword";
 import HeaderOther from "./components/HeaderOther";
-
+import { withAuth0 } from "@auth0/auth0-react";
+import Favourite from "./components/Favourite";
 
 export class App extends Component {
   constructor(props) {
@@ -32,6 +33,8 @@ export class App extends Component {
       resultFlag: false,
       target: "",
       isHomePage: true,
+      isAuth: false,
+      userData: [],
     };
   }
 
@@ -68,6 +71,19 @@ export class App extends Component {
       });
     });
   };
+  checksign = async () => {
+    let check = await axios.get("http://localhost:8070/check-user");
+    console.log(check.data);
+    this.setState({
+      userData: check.data.auth,
+    });
+  };
+
+  async componentDidMount() {
+    // this.topNewsShow();
+    // this.weather();
+    this.checksign();
+  }
 
   homepageCheck = () => {
     if (window.location.pathname === "/") {
@@ -76,22 +92,24 @@ export class App extends Component {
       });
     }
   };
-  
-   
 
   render() {
-   
+    const { isAuthenticated } = this.props.auth0;
+    // console.log(this.props.auth0);
+
     return (
       <>
-        {this.state.resultFlag ? (<>
-          <HeaderOther
-          openSideBar={this.state.openSideBar}
-          OpenNav={this.OpenNav}
-          closeNav={this.closeNav}
-          handelSearchQuery={this.handelSearchQuery}
-          HandelSubmit={this.HandelSubmit}
-        />
-          <Result results={this.state.results} target={this.state.target} /></>
+        {this.state.resultFlag ? (
+          <>
+            <HeaderOther
+              openSideBar={this.state.openSideBar}
+              OpenNav={this.OpenNav}
+              closeNav={this.closeNav}
+              handelSearchQuery={this.handelSearchQuery}
+              HandelSubmit={this.HandelSubmit}
+            />
+            <Result results={this.state.results} target={this.state.target} />
+          </>
         ) : (
           <>
             <Router>
@@ -104,8 +122,9 @@ export class App extends Component {
                     handelSearchQuery={this.handelSearchQuery}
                     HandelSubmit={this.HandelSubmit}
                     isHomePage={this.state.isHomePage}
+                    userData={this.state.userData}
                   />
-                  <Home />
+                  <Home userData={this.state.userData} />
                 </Route>
                 <Route path="/about">
                   <HeaderOther
@@ -117,6 +136,29 @@ export class App extends Component {
                   />
                   <AboutUs />
                 </Route>
+
+                <Route path="/favourite">
+                  <HeaderOther
+                    openSideBar={this.state.openSideBar}
+                    OpenNav={this.OpenNav}
+                    closeNav={this.closeNav}
+                    handelSearchQuery={this.handelSearchQuery}
+                    HandelSubmit={this.HandelSubmit}
+                  />
+                  <Favourite />
+                </Route>
+
+                <Route path="/Loginn">
+                  <HeaderOther
+                    openSideBar={this.state.openSideBar}
+                    OpenNav={this.OpenNav}
+                    closeNav={this.closeNav}
+                    handelSearchQuery={this.handelSearchQuery}
+                    HandelSubmit={this.HandelSubmit}
+                  />
+                  <AboutUs />
+                </Route>
+
                 <Route path="/favorate">
                   <HeaderOther
                     openSideBar={this.state.openSideBar}
@@ -158,7 +200,7 @@ export class App extends Component {
                     handelSearchQuery={this.handelSearchQuery}
                     HandelSubmit={this.HandelSubmit}
                   />
-                  <Sports />
+                  <Sports userData = {this.state.userData}/>
                 </Route>
 
                 <Route path="/arts">
@@ -169,7 +211,7 @@ export class App extends Component {
                     handelSearchQuery={this.handelSearchQuery}
                     HandelSubmit={this.HandelSubmit}
                   />
-                  <Arts />
+                  <Arts userData = {this.state.userData}/>
                 </Route>
 
                 <Route path="/business">
@@ -180,7 +222,7 @@ export class App extends Component {
                     handelSearchQuery={this.handelSearchQuery}
                     HandelSubmit={this.HandelSubmit}
                   />
-                  <Business />
+                  <Business userData = {this.state.userData} />
                 </Route>
 
                 <Route path="/food">
@@ -191,7 +233,7 @@ export class App extends Component {
                     handelSearchQuery={this.handelSearchQuery}
                     HandelSubmit={this.HandelSubmit}
                   />
-                  <Food />
+                  <Food userData = {this.state.userData} />
                 </Route>
 
                 <Route path="/politics">
@@ -202,7 +244,7 @@ export class App extends Component {
                     handelSearchQuery={this.handelSearchQuery}
                     HandelSubmit={this.HandelSubmit}
                   />
-                  <Politics />
+                  <Politics userData = {this.state.userData}/>
                 </Route>
 
                 <Route path="/moreInfo">
@@ -224,7 +266,7 @@ export class App extends Component {
                     handelSearchQuery={this.handelSearchQuery}
                     HandelSubmit={this.HandelSubmit}
                   />
-                  <Login setuser={this.setuser}/>
+                  <Login setuser={this.setuser} />
                 </Route>
                 <Route path="/signup">
                   <HeaderOther
@@ -245,7 +287,7 @@ export class App extends Component {
                     handelSearchQuery={this.handelSearchQuery}
                     HandelSubmit={this.HandelSubmit}
                   />
-                  <Travel />
+                  <Travel userData = {this.state.userData}/>
                 </Route>
                 <Route path="/forgetBassword">
                   <ForgetBassword />
@@ -261,4 +303,4 @@ export class App extends Component {
   }
 }
 
-export default App;
+export default withAuth0(App);

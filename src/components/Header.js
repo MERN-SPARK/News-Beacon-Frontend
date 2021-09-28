@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import logoImage from "../../src/logo.png";
 import axios from "axios";
+import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
+import { withAuth0 } from "@auth0/auth0-react";
 
 import {
   Navbar,
@@ -14,24 +17,37 @@ import {
 } from "react-bootstrap";
 
 class Header extends Component {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      userData: [],
+    };
+  }
   Logout = async (values) => {
-    
-    
-      let logoutUSer = await axios.get(
-        `http://localhost:8070/signout-user`
-      )
-      console.log(logoutUSer);
-      
-      
-   
+    let logoutUSer = await axios.get(`http://localhost:8070/signout-user`);
+    console.log(logoutUSer);
   };
 
+  // checksign = async () => {
+  //   let check = await axios.get("http://localhost:8070/check-user");
+  //   console.log(check.data);
+  //   this.setState({
+  //     userData: check.data.auth,
+  //   });
+  // };
+
+  // async componentDidMount() {
+  //   // this.topNewsShow();
+  //   // this.weather();
+  //   this.checksign();
+  // }
+
   render() {
+    const { isAuthenticated } = this.props.auth0;
+
     return (
       <>
-      
-      {console.log(this.props.isHomepage)}
+        {console.log(this.props.isHomepage)}
         <Navbar
           bg="dark"
           expand="lg"
@@ -49,7 +65,6 @@ class Header extends Component {
             href="/"
             style={{
               color: "white",
-          
             }}
           >
             <img src={logoImage} width="150" height="50" alt="logo" />
@@ -61,14 +76,17 @@ class Header extends Component {
               display: "grid",
               gridTemplateColumns: "auto auto auto ",
               gridGap: "100px",
-              
             }}
           >
             <Nav
-            //grid-template-columns: auto auto auto;gap: 50px;
-            
+              //grid-template-columns: auto auto auto;gap: 50px;
+
               className="mr-auto my-2 my-lg-0"
-              style={{ maxHeight: "100px",display: 'grid',gridTemplateColumns:"auto auto auto auto" ,gridGap:"50px"
+              style={{
+                maxHeight: "100px",
+                display: "grid",
+                gridTemplateColumns: "auto auto auto auto auto",
+                gridGap: "50px",
               }}
               navbarScroll
             >
@@ -86,6 +104,14 @@ class Header extends Component {
                   <Nav.Link href="#covid19" style={{ color: "white" }}>
                     Covid19
                   </Nav.Link>
+                  {(isAuthenticated || this.props.userData) && (
+                    <>
+                      {" "}
+                      <Nav.Link href="/favourite" style={{ color: "white" }}>
+                        Favourite
+                      </Nav.Link>
+                    </>
+                  )}
                 </>
               )}
 
@@ -125,29 +151,8 @@ class Header extends Component {
                 gridGap: "20px",
               }}
             >
-              <Button
-                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
-                href="/login"
-              >
-                Login
-              </Button>
-              <Button
-                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
-                href="/"
-                onClick={this.Logout}
-              >
-                logout
-              </Button>
-              <Button
-                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
-                href="/signup"
-              >
-                SignUp
-              </Button>
+              {(isAuthenticated || this.props.userData)? <LogoutButton /> : <LoginButton />}
 
-              {
-                //button to show the sidenav
-              }
               <Button
                 style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
                 variant="primary"
@@ -200,6 +205,25 @@ class Header extends Component {
             <Nav.Link href="/food" style={{ color: "#171717" }}>
               Food
             </Nav.Link>
+            <Button
+              style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
+              href="/login"
+            >
+              Login
+            </Button>
+            <Button
+              style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
+              href="/"
+              onClick={this.Logout}
+            >
+              logout
+            </Button>
+            <Button
+              style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
+              href="/signup"
+            >
+              SignUp
+            </Button>
           </Offcanvas.Body>
         </Offcanvas>
       </>
@@ -207,4 +231,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default withAuth0(Header);
