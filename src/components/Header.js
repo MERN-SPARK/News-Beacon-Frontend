@@ -5,7 +5,7 @@ import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import { withAuth0 } from "@auth0/auth0-react";
 import icon from "../../src/icon.png";
-
+import classnames from "classnames/bind"
 
 import {
   Navbar,
