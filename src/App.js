@@ -1,31 +1,31 @@
-import React, { Component } from "react";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
-import Home from "./components/Home";
-import AboutUs from "./components/AboutUs";
-import Favourites from "./components/Favourites";
-import MoreInfo from "./components/MoreInfo";
-import Sports from "./components/Sports";
-import CountryNews from "./components/CountryNews";
-import Signup from "./components/HomeComponent/Signup";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Login from "./components/HomeComponent/Login";
-import Arts from "./components/Arts";
-import Business from "./components/Business";
-import axios from "axios";
-import Food from "./components/Food";
-import Politics from "./components/Politics";
-import Travel from "./components/Travel";
-import Result from "./components/Result";
-import ForgetBassword from "./components/HomeComponent/ForgetBassword";
-import HeaderOther from "./components/HeaderOther";
-import { withAuth0 } from "@auth0/auth0-react";
-import Favourite from "./components/Favourite";
+import React, { Component } from "react"
+import Footer from "./components/Footer"
+import Header from "./components/Header"
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom"
+import Home from "./components/Home"
+import AboutUs from "./components/AboutUs"
+import Favourites from "./components/Favourites"
+import MoreInfo from "./components/MoreInfo"
+import Sports from "./components/Sports"
+import CountryNews from "./components/CountryNews"
+import Signup from "./components/HomeComponent/Signup"
+import "bootstrap/dist/css/bootstrap.min.css"
+import Login from "./components/HomeComponent/Login"
+import Arts from "./components/Arts"
+import Business from "./components/Business"
+import axios from "axios"
+import Food from "./components/Food"
+import Politics from "./components/Politics"
+import Travel from "./components/Travel"
+import Result from "./components/Result"
+import ForgetPassword from "./components/HomeComponent/ForgetPassword"
+import HeaderOther from "./components/HeaderOther"
+import { withAuth0 } from "@auth0/auth0-react"
+import Favourite from "./components/Favourite"
 
 export class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       openSideBar: false,
       searchQuery: "",
@@ -35,20 +35,20 @@ export class App extends Component {
       isHomePage: true,
       isAuth: false,
       userData: [],
-    };
+    }
   }
 
   OpenNav = () => {
     this.setState({
       openSideBar: true,
-    });
-  };
+    })
+  }
 
   closeNav = () => {
     this.setState({
       openSideBar: false,
-    });
-  };
+    })
+  }
 
   // handle the search form and put it in the header
 
@@ -56,45 +56,45 @@ export class App extends Component {
     this.setState({
       resultFlag: false,
       searchQuery: e.target.value,
-    });
-  };
+    })
+  }
   // handle submit which will use the search api and gives a q as a variable and then direct the user to a result page
 
   HandelSubmit = (e) => {
-    e.preventDefault();
-    let target = e.target.search.value;
+    e.preventDefault()
+    let target = e.target.search.value
     axios.get(`http://localhost:8070/APIOneSearch?q=${target}`).then((res) => {
       this.setState({
         resultFlag: true,
         results: res.data,
         target: target,
-      });
-    });
-  };
+      })
+    })
+  }
   checksign = async () => {
-    let check = await axios.get("http://localhost:8070/check-user");
-    console.log(check.data);
+    let check = await axios.get("http://localhost:8070/check-user")
+    console.log(check.data)
     this.setState({
       userData: check.data.auth,
-    });
-  };
+    })
+  }
 
   async componentDidMount() {
     // this.topNewsShow();
     // this.weather();
-    this.checksign();
+    this.checksign()
   }
 
   homepageCheck = () => {
     if (window.location.pathname === "/") {
       this.setState({
         isHomePage: false,
-      });
+      })
     }
-  };
+  }
 
   render() {
-    const { isAuthenticated } = this.props.auth0;
+    const { isAuthenticated } = this.props.auth0
     // console.log(this.props.auth0);
 
     return (
@@ -148,7 +148,7 @@ export class App extends Component {
                   <Favourite />
                 </Route>
 
-                <Route path="/Loginn">
+                {/* <Route path="/Loginn">
                   <HeaderOther
                     openSideBar={this.state.openSideBar}
                     OpenNav={this.OpenNav}
@@ -157,7 +157,7 @@ export class App extends Component {
                     HandelSubmit={this.HandelSubmit}
                   />
                   <AboutUs />
-                </Route>
+                </Route> */}
 
                 <Route path="/favorate">
                   <HeaderOther
@@ -200,7 +200,7 @@ export class App extends Component {
                     handelSearchQuery={this.handelSearchQuery}
                     HandelSubmit={this.HandelSubmit}
                   />
-                  <Sports userData = {this.state.userData}/>
+                  <Sports userData={this.state.userData} />
                 </Route>
 
                 <Route path="/arts">
@@ -211,7 +211,7 @@ export class App extends Component {
                     handelSearchQuery={this.handelSearchQuery}
                     HandelSubmit={this.HandelSubmit}
                   />
-                  <Arts userData = {this.state.userData}/>
+                  <Arts userData={this.state.userData} />
                 </Route>
 
                 <Route path="/business">
@@ -222,7 +222,7 @@ export class App extends Component {
                     handelSearchQuery={this.handelSearchQuery}
                     HandelSubmit={this.HandelSubmit}
                   />
-                  <Business userData = {this.state.userData} />
+                  <Business userData={this.state.userData} />
                 </Route>
 
                 <Route path="/food">
@@ -233,7 +233,7 @@ export class App extends Component {
                     handelSearchQuery={this.handelSearchQuery}
                     HandelSubmit={this.HandelSubmit}
                   />
-                  <Food userData = {this.state.userData} />
+                  <Food userData={this.state.userData} />
                 </Route>
 
                 <Route path="/politics">
@@ -244,7 +244,7 @@ export class App extends Component {
                     handelSearchQuery={this.handelSearchQuery}
                     HandelSubmit={this.HandelSubmit}
                   />
-                  <Politics userData = {this.state.userData}/>
+                  <Politics userData={this.state.userData} />
                 </Route>
 
                 <Route path="/moreInfo">
@@ -287,10 +287,10 @@ export class App extends Component {
                     handelSearchQuery={this.handelSearchQuery}
                     HandelSubmit={this.HandelSubmit}
                   />
-                  <Travel userData = {this.state.userData}/>
+                  <Travel userData={this.state.userData} />
                 </Route>
-                <Route path="/forgetBassword">
-                  <ForgetBassword />
+                <Route path="/forgetPassword">
+                  <ForgetPassword />
                 </Route>
               </Switch>
             </Router>
@@ -299,8 +299,8 @@ export class App extends Component {
 
         <Footer />
       </>
-    );
+    )
   }
 }
 
-export default withAuth0(App);
+export default withAuth0(App)
