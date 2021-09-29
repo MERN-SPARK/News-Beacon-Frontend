@@ -182,7 +182,7 @@ class Header extends Component {
 
               {/* <span>{(isAuthenticated || this.props.userData) && this.props.headername}</span> */}
               <span style={{color:"white", width:"100px",textAlign:"center"}}>{(isAuthenticated || this.props.userData) && "name" }</span>
-              {isAuthenticated? (
+             
 
               <span style={{ color: "white", width: "100px" }}>
                 {(isAuthenticated || this.props.userData) &&
@@ -268,14 +268,14 @@ class Header extends Component {
             <Link to="/arts" className="nav-link navnav">
               {" "}
               Arts
-
-            </Nav.Link>
+             </Link> 
+            
             <Nav.Link href="/business" style={{ color: "#171717" }}>
               Insider
             </Nav.Link>
             <Nav.Link href="/travel" style={{ color: "#171717" }}>
-
-            </Link>
+                </Nav.Link> 
+           
             <Link to="/business" className="nav-link navnav">
               {" "}
               Business
