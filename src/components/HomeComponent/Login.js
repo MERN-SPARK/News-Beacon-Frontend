@@ -59,7 +59,6 @@ class Login extends Component {
                   signupError:"correct access",
                   redirect:true
                 })
-                window.location.reload();
               }catch(err){
                   this.setState({
                     signupError:"incrrorect email or password"
