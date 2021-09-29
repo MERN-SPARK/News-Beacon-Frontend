@@ -51,7 +51,7 @@ class Login extends Component {
                 };
                 // eslint-disable-next-line
                 let loginUSer = await axios.post(
-                  `http://localhost:8070/login-user`,
+                  `https://mern-spark-project.herokuapp.com/login-user`,
                   Userdata
                 )
                 console.log(loginUSer.data)
@@ -59,14 +59,15 @@ class Login extends Component {
                   signupError:"correct access",
                   redirect:true
                 })
-      
+                window.location.reload();
               }catch(err){
                   this.setState({
                     signupError:"incrrorect email or password"
                   })
                 }
                 
-             
+                
+
             };
               
            

@@ -12,7 +12,8 @@ const LogoutButton = () => {
           borderColor: "#DA0037",
           color: "white",
         }}
-        onClick={() => logout({ returnTo: window.location.origin })}
+        onClick={() => logout({ 
+          returnTo: window.location.origin },console.log('hello' ))}
       >
         Log Out
       </button>
