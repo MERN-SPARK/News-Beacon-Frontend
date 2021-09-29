@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import logoImage from "../../src/logo.png";
-
+import { Link } from "react-router-dom";
+import navstyle from "./navstyle.css"
 import {
   Navbar,
   Nav,
+  // eslint-disable-next-line
   NavDropdown,
   Form,
   Button,
@@ -146,30 +148,16 @@ class Header extends Component {
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body style={{ fontSize: "30px" }}>
-            <Nav.Link href="/about" style={{ color: "#171717" }}>
-              About
-            </Nav.Link>
-            <Nav.Link href="/country" style={{ color: "#171717" }}>
-              Country News
-            </Nav.Link>
-            <Nav.Link href="/sports" style={{ color: "#171717" }}>
-              Sports
-            </Nav.Link>
-            <Nav.Link href="/arts" style={{ color: "#171717" }}>
-              Arts
-            </Nav.Link>
-            <Nav.Link href="/business" style={{ color: "#171717" }}>
-              Business
-            </Nav.Link>
-            <Nav.Link href="/travel" style={{ color: "#171717" }}>
-              travel
-            </Nav.Link>
-            <Nav.Link href="/politics" style={{ color: "#171717" }}>
-              Politics
-            </Nav.Link>
-            <Nav.Link href="/food" style={{ color: "#171717" }}>
-              Food
-            </Nav.Link>
+           
+            <Link to="/about" className="nav-link navnav"> Sports</Link>
+            <Link to="/country" className="nav-link navnav"> Country News</Link>
+            <Link to="/sports" className="nav-link navnav"> Sports</Link>
+            <Link to="/arts" className="nav-link navnav"> Arts</Link>
+            <Link to="/business" className="nav-link navnav"> Business</Link>
+            <Link to="/travel" className="nav-link navnav"> travel</Link>
+            <Link to="/politics" className="nav-link navnav"> Politics</Link>
+            <Link to="/food" className="nav-link navnav"> Food</Link>
+
           </Offcanvas.Body>
         </Offcanvas>
       </>

@@ -1,4 +1,4 @@
-import React, { Component,useEffect } from "react"
+import React, { Component } from "react"
 import CarouselsNews from "./HomeComponent/CarouselsNews"
 import Weather from "./HomeComponent/Weather"
 // import NewsFeed from './HomeComponent/NewsFeed';
@@ -53,6 +53,7 @@ class Home extends Component {
 
   weather = () => {
     let weatherInfo = []
+    
     axios
       .get(`http://localhost:8070/WeatherNews?city=${this.state.city}`)
       .then((res) => {
@@ -60,12 +61,12 @@ class Home extends Component {
         this.setState({
           weatherData: weatherInfo,
         })
-      })
+      }).catch(err=>console.log('error'))
   }
 
   
   async componentDidMount() {
-    console.log(this.state.favId)
+    console.log(this.state.weatherData);
     this.topNewsShow()
     this.weather()
     // this.checksign()
@@ -78,7 +79,8 @@ class Home extends Component {
     return this.state.loaded ? (
       <>
         <CarouselsNews topThree={this.state.topThree} />
-        <Weather weatherData={this.state.weatherData} />
+        {this.state.weatherData.length!=0&&
+        <Weather weatherData={this.state.weatherData} />}
         <TopNews topNews={this.state.topNews} userData = {this.props.userData} favId={this.props.favId}/>
        <h1> {this.props.favTd}</h1>
         <MostPopular popularNews={this.state.most_popular} userData = {this.props.userData} />

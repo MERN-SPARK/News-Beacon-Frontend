@@ -7,7 +7,7 @@ import CssBaseline from "@mui/material/CssBaseline"
 import TextField from "@mui/material/TextField"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Checkbox from "@mui/material/Checkbox"
-import Link from "@mui/material/Link"
+// import Link from "@mui/material/Link"
 import Grid from "@mui/material/Grid"
 import Box from "@mui/material/Box"
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
@@ -16,6 +16,8 @@ import Container from "@mui/material/Container"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { Redirect } from "react-router-dom"
 import LoginButton from "../LoginButton";
+import { Link } from "react-router-dom";
+
 
 function Copyright(props) {
   return (
@@ -144,12 +146,12 @@ class Login extends Component {
               {this.state.redirect && <Redirect to={this.state.direct} />}
               <Grid container>
                 <Grid item xs>
-                  <Link href="/forgetpassword" variant="body2">
+                  <Link to="/forgetpassword" variant="body2">
                     Forgot password?
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="/signup" variant="body2">
+                  <Link to="/signup" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
