@@ -70,7 +70,7 @@ class Header extends Component {
       <>
         {console.log(this.props.isHomepage)}
         <Navbar
-          className={classnames("navbar", {
+          className={("navbar", {
             "navbar--hidden": !this.state.visible,
           })}
           bg="dark"

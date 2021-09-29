@@ -30,8 +30,8 @@ this.favourite()
 let data={
     title:title
 }
-        let del = await axios.path(
-            `http://localhost:8070/delfav/${this.state.id}`,data)
+        let del = await axios.patch(
+            `https://mern-spark-project.herokuapp.com/delfav/${this.state.id}`,data)
             console.log(del)
     }
     
