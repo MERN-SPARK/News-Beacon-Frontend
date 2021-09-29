@@ -32,7 +32,7 @@ export class Sports extends Component {
 
   handelSearchQuery = (e) => {
     this.setState({
-      flag_search: false,
+      flag_search: false, // eslint-disable-next-line
     });
   };
 
@@ -52,7 +52,15 @@ export class Sports extends Component {
       searched_topics: arr,
     });
   };
-
+  favourite = async (title,description,image,url) => {
+    let arr = {title:title,image:image,description:description,url:url}
+    let checkfav= await axios.get("http://localhost:8070/checkfav")
+    console.log(checkfav.data.id);
+ let add = await axios.patch(
+    `http://localhost:8070/resdata/${checkfav.data.id}`, arr);
+    console.log(add.data);
+    // window.location.reload();
+}
   componentDidMount = () => {
     let result = [];
     axios
@@ -138,7 +146,7 @@ export class Sports extends Component {
                               <strong>{item.byline}</strong>
                             </Card.Text>
                             {(isAuthenticated || this.props.userData) && (
-                              <button onClick={this.favourite}>Like</button>
+                              <button onClick={()=>this.favourite(item.title,item.abstract,item.image,item.byline)}>Like</button>
                             )}
                           </div>
                         </Card.ImgOverlay>
@@ -176,7 +184,7 @@ export class Sports extends Component {
                             </p>
                           </Card.Body>
                           {(isAuthenticated || this.props.userData) && (
-                            <button onClick={this.favourite}>Like</button>
+                            <button onClick={()=>this.favourite(item.title,item.abstract,item.image,item.url)}>Like</button>
                           )}
                           <Card.Footer>
                             <small className="text-muted">{item.byline}</small>{" "}
@@ -218,7 +226,7 @@ export class Sports extends Component {
                           <Card.Text>{item.byline}</Card.Text>
                         </Card.Body>
                         {(isAuthenticated || this.props.userData) && (
-                          <button onClick={this.favourite}>Like</button>
+                          <button onClick={()=>this.favourite(item.title,item.description,item.image,item.url)}>Like</button>
                         )}
                       </Card>
                     </>

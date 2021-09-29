@@ -35,6 +35,8 @@ export class App extends Component {
       isHomePage: true,
       isAuth: false,
       userData: [],
+      favId:'',
+      test:'hello'
     };
   }
 
@@ -73,10 +75,13 @@ export class App extends Component {
   };
   checksign = async () => {
     let check = await axios.get("http://localhost:8070/check-user");
-    console.log(check.data);
+    console.log(check.data.data.name);
     this.setState({
       userData: check.data.auth,
     });
+    if(check.data.auth){
+      this. createfav(check.data.data.name)
+    }
   };
 
   async componentDidMount() {
@@ -93,8 +98,24 @@ export class App extends Component {
     }
   };
 
+    createfav=async(name)=>{
+    console.log(name);
+    const check={
+    name:name
+  }
+  let checkfav= await axios.get("http://localhost:8070/checkfav")
+ console.log(checkfav);
+if(!checkfav.data.state){
+    let create=await axios.post(
+      `http://localhost:8070/addfav`,
+      check)
+    }
+    console.log(this.state.favId);
+  }
   render() {
     const { isAuthenticated } = this.props.auth0;
+
+    isAuthenticated&&setTimeout(()=>{this.createfav(this.props.auth0.user.name)},500)
     // console.log(this.props.auth0);
 
     return (

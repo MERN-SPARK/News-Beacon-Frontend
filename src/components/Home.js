@@ -17,8 +17,10 @@ class Home extends Component {
       most_popular: [],
       weatherData: [],
       city: "amman",
+      favId:this.props.favId
     }
   }
+  ;
 // checksign=async()=>{
 //   let check =  await axios.get('http://localhost:8070/check-user')
 //   console.log(check);
@@ -49,22 +51,23 @@ class Home extends Component {
     }
   }
 
-  weather = () => {
-    let weatherInfo = []
-    axios
-      .get(`https://mern-spark-project.herokuapp.com/WeatherNews?city=${this.state.city}`)
-      .then((res) => {
-        weatherInfo = res.data
-        this.setState({
-          weatherData: weatherInfo,
-        })
-      })
-  }
+  // weather = () => {
+  //   let weatherInfo = []
+  //   axios
+  //     .get(`https://mern-spark-project.herokuapp.com/WeatherNews?city=${this.state.city}`)
+  //     .then((res) => {
+  //       weatherInfo = res.data
+  //       this.setState({
+  //         weatherData: weatherInfo,
+  //       })
+  //     })
+  // }
 
   
   async componentDidMount() {
+    console.log(this.state.favId)
     this.topNewsShow()
-    this.weather()
+    // this.weather()
     // this.checksign()
   }
  
@@ -76,8 +79,9 @@ class Home extends Component {
       <>
       <h1>{this.props.user}</h1>
         <CarouselsNews topThree={this.state.topThree} />
-        <Weather weatherData={this.state.weatherData} />
-        <TopNews topNews={this.state.topNews} userData = {this.props.userData}/>
+        {/* <Weather weatherData={this.state.weatherData} /> */}
+        <TopNews topNews={this.state.topNews} userData = {this.props.userData} favId={this.props.favId}/>
+       <h1> {this.props.favTd}</h1>
         <MostPopular popularNews={this.state.most_popular} userData = {this.props.userData} />
         <CovidNews />
       </>
