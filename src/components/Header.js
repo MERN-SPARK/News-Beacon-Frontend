@@ -1,66 +1,70 @@
-import React, { Component } from "react";
-import logoImage from "../../src/logo.png";
-import axios from "axios";
-import LoginButton from "./LoginButton";
-import LogoutButton from "./LogoutButton";
-import { withAuth0 } from "@auth0/auth0-react";
-
+import React, { Component } from "react"
+import logoImage from "../../src/logo.png"
+import axios from "axios"
+import LoginButton from "./LoginButton"
+import LogoutButton from "./LogoutButton"
+import { withAuth0 } from "@auth0/auth0-react"
+import classnames from "classnames"
+import "./Header.css"
 import {
   Navbar,
   Nav,
-  // eslint-disable-next-line
-  NavDropdown,
   Form,
   Button,
   FormControl,
   Offcanvas,
-} from "react-bootstrap";
+  Col,
+} from "react-bootstrap"
 
 class Header extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       userData: [],
-    };
+      prevScrollpos: window.pageYOffset,
+      visible: true,
+    }
   }
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll)
+  }
+
   Logout = async (values) => {
-    let logoutUSer = await axios.get(`https://mern-spark-project.herokuapp.com/signout-user`);
-    let endfav= await axios.get(`https://mern-spark-project.herokuapp.com/endfav`)
-    console.log(logoutUSer);
-  };
+    let logoutUSer = await axios.get(
+      `https://mern-spark-project.herokuapp.com/signout-user`
+    )
+    let endfav = await axios.get(
+      `https://mern-spark-project.herokuapp.com/endfav`
+    )
+  }
 
-  // checksign = async () => {
-  //   let check = await axios.get("http://localhost:8070/check-user");
-  //   console.log(check.data);
-  //   this.setState({
-  //     userData: check.data.auth,
-  //   });
-  // };
-
-  // async componentDidMount() {
-  //   // this.topNewsShow();
-  //   // this.weather();
-  //   this.checksign();
-  // }
+  handleScroll = () => {
+    const { prevScrollpos } = this.state
+    const currentScrollPos = window.pageYOffset
+    const visible = prevScrollpos > currentScrollPos
+    this.setState({
+      prevScrollpos: currentScrollPos,
+      visible,
+    })
+  }
 
   render() {
-    const { isAuthenticated } = this.props.auth0;
+    const { isAuthenticated } = this.props.auth0
 
     return (
       <>
         {console.log(this.props.isHomepage)}
         <Navbar
+          className={classnames("navbar", {
+            "navbar--hidden": !this.state.visible,
+          })}
           bg="dark"
           expand="lg"
-          style={{
-            backgroundColor: "#444444",
-            position: "sticky",
-            top: "0",
-            zIndex: 1,
-            display: "grid",
-            gridTemplateColumns: "1fr 5fr ",
-            gridGap: "50px",
-          }}
         >
           <Navbar.Brand
             href="/"
@@ -68,7 +72,7 @@ class Header extends Component {
               color: "white",
             }}
           >
-            <img src={logoImage} width="150" height="50" alt="logo" />
+            <img src={logoImage} width="200" height="130" alt="logo" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse
@@ -80,8 +84,6 @@ class Header extends Component {
             }}
           >
             <Nav
-              //grid-template-columns: auto auto auto;gap: 50px;
-
               className="mr-auto my-2 my-lg-0"
               style={{
                 maxHeight: "100px",
@@ -96,11 +98,11 @@ class Header extends Component {
               </Nav.Link>
               {this.props.isHomePage && (
                 <>
-                  <Nav.Link href="#popular" style={{ color: "white" }}>
-                    PopularNews
-                  </Nav.Link>
                   <Nav.Link href="#topnews" style={{ color: "white" }}>
                     Top News
+                  </Nav.Link>
+                  <Nav.Link href="#popular" style={{ color: "white" }}>
+                    PopularNews
                   </Nav.Link>
                   <Nav.Link href="#covid19" style={{ color: "white" }}>
                     Covid19
@@ -115,18 +117,6 @@ class Header extends Component {
                   )}
                 </>
               )}
-
-              {/* decomment if you need a dropDown list
-               <NavDropdown title="Link" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action5">
-                  Something else here
-                </NavDropdown.Item>
-              </NavDropdown> */}
             </Nav>
             <Form className="d-flex" onSubmit={this.props.HandelSubmit}>
               <FormControl
@@ -152,7 +142,11 @@ class Header extends Component {
                 gridGap: "20px",
               }}
             >
-              {(isAuthenticated || this.props.userData)? <LogoutButton /> : <LoginButton />}
+              {isAuthenticated || this.props.userData ? (
+                <LogoutButton />
+              ) : (
+                <LoginButton />
+              )}
 
               <Button
                 style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
@@ -165,9 +159,7 @@ class Header extends Component {
             </div>
           </Navbar.Collapse>
         </Navbar>
-        {
-          //******************SideNav******************** */
-        }
+
         <Offcanvas
           show={this.props.openSideBar}
           onHide={this.props.closeNav}
@@ -177,14 +169,17 @@ class Header extends Component {
           }}
         >
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title style={{ color: "#DA0037", fontSize: "50px" }}>
+            <Offcanvas.Title
+              style={{
+                color: "#DA0037",
+                fontSize: "50px",
+              }}
+            >
               More
             </Offcanvas.Title>
           </Offcanvas.Header>
+
           <Offcanvas.Body style={{ fontSize: "30px" }}>
-            <Nav.Link href="/about" style={{ color: "#171717" }}>
-              About
-            </Nav.Link>
             <Nav.Link href="/country" style={{ color: "#171717" }}>
               Country News
             </Nav.Link>
@@ -206,30 +201,39 @@ class Header extends Component {
             <Nav.Link href="/food" style={{ color: "#171717" }}>
               Food
             </Nav.Link>
-            <Button
-              style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
-              href="/login"
-            >
-              Login
-            </Button>
-            <Button
-              style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
-              href="/"
-              onClick={this.Logout}
-            >
-              logout
-            </Button>
-            <Button
-              style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
-              href="/signup"
-            >
-              SignUp
-            </Button>
+            <Nav.Link href="/about" style={{ color: "#171717" }}>
+              About
+            </Nav.Link>
+            <Col>
+              <Button
+                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
+                href="/login"
+              >
+                Login
+              </Button>
+            </Col>
+            <Col>
+              <Button
+                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
+                href="/"
+                onClick={this.Logout}
+              >
+                logout
+              </Button>
+            </Col>
+            <Col>
+              <Button
+                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
+                href="/signup"
+              >
+                SignUp
+              </Button>
+            </Col>
           </Offcanvas.Body>
         </Offcanvas>
       </>
-    );
+    )
   }
 }
 
-export default withAuth0(Header);
+export default withAuth0(Header)
