@@ -65,7 +65,7 @@ export class App extends Component {
   HandelSubmit = (e) => {
     e.preventDefault();
     let target = e.target.search.value;
-    axios.get(`http://localhost:8070/APIOneSearch?q=${target}`).then((res) => {
+    axios.get(`https://mern-spark-project.herokuapp.com/APIOneSearch?q=${target}`).then((res) => {
       this.setState({
         resultFlag: true,
         results: res.data,
@@ -74,13 +74,13 @@ export class App extends Component {
     });
   };
   checksign = async () => {
-    let check = await axios.get("http://localhost:8070/check-user");
-    console.log(check.data.data.name);
+    let check = await axios.get("https://mern-spark-project.herokuapp.com/check-user");
+    console.log(check.data);
     this.setState({
       userData: check.data.auth,
     });
     if(check.data.auth){
-      this. createfav(check.data.data.name)
+      this.createfav(check.data.data.name)
     }
   };
 
@@ -103,11 +103,11 @@ export class App extends Component {
     const check={
     name:name
   }
-  let checkfav= await axios.get("http://localhost:8070/checkfav")
+  let checkfav= await axios.get("https://mern-spark-project.herokuapp.com/checkfav")
  console.log(checkfav);
 if(!checkfav.data.state){
     let create=await axios.post(
-      `http://localhost:8070/addfav`,
+      `https://mern-spark-project.herokuapp.com/addfav`,
       check)
     }
     console.log(this.state.favId);
