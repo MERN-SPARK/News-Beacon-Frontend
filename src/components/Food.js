@@ -54,10 +54,10 @@ export class Sports extends Component {
   };
   favourite = async (title,description,image,url) => {
     let arr = {title:title,image:image,description:description,url:url}
-    let checkfav= await axios.get("http://localhost:8070/checkfav")
+    let checkfav= await axios.get("https://mern-spark-project.herokuapp.com/checkfav")
     console.log(checkfav.data.id);
  let add = await axios.patch(
-    `http://localhost:8070/resdata/${checkfav.data.id}`, arr);
+    `https://mern-spark-project.herokuapp.com/resdata/${checkfav.data.id}`, arr);
     console.log(add.data);
     // window.location.reload();
 }
