@@ -41,7 +41,7 @@ let data={
                 {this.state.data.map(item=>{
                     return <div>
                     <h1>{item.title}</h1>
-                    <button type='button' onClick={()=>this.delfav(item.title)}></button>
+                    <button type='button' onClick={()=>this.delfav(item.title)}>remove</button>
                     </div>
                 })}
             </div>
