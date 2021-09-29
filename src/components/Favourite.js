@@ -1,52 +1,59 @@
-import React, { Component } from 'react'
-import axios from 'axios'
+import React, { Component } from "react"
+import axios from "axios"
 export class Favourite extends Component {
-    constructor(props){
-        super(props)
-        this.state={
-            data:[],
-            id:''
-        }
+  constructor(props) {
+    super(props)
+    this.state = {
+      data: [],
+      id: "",
     }
- 
+  }
 
-    favourite = async () => {
-       
-        let checkfav= await axios.get("https://mern-spark-project.herokuapp.com/checkfav")
-        console.log(checkfav.data.id);
-     let add = await axios.get(
-        `https://mern-spark-project.herokuapp.com/getfav/${checkfav.data.id}`);
-        console.log(add.data.data.user.favdata);
-        this.setState({
-            data:add.data.data.user.favdata,
-            id:checkfav.data.id
-        })
-        // window.location.reload();
+  favourite = async () => {
+    let checkfav = await axios.get(
+      "https://mern-spark-project.herokuapp.com/checkfav"
+    )
+    console.log(checkfav.data.id)
+    let add = await axios.get(
+      `https://mern-spark-project.herokuapp.com/getfav/${checkfav.data.id}`
+    )
+    console.log(add.data.data.user.favdata)
+    this.setState({
+      data: add.data.data.user.favdata,
+      id: checkfav.data.id,
+    })
+  }
+  async componentDidMount() {
+    this.favourite()
+  }
+  delfav = async (title) => {
+    let data = {
+      title: title,
     }
-    async componentDidMount() {
-this.favourite()
-    }
-    delfav = async (title)=>{
-let data={
-    title:title
-}
-        let del = await axios.patch(
-            `https://mern-spark-project.herokuapp.com/delfav/${this.state.id}`,data)
-            console.log(del)
-    }
-    
-    render() {
-        return (
+    let del = await axios.patch(
+      `https://mern-spark-project.herokuapp.com/delfav/${this.state.id}`,
+      data
+    )
+    console.log(del)
+    window.location.reload()
+  }
+
+  render() {
+    return (
+      <div>
+        {this.state.data.map((item) => {
+          return (
             <div>
-                {this.state.data.map(item=>{
-                    return <div>
-                    <h1>{item.title}</h1>
-                    <button type='button' onClick={()=>this.delfav(item.title)}>remove</button>
-                    </div>
-                })}
+              <h1>{item.title}</h1>
+              <button type="button" onClick={() => this.delfav(item.title)}>
+                remove
+              </button>
             </div>
-        )
-    }
+          )
+        })}
+      </div>
+    )
+  }
 }
 
 export default Favourite
