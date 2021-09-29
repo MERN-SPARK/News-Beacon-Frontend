@@ -75,6 +75,7 @@ class Header extends Component {
           })}
           bg="dark"
           expand="lg"
+          style={{display:"flex",justifyContent:"space-between"}}
         >
           <Navbar.Brand
             href="/"
@@ -88,10 +89,7 @@ class Header extends Component {
           <Navbar.Collapse
             id="navbarScroll"
             style={{
-              display: "grid",
-              gridTemplateColumns: "auto auto auto ",
-              gridGap: "50px",
-              alignItems: "center"
+              justifyContent: "flex-end"
             }}
           >
             <Nav
@@ -118,14 +116,16 @@ class Header extends Component {
                   <Nav.Link href="#covid19" style={{ color: "white" }}>
                     Covid19
                   </Nav.Link>
+                  <span>
                   {(isAuthenticated || this.props.userData) && (
                     <>
                       {" "}
-                      <Nav.Link href="/favourite" style={{ color: "white" }}>
+                      <Nav.Link href="/favourite" style={{ color: "white",marginRight:"50px" }}>
                         Favourite
                       </Nav.Link>
                     </>
                   )}
+                  </span>
                 </>
               )}
             </Nav>
@@ -157,19 +157,8 @@ class Header extends Component {
               }}
               
             >
-              <span style={{color:"white", width:"100px"}}>{(isAuthenticated || this.props.userData) && this.props.headername }</span>
-              
-              {/* {isAuthenticated || this.props.userData ? (
-                <LogoutButton />
-              ) : (
-                <Button
-                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
-                href="/login"
-              >
-                Login
-              </Button>
-              )} */}
-
+              {/* <span>{(isAuthenticated || this.props.userData) && this.props.headername}</span> */}
+              <span style={{color:"white", width:"100px",textAlign:"center"}}>{(isAuthenticated || this.props.userData) && "name" }</span>
               {isAuthenticated? (
                 <LogoutButton />
               ) : this.props.userData?(  <Button
@@ -195,6 +184,7 @@ class Header extends Component {
 
                 // className="me-2"
                 src={icon}
+                alt=""
               />
             </div>
           </Navbar.Collapse>
@@ -230,7 +220,7 @@ class Header extends Component {
               Arts
             </Nav.Link>
             <Nav.Link href="/business" style={{ color: "#171717" }}>
-              Business
+              Insider
             </Nav.Link>
             <Nav.Link href="/travel" style={{ color: "#171717" }}>
               travel
