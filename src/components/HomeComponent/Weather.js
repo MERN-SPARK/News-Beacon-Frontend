@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ToastContainer, Toast } from "react-bootstrap";
+import { ToastContainer, Toast, Row, Col } from "react-bootstrap";
 
 export class Weather extends Component {
   render() {
@@ -8,22 +8,56 @@ export class Weather extends Component {
         <ToastContainer className="p-3">
           <Toast>
             <Toast.Header closeButton={false}>
-              <img
-                src="holder.js/20x20?text=%20"
-                className="rounded me-2"
-                alt=""
-              />
-              <strong className="me-auto">Weather Forecasting</strong>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "auto auto",
+                  gridGap: "180px",
+                }}
+              >
+                <h4 className="me-auto">{this.props.weatherData[0].place}</h4>
+                <p style={{ margin: "auto", fontSize: "17px" }}>
+                  {`${this.props.weatherData[0].temp} `}
+                  <span>&#8451;</span>
+                </p>
+              </div>
             </Toast.Header>
             <Toast.Body>
-              <h4>{this.props.weatherData[0].place}</h4>
-              <p>{this.props.weatherData[0].description}</p>
-              <img src = {this.props.weatherData[0].icon}/>
-              <ul>
-                <li>{`temp: ${this.props.weatherData[0].temp}`}</li>
-                <li>{`min: ${this.props.weatherData[0].min}`}</li>
-                <li>{`max: ${this.props.weatherData[0].max}`}</li>
-              </ul>
+              <Row xs={2}>
+                <Col>
+                  <Row>
+                    <p>
+                      <span style={{ color: "#6c757d", fontWeight: "500" }}>
+                        Status :<br />
+                      </span>
+                      {this.props.weatherData[0].description}
+                    </p>
+                  </Row>
+                  <Row>
+                    <img
+                      src={this.props.weatherData[0].icon}
+                      style={{ width: "75px" }}
+                    />
+                  </Row>
+                </Col>
+
+                <Col>
+                  <p>
+                    <span style={{ fontSize: "20px", marginRight: "15px" }}>
+                      min:
+                    </span>
+                    <span style={{ color: "#6c757d" }}>
+                      {`${this.props.weatherData[0].min}`}&#8451;
+                    </span>
+                  </p>
+                  <p>
+                    <span style={{ fontSize: "20px", marginRight: "15px" }}>max:</span>
+                    <span style={{ color: "#6c757d" }}>
+                      {`${this.props.weatherData[0].max}`}&#8451;
+                    </span>
+                  </p>
+                </Col>
+              </Row>
             </Toast.Body>
           </Toast>
         </ToastContainer>

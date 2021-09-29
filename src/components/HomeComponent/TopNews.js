@@ -3,6 +3,9 @@ import { Col, Row, Card, Button, Container } from "react-bootstrap";
 import ModalHomepage from "./ModalHomepage";
 import { withAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
+import like1 from "../../like1.png";
+import like2 from "../../like2.png";
+
 class TopNews extends Component {
   constructor(props) {
     super(props);
@@ -23,16 +26,40 @@ class TopNews extends Component {
       showmodal: false,
     });
   };
-  favourite = async (title,description,image,url) => {
-    let arr = {title:title,image:image,description:description,url:url}
-    let checkfav= await axios.get("https://mern-spark-project.herokuapp.com/checkfav")
+  favourite = async (title, description, image, url) => {
+    let arr = {
+      title: title,
+      image: image,
+      description: description,
+      url: url,
+    };
+    let checkfav = await axios.get(
+      "https://mern-spark-project.herokuapp.com/checkfav"
+    );
     console.log(checkfav.data.id);
- let add = await axios.patch(
-    `https://mern-spark-project.herokuapp.com/resdata/${checkfav.data.id}`, arr);
+    let add = await axios.patch(
+      `https://mern-spark-project.herokuapp.com/resdata/${checkfav.data.id}`,
+      arr
+    );
     console.log(add.data);
     // window.location.reload();
-}
+  };
+  //  toggleImg=() =>{
+  //   let initialImg = document.getElementById("imgplus").src;
+  //   let srcTest = initialImg.includes('like1');
+  //   let newImg = {
+  //     'true':'second/img/url',
+  //     'false':'initial/img/url'}[srcTest];
 
+  //   return newImg;
+  // }
+  image2 = (e) => {
+    if (e.target.src === like1) {
+      e.target.src = like2;
+    } else {
+      e.target.src = like1;
+    }
+  };
 
   render() {
     const { isAuthenticated } = this.props.auth0;
@@ -60,16 +87,42 @@ class TopNews extends Component {
                             width: "20rem",
                             height: "350px",
                             marginTop: "50px",
+                            position: "relative",
                           }}
-                          onClick={() => this.openmodals(item)}
                         >
-                          <Card.Body>
-                            {(isAuthenticated || this.props.userData) && (
-                              <button onClick={()=>this.favourite(item.title,item.description,item.image,item.url)}>Like</button>
-                            )}
-                            <Card.Title>{`${item.title}`}</Card.Title>
+                          <Card.Body onClick={() => this.openmodals(item)}>
+                            <Card.Title
+                              style={{ position: "absolute", top: "50px" }}
+                            >{`${item.title}`}</Card.Title>
                           </Card.Body>
-                          <Card.Img variant="top" src={`${item.image}`} />
+                          
+                          <Card.Img
+                            variant="top"
+                            src={`${item.image}`}
+                            onClick={(e) => {
+                              this.openmodals(item);
+                            }}
+                          />
+                          {(isAuthenticated || this.props.userData) && (
+                            <img
+                              src={like1}
+                              style={{
+                                position: "absolute",
+                                top: "220px",
+                                left: "190px",
+                              }}
+                              onClick={(e) => {
+                                this.favourite(
+                                  item.title,
+                                  item.description,
+                                  item.image,
+                                  item.url
+                                );
+                                this.image2(e);
+                              }}
+                              alt=""
+                            />
+                          )}
                         </Card>
                       </Col>
                     );
@@ -85,16 +138,36 @@ class TopNews extends Component {
                             height: "350px",
                             marginTop: "50px",
                           }}
-                          onClick={() => this.openmodals(item)}
                         >
-                          <Card.Img variant="bottom" src={`${item.image}`} />
+                          <Card.Img
+                            variant="bottom"
+                            src={`${item.image}`}
+                            onClick={() => this.openmodals(item)}
+                          />
 
-                          <Card.Body>
+                          <Card.Body onClick={() => this.openmodals(item)}>
                             <Card.Title>{`${item.title}`}</Card.Title>
-                            {(isAuthenticated || this.props.userData) && (
-                              <button onClick={()=>this.favourite(item.title,item.description,item.image,item.url)}>Like</button>
-                            )}
                           </Card.Body>
+                          {(isAuthenticated || this.props.userData) && (
+                            <img
+                              style={{
+                                position: "absolute",
+                                top: "220px",
+                                left: "190px",
+                              }}
+                              src={like1}
+                              onClick={(e) => {
+                                this.favourite(
+                                  item.title,
+                                  item.description,
+                                  item.image,
+                                  item.url
+                                );
+                                this.image2(e);
+                              }}
+                              alt=""
+                            />
+                          )}
                         </Card>
                       </Col>
                     );

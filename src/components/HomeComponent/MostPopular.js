@@ -4,6 +4,8 @@ import { Col, Row, Card, Button, Container } from "react-bootstrap";
 import ModalHomepage from "./ModalHomepage";
 import { withAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
+import like1 from "../../like1.png";
+import like2 from "../../like2.png";
 
 export class MostPopular extends Component {
   constructor(props) {
@@ -25,6 +27,15 @@ export class MostPopular extends Component {
       showmodal: false,
     });
   };
+  
+  image2 = (e) => {
+    if (e.target.src === like1) {
+      e.target.src = like2;
+    } else {
+      e.target.src = like1;
+    }
+  };
+
   favourite = async (title,description,image,url) => {
     let arr = {title:title,image:image,description:description,url:url}
     let checkfav= await axios.get("https://mern-spark-project.herokuapp.com/checkfav")
@@ -68,13 +79,31 @@ export class MostPopular extends Component {
                           marginTop: "50px",
                         }}
                       >
-                        <Card.Body>
-                          {(isAuthenticated || this.props.userData) && (
-                            <button onClick={()=>this.favourite(item.title,item.description,item.image,item.url)}>Like</button>
-                          )}
-                          <Card.Title>{`${item.title}`}</Card.Title>
+                        <Card.Body onClick={() => this.openmodals(item)}>
+                          
+                          <Card.Title >{`${item.title}`}</Card.Title>
                         </Card.Body>
-                        <Card.Img variant="top" src={`${item.image}`} />
+                        <Card.Img variant="top" src={`${item.image}`} onClick={() => this.openmodals(item)}/>
+                        {(isAuthenticated || this.props.userData) && (
+                               <img
+                               src={like1}
+                               style={{
+                                 position: "absolute",
+                                 top: "220px",
+                                 left: "190px",
+                               }}
+                               onClick={(e) => {
+                                 this.favourite(
+                                   item.title,
+                                   item.description,
+                                   item.image,
+                                   item.url
+                                 );
+                                 this.image2(e);
+                               }}
+                               alt=""
+                             />
+                          )}
                       </Card>
                     </Col>
                   );
@@ -90,16 +119,34 @@ export class MostPopular extends Component {
                           height: "350px",
                           marginTop: "50px",
                         }}
-                        onClick={() => this.openmodals(item)}
+                       
                       >
-                        <Card.Img variant="bottom" src={`${item.image}`} />
+                        <Card.Img variant="bottom" src={`${item.image}`}  onClick={() => this.openmodals(item)}/>
 
-                        <Card.Body>
-                          {(isAuthenticated || this.props.userData) && (
-                            <button onClick={()=>this.favourite(item.title,item.description,item.image,item.url)}>Like</button>
-                          )}
+                        <Card.Body  onClick={() => this.openmodals(item)}>
+                         
                           <Card.Title>{`${item.title}`}</Card.Title>
                         </Card.Body>
+                        {(isAuthenticated || this.props.userData) && (
+                               <img
+                               src={like1}
+                               style={{
+                                 position: "absolute",
+                                 top: "220px",
+                                 left: "190px",
+                               }}
+                               onClick={(e) => {
+                                 this.favourite(
+                                   item.title,
+                                   item.description,
+                                   item.image,
+                                   item.url
+                                 );
+                                 this.image2(e);
+                               }}
+                               alt=""
+                             />
+                          )}
                       </Card>
                     </Col>
                   );
