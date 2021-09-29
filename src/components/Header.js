@@ -35,16 +35,18 @@ class Header extends Component {
   }
 
   Logout = async (values) => {
-    let logoutUSer = await axios.get(`http://localhost:8070/signout-user`)
-    console.log(logoutUSer)
+    let logoutUSer = await axios.get(
+      `https://mern-spark-project.herokuapp.com/signout-user`
+    )
+    let endfav = await axios.get(
+      `https://mern-spark-project.herokuapp.com/endfav`
+    )
   }
 
   handleScroll = () => {
     const { prevScrollpos } = this.state
-
     const currentScrollPos = window.pageYOffset
     const visible = prevScrollpos > currentScrollPos
-
     this.setState({
       prevScrollpos: currentScrollPos,
       visible,

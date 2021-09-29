@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Col, Row, Card, Button, Container } from "react-bootstrap";
 import ModalHomepage from "./ModalHomepage";
 import { withAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
 
 export class MostPopular extends Component {
   constructor(props) {
@@ -24,6 +25,15 @@ export class MostPopular extends Component {
       showmodal: false,
     });
   };
+  favourite = async (title,description,image,url) => {
+    let arr = {title:title,image:image,description:description,url:url}
+    let checkfav= await axios.get("https://mern-spark-project.herokuapp.com/checkfav")
+    console.log(checkfav.data.id);
+ let add = await axios.patch(
+    `https://mern-spark-project.herokuapp.com/resdata/${checkfav.data.id}`, arr);
+    console.log(add.data);
+    // window.location.reload();
+}
   render() {
     const { isAuthenticated } = this.props.auth0;
 
@@ -60,7 +70,7 @@ export class MostPopular extends Component {
                       >
                         <Card.Body>
                           {(isAuthenticated || this.props.userData) && (
-                            <button>Like</button>
+                            <button onClick={()=>this.favourite(item.title,item.description,item.image,item.url)}>Like</button>
                           )}
                           <Card.Title>{`${item.title}`}</Card.Title>
                         </Card.Body>
@@ -86,7 +96,7 @@ export class MostPopular extends Component {
 
                         <Card.Body>
                           {(isAuthenticated || this.props.userData) && (
-                            <button>Like</button>
+                            <button onClick={()=>this.favourite(item.title,item.description,item.image,item.url)}>Like</button>
                           )}
                           <Card.Title>{`${item.title}`}</Card.Title>
                         </Card.Body>

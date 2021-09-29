@@ -35,6 +35,8 @@ export class App extends Component {
       isHomePage: true,
       isAuth: false,
       userData: [],
+      favId: "",
+      test: "hello",
     }
   }
 
@@ -63,20 +65,27 @@ export class App extends Component {
   HandelSubmit = (e) => {
     e.preventDefault()
     let target = e.target.search.value
-    axios.get(`http://localhost:8070/APIOneSearch?q=${target}`).then((res) => {
-      this.setState({
-        resultFlag: true,
-        results: res.data,
-        target: target,
+    axios
+      .get(`https://mern-spark-project.herokuapp.com/APIOneSearch?q=${target}`)
+      .then((res) => {
+        this.setState({
+          resultFlag: true,
+          results: res.data,
+          target: target,
+        })
       })
-    })
   }
   checksign = async () => {
-    let check = await axios.get("http://localhost:8070/check-user")
+    let check = await axios.get(
+      "https://mern-spark-project.herokuapp.com/check-user"
+    )
     console.log(check.data)
     this.setState({
       userData: check.data.auth,
     })
+    if (check.data.auth) {
+      this.createfav(check.data.data.name)
+    }
   }
 
   async componentDidMount() {
@@ -93,8 +102,30 @@ export class App extends Component {
     }
   }
 
+  createfav = async (name) => {
+    console.log(name)
+    const check = {
+      name: name,
+    }
+    let checkfav = await axios.get(
+      "https://mern-spark-project.herokuapp.com/checkfav"
+    )
+    console.log(checkfav)
+    if (!checkfav.data.state) {
+      let create = await axios.post(
+        `https://mern-spark-project.herokuapp.com/addfav`,
+        check
+      )
+    }
+    console.log(this.state.favId)
+  }
   render() {
     const { isAuthenticated } = this.props.auth0
+
+    isAuthenticated &&
+      setTimeout(() => {
+        this.createfav(this.props.auth0.user.name)
+      }, 500)
     // console.log(this.props.auth0);
 
     return (

@@ -134,7 +134,7 @@ class Login extends Component {
               {this.state.redirect && <Redirect to={this.state.direct} />}
               <Grid container>
                 <Grid item xs>
-                  <Link href="/forgetPassword" variant="body2">
+                  <Link href="/forgetbassword" variant="body2">
                     Forgot password?
                   </Link>
                 </Grid>
