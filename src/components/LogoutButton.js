@@ -17,7 +17,7 @@ const LogoutButton = () => {
           returnTo: window.location.origin },    axios.get(`https://mern-spark-project.herokuapp.com/endfav`)
           )}
       >
-        Log Out
+        Log Out Auth0
       </button>
     )
   );

@@ -157,11 +157,34 @@ class Header extends Component {
               }}
               
             >
-              <span style={{color:"white", width:"100px"}}>{(isAuthenticated || this.props.userData) && `Name` }</span>
-              {isAuthenticated || this.props.userData ? (
+              <span style={{color:"white", width:"100px"}}>{(isAuthenticated || this.props.userData) && this.props.headername }</span>
+              
+              {/* {isAuthenticated || this.props.userData ? (
                 <LogoutButton />
               ) : (
-                <LoginButton />
+                <Button
+                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
+                href="/login"
+              >
+                Login
+              </Button>
+              )} */}
+
+              {isAuthenticated? (
+                <LogoutButton />
+              ) : this.props.userData?(  <Button
+                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
+                href="/"
+                onClick={this.Logout}
+              >
+                Log Out  User
+              </Button>):(
+                <Button
+                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
+                href="/login"
+              >
+                Login
+              </Button>
               )}
               
 
@@ -222,29 +245,6 @@ class Header extends Component {
               About
             </Nav.Link>
             <Col>
-              <Button
-                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
-                href="/login"
-              >
-                Login
-              </Button>
-            </Col>
-            <Col>
-              <Button
-                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
-                href="/"
-                onClick={this.Logout}
-              >
-                logout
-              </Button>
-            </Col>
-            <Col>
-              <Button
-                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
-                href="/signup"
-              >
-                SignUp
-              </Button>
             </Col>
           </Offcanvas.Body>
         </Offcanvas>

@@ -10,15 +10,15 @@ const LoginButton = () => {
       <Button
         href="/"
         style={{
-          backgroundColor: "#DA0037",
-          borderColor: "#DA0037",
+          backgroundColor: "#1976d2",
+          borderColor: "#1976d2",
           color: "white",
           height: "40px",
-       
+          width: "100%"
         }}
         onClick={() => loginWithRedirect()}
       >
-        Sign In
+        Sign In with Auth0
       </Button>
     )
   );

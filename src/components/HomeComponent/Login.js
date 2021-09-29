@@ -15,6 +15,8 @@ import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { Redirect } from "react-router-dom"
+import LoginButton from "../LoginButton";
+
 function Copyright(props) {
   return (
     <Typography
@@ -55,6 +57,7 @@ class Login extends Component {
         password: data.get("password"),
       }
       // eslint-disable-next-line
+      
       let loginUSer = await axios.post(
         `https://mern-spark-project.herokuapp.com/login-user`,
         Userdata
@@ -64,6 +67,7 @@ class Login extends Component {
         signupError: "correct access",
         redirect: true,
       })
+      window.location.reload()
     } catch (err) {
       this.setState({
         signupError: "incrrorect email or password",
@@ -73,6 +77,7 @@ class Login extends Component {
 
   render() {
     return (
+      <div>
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
@@ -88,7 +93,7 @@ class Login extends Component {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+              Sign in With
             </Typography>
             <Box
               component="form"
@@ -96,6 +101,11 @@ class Login extends Component {
               noValidate
               sx={{ mt: 1 }}
             >
+              <br/>
+              <br/>
+                    <LoginButton />
+                    <br/>
+              <br/>
               <TextField
                 margin="normal"
                 required
@@ -149,6 +159,7 @@ class Login extends Component {
           <Copyright sx={{ mt: 8, mb: 4 }} />
         </Container>
       </ThemeProvider>
+      </div>
     )
   }
 }
