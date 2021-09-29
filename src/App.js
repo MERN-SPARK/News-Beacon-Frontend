@@ -111,6 +111,7 @@ if(!checkfav.data.state){
       check)
     }
     console.log(this.state.favId);
+    
   }
   render() {
     const { isAuthenticated } = this.props.auth0;

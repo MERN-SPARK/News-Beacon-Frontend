@@ -72,7 +72,6 @@ class Signup extends Component {
         redirect: true
       });
       console.log(this.state.signdata);
-      window.location.reload();
     } catch (err) {
       let errvalidate;
       console.log(err.response.data.message);

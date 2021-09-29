@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
 
 const LogoutButton = () => {
   const { logout, isAuthenticated } = useAuth0();
@@ -13,7 +14,8 @@ const LogoutButton = () => {
           color: "white",
         }}
         onClick={() => logout({ 
-          returnTo: window.location.origin },console.log('hello' ))}
+          returnTo: window.location.origin },    axios.get(`https://mern-spark-project.herokuapp.com/endfav`)
+          )}
       >
         Log Out
       </button>
