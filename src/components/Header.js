@@ -4,6 +4,8 @@ import axios from "axios";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import { withAuth0 } from "@auth0/auth0-react";
+import icon from "../../src/icon.png";
+
 
 import {
   Navbar,
@@ -24,8 +26,12 @@ class Header extends Component {
     };
   }
   Logout = async (values) => {
-    let logoutUSer = await axios.get(`https://mern-spark-project.herokuapp.com/signout-user`);
-    let endfav= await axios.get(`https://mern-spark-project.herokuapp.com/endfav`)
+    let logoutUSer = await axios.get(
+      `https://mern-spark-project.herokuapp.com/signout-user`
+    );
+    let endfav = await axios.get(
+      `https://mern-spark-project.herokuapp.com/endfav`
+    );
     console.log(logoutUSer);
   };
 
@@ -68,7 +74,7 @@ class Header extends Component {
               color: "white",
             }}
           >
-            <img src={logoImage} width="150" height="50" alt="logo" />
+            <img src={logoImage} width="150" height="50" alt="logo" style={{objectFit:"cover", marginLeft:"10px", marginTop:"20px"}} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse
@@ -76,7 +82,8 @@ class Header extends Component {
             style={{
               display: "grid",
               gridTemplateColumns: "auto auto auto ",
-              gridGap: "100px",
+              gridGap: "50px",
+              alignItems: "center"
             }}
           >
             <Nav
@@ -149,19 +156,29 @@ class Header extends Component {
               style={{
                 display: "grid",
                 gridTemplateColumns: "auto auto auto",
-                gridGap: "20px",
+                gridGap: "35px",
+                justifyContent: "center",
+                alignContent:"center",
+                alignItems: "center"
               }}
+              
             >
-              {(isAuthenticated || this.props.userData)? <LogoutButton /> : <LoginButton />}
+              <span style={{color:"white", width:"100px"}}>{(isAuthenticated || this.props.userData) && `Name` }</span>
+              {isAuthenticated || this.props.userData ? (
+                <LogoutButton />
+              ) : (
+                <LoginButton />
+              )}
+              
 
-              <Button
-                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
-                variant="primary"
+              <img
+                style={{  height:"50px", width:"50px" }}
+                // variant="primary"
                 onClick={this.props.OpenNav}
-                className="me-2"
-              >
-                More
-              </Button>
+
+                // className="me-2"
+                src={icon}
+              />
             </div>
           </Navbar.Collapse>
         </Navbar>
