@@ -36,7 +36,7 @@ export class App extends Component {
       isAuth: false,
       userData: [],
       favId: "",
-      test: "hello",
+      headername: "",
     }
   }
 
@@ -118,6 +118,9 @@ export class App extends Component {
       )
     }
     console.log(this.state.favId)
+    this.setState({
+      headername:name
+    })
   }
   render() {
     const { isAuthenticated } = this.props.auth0
@@ -154,6 +157,7 @@ export class App extends Component {
                     HandelSubmit={this.HandelSubmit}
                     isHomePage={this.state.isHomePage}
                     userData={this.state.userData}
+                    headername={this.state.headername}
                   />
                   <Home userData={this.state.userData} />
                 </Route>
