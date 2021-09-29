@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import logoImage from "../../src/logo.png";
 import axios from "axios";
+// eslint-disable-next-line
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import { withAuth0 } from "@auth0/auth0-react";
 import icon from "../../src/icon.png";
-import classnames from "classnames/bind"
+// eslint-disable-next-line
+import classnames from "classnames/bind";
+import { Link } from "react-router-dom";
 
 import {
   Navbar,
@@ -15,29 +18,31 @@ import {
   FormControl,
   Offcanvas,
   Col,
-} from "react-bootstrap"
+} from "react-bootstrap";
 
 class Header extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       userData: [],
       prevScrollpos: window.pageYOffset,
       visible: true,
-    }
+    };
   }
 
   componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll)
+    window.addEventListener("scroll", this.handleScroll);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll)
+    window.removeEventListener("scroll", this.handleScroll);
   }
   Logout = async (values) => {
+    // eslint-disable-next-line
     let logoutUSer = await axios.get(
       `https://mern-spark-project.herokuapp.com/signout-user`
     );
+    // eslint-disable-next-line
     let endfav = await axios.get(
       `https://mern-spark-project.herokuapp.com/endfav`
     );
@@ -45,34 +50,39 @@ class Header extends Component {
   };
 
   Logout = async (values) => {
+    // eslint-disable-next-line
     let logoutUSer = await axios.get(
       `https://mern-spark-project.herokuapp.com/signout-user`
-    )
+    );
+    // eslint-disable-next-line
     let endfav = await axios.get(
       `https://mern-spark-project.herokuapp.com/endfav`
-    )
-  }
+    );
+  };
 
   handleScroll = () => {
-    const { prevScrollpos } = this.state
-    const currentScrollPos = window.pageYOffset
-    const visible = prevScrollpos > currentScrollPos
+    const { prevScrollpos } = this.state;
+    const currentScrollPos = window.pageYOffset;
+    const visible = prevScrollpos > currentScrollPos;
     this.setState({
       prevScrollpos: currentScrollPos,
       visible,
-    })
-  }
+    });
+  };
 
   render() {
-    const { isAuthenticated } = this.props.auth0
+    const { isAuthenticated } = this.props.auth0;
 
     return (
       <>
         {console.log(this.props.isHomepage)}
         <Navbar
-          className={("navbar", {
-            "navbar--hidden": !this.state.visible,
-          })}
+          className={
+            ("navbar",
+            {
+              "navbar--hidden": !this.state.visible,
+            })
+          }
           bg="dark"
           expand="lg"
         >
@@ -82,7 +92,17 @@ class Header extends Component {
               color: "white",
             }}
           >
-            <img src={logoImage} width="150" height="50" alt="logo" style={{objectFit:"cover", marginLeft:"10px", marginTop:"20px"}} />
+            <img
+              src={logoImage}
+              width="150"
+              height="50"
+              alt="logo"
+              style={{
+                objectFit: "cover",
+                marginLeft: "10px",
+                marginTop: "20px",
+              }}
+            />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse
@@ -91,7 +111,7 @@ class Header extends Component {
               display: "grid",
               gridTemplateColumns: "auto auto auto ",
               gridGap: "50px",
-              alignItems: "center"
+              alignItems: "center",
             }}
           >
             <Nav
@@ -104,9 +124,7 @@ class Header extends Component {
               }}
               navbarScroll
             >
-              <Nav.Link href="/" style={{ color: "white" }}>
-                Home
-              </Nav.Link>
+              <Nav.Link style={{ color: "white" }}>Home</Nav.Link>
               {this.props.isHomePage && (
                 <>
                   <Nav.Link href="#topnews" style={{ color: "white" }}>
@@ -152,13 +170,14 @@ class Header extends Component {
                 gridTemplateColumns: "auto auto auto",
                 gridGap: "35px",
                 justifyContent: "center",
-                alignContent:"center",
-                alignItems: "center"
+                alignContent: "center",
+                alignItems: "center",
               }}
-              
             >
-              <span style={{color:"white", width:"100px"}}>{(isAuthenticated || this.props.userData) && this.props.headername }</span>
-              
+              <span style={{ color: "white", width: "100px" }}>
+                {(isAuthenticated || this.props.userData) &&
+                  this.props.headername}
+              </span>
               {/* {isAuthenticated || this.props.userData ? (
                 <LogoutButton />
               ) : (
@@ -169,30 +188,32 @@ class Header extends Component {
                 Login
               </Button>
               )} */}
-
-              {isAuthenticated? (
+              {isAuthenticated ? (
                 <LogoutButton />
-              ) : this.props.userData?(  <Button
-                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
-                href="/"
-                onClick={this.Logout}
-              >
-                Log Out  User
-              </Button>):(
+              ) : this.props.userData ? (
+                
                 <Button
-                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
-                href="/login"
-              >
-                Login
-              </Button>
+                  style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
+                  href="/"
+                  onClick={this.Logout}
+                >
+                  Log Out User
+                </Button>
+              ) : (
+                <Link to="/login">
+                <Button
+                  style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
+                 
+                >
+                  Login
+                </Button>
+                </Link>
               )}
-              
-
+              // eslint-disable-next-line
               <img
-                style={{  height:"50px", width:"50px" }}
+                style={{ height: "50px", width: "50px" }}
                 // variant="primary"
                 onClick={this.props.OpenNav}
-
                 // className="me-2"
                 src={icon}
               />
@@ -220,37 +241,44 @@ class Header extends Component {
           </Offcanvas.Header>
 
           <Offcanvas.Body style={{ fontSize: "30px" }}>
-            <Nav.Link href="/country" style={{ color: "#171717" }}>
-              Country News
-            </Nav.Link>
-            <Nav.Link href="/sports" style={{ color: "#171717" }}>
+            <Link to="/about" className="nav-link navnav">
+              {" "}
               Sports
-            </Nav.Link>
-            <Nav.Link href="/arts" style={{ color: "#171717" }}>
+            </Link>
+            <Link to="/country" className="nav-link navnav">
+              {" "}
+              Country News
+            </Link>
+            <Link to="/sports" className="nav-link navnav">
+              {" "}
+              Sports
+            </Link>
+            <Link to="/arts" className="nav-link navnav">
+              {" "}
               Arts
-            </Nav.Link>
-            <Nav.Link href="/business" style={{ color: "#171717" }}>
+            </Link>
+            <Link to="/business" className="nav-link navnav">
+              {" "}
               Business
-            </Nav.Link>
-            <Nav.Link href="/travel" style={{ color: "#171717" }}>
+            </Link>
+            <Link to="/travel" className="nav-link navnav">
+              {" "}
               travel
-            </Nav.Link>
-            <Nav.Link href="/politics" style={{ color: "#171717" }}>
+            </Link>
+            <Link to="/politics" className="nav-link navnav">
+              {" "}
               Politics
-            </Nav.Link>
-            <Nav.Link href="/food" style={{ color: "#171717" }}>
+            </Link>
+            <Link to="/food" className="nav-link navnav">
+              {" "}
               Food
-            </Nav.Link>
-            <Nav.Link href="/about" style={{ color: "#171717" }}>
-              About
-            </Nav.Link>
-            <Col>
-            </Col>
+            </Link>
+            <Col></Col>
           </Offcanvas.Body>
         </Offcanvas>
       </>
-    )
+    );
   }
 }
 
-export default withAuth0(Header)
+export default withAuth0(Header);

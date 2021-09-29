@@ -1,8 +1,12 @@
 import React, { Component } from "react"
 import Footer from "./components/Footer"
 import Header from "./components/Header"
-import { Switch, Route, BrowserRouter as Router } from "react-router-dom"
-import Home from "./components/Home"
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";import Home from "./components/Home"
 import AboutUs from "./components/AboutUs"
 import Favourites from "./components/Favourites"
 import MoreInfo from "./components/MoreInfo"
@@ -112,6 +116,7 @@ export class App extends Component {
     )
     console.log(checkfav)
     if (!checkfav.data.state) {
+      // eslint-disable-next-line
       let create = await axios.post(
         `https://mern-spark-project.herokuapp.com/addfav`,
         check

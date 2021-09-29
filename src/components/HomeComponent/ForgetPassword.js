@@ -12,6 +12,8 @@ export class ForgetPassword extends Component {
       forgetToken: "",
       newpassword: "",
       newconfirm: "",
+      showerror:false,
+      showcorrect:''
     }
   }
 
@@ -53,6 +55,8 @@ export class ForgetPassword extends Component {
     } catch (err) {
       this.setState({
         signupError: "there is no user with this email adress",
+        showerror:true
+
       })
     }
   }
@@ -60,15 +64,19 @@ export class ForgetPassword extends Component {
     e.preventDefault()
     try {
       let password = {
-        password: this.state.newpassword,
-        passwordConfirm: this.state.newconfirm,
+        password: Number(this.state.newpassword),
+        passwordConfirm: Number(this.state.newconfirm),
       }
-
+console.log(password);
+console.log(this.state.forgetToken);
       let resetToken = await axios.patch(
-        `https://mern-spark-project.herokuapp.com/reset-use/${this.state.forgetToken}`,
+        `http://localhost:8070/reset-use/${this.state.forgetToken}`,
         password
       )
       console.log(resetToken)
+      this.setState({
+showcorrect:'your password is change you can login now'
+      })
     } catch (err) {
       this.setState({
         signupError: "Token is anvlid",
@@ -84,30 +92,34 @@ export class ForgetPassword extends Component {
           <Row className="mb-3">
             <FloatingLabel
               controlId="floatingInput"
-              label="Enter the URL"
+              label="Enter the URL  then click enter"
               className="mb-3"
             >
               <Form.Control
                 onChange={this.handleLocation}
                 type="text"
-                placeholder="Enter the URL"
+                placeholder="Enter the URL /n then click enter "
               />
             </FloatingLabel>
           </Row>
-          {this.state.forgetPassword !== "" && (
+          {this.state.showerror && (
             <Alert variant={"danger"}>{this.state.signupError}</Alert>
           )}
-        </Form>
+          <br/>
+          <br/>
+        </Form >
 
         {this.state.shownewtoken && (
-          <Form>
+          <Form onSubmit={this.handleSubmit2}>
             <Row className="mb-3">
               <FloatingLabel
                 controlId="floatingInput"
                 label="Enter the Token"
                 className="mb-3"
               >
-                <Form.Control type="password" placeholder="Enter the Token" />
+                <Form.Control type="password" 
+                placeholder="Enter the Token" 
+                onChange={this.handleLocation2}/>
               </FloatingLabel>
 
               <FloatingLabel
@@ -116,6 +128,7 @@ export class ForgetPassword extends Component {
                 className="mb-3"
               >
                 <Form.Control
+                 onChange={this.handleLocation3}
                   type="password"
                   placeholder="Enter the Password"
                 />
@@ -126,12 +139,13 @@ export class ForgetPassword extends Component {
                 className="mb-3"
               >
                 <Form.Control
+                 onChange={this.handleLocation4}
                   type="password"
                   placeholder="Enter the Password again"
                 />
               </FloatingLabel>
             </Row>
-
+            <h2>{this.state.showcorrect}</h2>
             <Button
               variant="primary"
               type="submit"
