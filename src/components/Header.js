@@ -109,7 +109,7 @@ class Header extends Component {
           <Navbar.Collapse
             id="navbarScroll"
             style={{
-              justifyContent: "flex-end"
+              justifyContent: "flex-end",
               display: "grid",
               gridTemplateColumns: "auto auto auto ",
               gridGap: "50px",
