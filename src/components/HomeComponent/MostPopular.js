@@ -4,6 +4,8 @@ import { Col, Row, Card, Button, Container } from "react-bootstrap";
 import ModalHomepage from "./ModalHomepage";
 import { withAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
+import like1 from "../../like1.png";
+import like2 from "../../like2.png";
 
 export class MostPopular extends Component {
   constructor(props) {
@@ -24,6 +26,13 @@ export class MostPopular extends Component {
     this.setState({
       showmodal: false,
     });
+  };
+  image2 = (e) => {
+    if (e.target.src === like1) {
+      e.target.src = like2;
+    } else {
+      e.target.src = like1;
+    }
   };
   favourite = async (title,description,image,url) => {
     let arr = {title:title,image:image,description:description,url:url}
@@ -70,8 +79,24 @@ export class MostPopular extends Component {
                       >
                         <Card.Body>
                           {(isAuthenticated || this.props.userData) && (
-                            <button onClick={()=>this.favourite(item.title,item.description,item.image,item.url)}>Like</button>
-                          )}
+                            <img
+                              src={like1}
+                              style={{
+                                position: "absolute",
+                                top: "220px",
+                                left: "190px",
+                              }}
+                              onClick={(e) => {
+                                this.favourite(
+                                  item.title,
+                                  item.description,
+                                  item.image,
+                                  item.url
+                                );
+                                this.image2(e);
+                              }}
+                              alt=""
+                            />                          )}
                           <Card.Title>{`${item.title}`}</Card.Title>
                         </Card.Body>
                         <Card.Img variant="top" src={`${item.image}`} />
@@ -96,8 +121,24 @@ export class MostPopular extends Component {
 
                         <Card.Body>
                           {(isAuthenticated || this.props.userData) && (
-                            <button onClick={()=>this.favourite(item.title,item.description,item.image,item.url)}>Like</button>
-                          )}
+                            <img
+                              src={like1}
+                              style={{
+                                position: "absolute",
+                                top: "220px",
+                                left: "190px",
+                              }}
+                              onClick={(e) => {
+                                this.favourite(
+                                  item.title,
+                                  item.description,
+                                  item.image,
+                                  item.url
+                                );
+                                this.image2(e);
+                              }}
+                              alt=""
+                            />                          )}
                           <Card.Title>{`${item.title}`}</Card.Title>
                         </Card.Body>
                       </Card>
