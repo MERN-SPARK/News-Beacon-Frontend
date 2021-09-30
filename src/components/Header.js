@@ -138,10 +138,10 @@ class Header extends Component {
                   </Nav.Link>
                   {(isAuthenticated || this.props.userData) && (
                     <>
-                      {" "}
-                      <Nav.Link href="/favourite" style={{ color: "white" }}>
+                      <Link to="/favourite" className="nav-link navnav">
+                        {" "}
                         Favourite
-                      </Nav.Link>
+                      </Link>
                     </>
                   )}
                 </>
@@ -191,7 +191,6 @@ class Header extends Component {
               {isAuthenticated ? (
                 <LogoutButton />
               ) : this.props.userData ? (
-
                 <Button
                   style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
                   href="/"
@@ -201,12 +200,14 @@ class Header extends Component {
                 </Button>
               ) : (
                 <Link to="/login">
-                <Button
-                  style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
-                 
-                >
-                  Login
-                </Button>
+                  <Button
+                    style={{
+                      backgroundColor: "#DA0037",
+                      borderColor: "#DA0037",
+                    }}
+                  >
+                    Login
+                  </Button>
                 </Link>
               )}
               // eslint-disable-next-line
@@ -241,14 +242,16 @@ class Header extends Component {
           </Offcanvas.Header>
 
           <Offcanvas.Body style={{ fontSize: "30px" }}>
+          {(isAuthenticated || this.props.userData) &&
+            <Link to="/moreInfo" className="nav-link navnav">
+              {" "}
+              Contact-us
+            </Link>}
             <Link to="/about" className="nav-link navnav">
               {" "}
               about
             </Link>
-            <Link to="/moreInfo" className="nav-link navnav">
-              {" "}
-              Contact-us
-            </Link>
+            
             <Link to="/country" className="nav-link navnav">
               {" "}
               Country News
