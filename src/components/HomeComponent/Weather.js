@@ -1,52 +1,69 @@
-import React, { Component } from "react"
-import { ToastContainer, Toast, Row, Col } from "react-bootstrap"
+import React, { Component } from "react";
+import { ToastContainer, Toast, Row, Col } from "react-bootstrap";
 
 export class Weather extends Component {
   render() {
     return (
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <ToastContainer style={{ width: "50%" }} className="p-3">
-          <Toast style={{ width: "100%" }}>
+        <ToastContainer className="p-3">
+          <Toast>
             <Toast.Header closeButton={false}>
-              <strong>Weather Forecast for today and the next two days</strong>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "auto auto",
+                  gridGap: "180px",
+                }}
+              >
+                <h4 className="me-auto">{this.props.weatherData[0].place}</h4>
+                <p style={{ margin: "auto", fontSize: "17px" }}>
+                  {`${this.props.weatherData[0].temp} `}
+                  <span>&#8451;</span>
+                </p>
+              </div>
             </Toast.Header>
-            <Row style={{ display: "flex", justifyContent: "space-around" }}>
-              <Col>
-                <h4>{this.props.weatherData[0].place}</h4>
-                <p>{this.props.weatherData[0].description}</p>
-                <img src={this.props.weatherData[0].icon} />
-                <ul>
-                  <li>{`temp: ${this.props.weatherData[0].temp}`}</li>
-                  <li>{`min: ${this.props.weatherData[0].min}`}</li>
-                  <li>{`max: ${this.props.weatherData[0].max}`}</li>
-                </ul>
-              </Col>
-              <Col>
-                <h4>{this.props.weatherData[1].place}</h4>
-                <p>{this.props.weatherData[1].description}</p>
-                <img src={this.props.weatherData[1].icon} />
-                <ul>
-                  <li>{`temp: ${this.props.weatherData[1].temp}`}</li>
-                  <li>{`min: ${this.props.weatherData[1].min}`}</li>
-                  <li>{`max: ${this.props.weatherData[1].max}`}</li>
-                </ul>
-              </Col>
-              <Col>
-                <h4>{this.props.weatherData[2].place}</h4>
-                <p>{this.props.weatherData[2].description}</p>
-                <img src={this.props.weatherData[2].icon} />
-                <ul>
-                  <li>{`temp: ${this.props.weatherData[2].temp}`}</li>
-                  <li>{`min: ${this.props.weatherData[2].min}`}</li>
-                  <li>{`max: ${this.props.weatherData[2].max}`}</li>
-                </ul>
-              </Col>
-            </Row>
+            <Toast.Body>
+              <Row xs={2}>
+                <Col>
+                  <Row>
+                    <p>
+                      <span style={{ color: "#6c757d", fontWeight: "500" }}>
+                        Status :<br />
+                      </span>
+                      {this.props.weatherData[0].description}
+                    </p>
+                  </Row>
+                  <Row>
+                    <img
+                      src={this.props.weatherData[0].icon}
+                      style={{ width: "75px" }}
+                    />
+                  </Row>
+                </Col>
+
+                <Col>
+                  <p>
+                    <span style={{ fontSize: "20px", marginRight: "15px" }}>
+                      min:
+                    </span>
+                    <span style={{ color: "#6c757d" }}>
+                      {`${this.props.weatherData[0].min}`}&#8451;
+                    </span>
+                  </p>
+                  <p>
+                    <span style={{ fontSize: "20px", marginRight: "15px" }}>max:</span>
+                    <span style={{ color: "#6c757d" }}>
+                      {`${this.props.weatherData[0].max}`}&#8451;
+                    </span>
+                  </p>
+                </Col>
+              </Row>
+            </Toast.Body>
           </Toast>
         </ToastContainer>
       </div>
-    )
+    );
   }
 }
 
-export default Weather
+export default Weather;

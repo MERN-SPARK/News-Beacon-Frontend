@@ -1,6 +1,6 @@
 
 body { background:rgb(30,30,40); }
-form { max-width:420px; margin:50px auto; }
+.tests{ max-width:420px; margin:50px auto; }
 
 .feedback-input {
   color:rgb(14, 13, 13);
@@ -27,7 +27,7 @@ textarea {
   resize:vertical;
 }
 
-[type="submit"] {
+.formemail {
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   width: 100%;
   background:#CC6666;
@@ -42,4 +42,4 @@ textarea {
   margin-top:-4px;
   font-weight:700;
 }
-[type="submit"]:hover { background:#CC4949; }
+.formemail:hover { background:#CC4949; }

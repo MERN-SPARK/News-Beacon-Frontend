@@ -78,7 +78,7 @@ class Home extends Component {
   render() {
     return this.state.loaded ? (
       <>
-      <h1>{this.props.user}</h1>
+      
         <CarouselsNews topThree={this.state.topThree} />
         {this.state.weatherData.length!=0&&
         <Weather weatherData={this.state.weatherData} />}

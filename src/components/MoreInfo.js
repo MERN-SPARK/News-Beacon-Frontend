@@ -18,12 +18,12 @@ export class MoreInfo extends Component {
         };
       
         return (
-            <form onSubmit={sendEmail}>      
+            <form onSubmit={sendEmail} className="tests">      
             <input name="name" type="text" class="feedback-input" placeholder="Name" />   
             <input name="email" type="text" class="feedback-input" placeholder="Email" />
             <input name="title" type="text" class="feedback-input" placeholder="title of news" />
             <textarea name="message" class="feedback-input" placeholder="Comment"></textarea>
-            <input type="submit" value="SUBMIT"/>
+            <input type="submit" value="SUBMIT" className="formemail"/>
           </form>
         );
     }
