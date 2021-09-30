@@ -2,12 +2,10 @@ import React, { Component } from "react";
 import logoImage from "../../src/logo.png";
 import axios from "axios";
 // eslint-disable-next-line
-import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import { withAuth0 } from "@auth0/auth0-react";
 import icon from "../../src/icon.png";
 // eslint-disable-next-line
-import classnames from "classnames/bind";
 import { Link } from "react-router-dom";
 
 import {

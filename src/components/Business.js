@@ -1,18 +1,8 @@
 import axios from "axios";
 import React, { Component } from "react";
-import {
-  Card,
-  Row,
-  Col,
-  Button,
-  Form,
-  Container,
-  Carousel,
-} from "react-bootstrap";
+import { Card, Row, Col, Button, Form } from "react-bootstrap";
 import SportsStyle from "./SportsStyle.css";
 import { withAuth0 } from "@auth0/auth0-react";
-import like1 from "../like1.png";
-import like2 from "../like2.png";
 
 export class Sports extends Component {
   constructor(props) {
@@ -45,13 +35,7 @@ export class Sports extends Component {
       flag_search: false, // eslint-disable-next-line
     });
   };
-  image2 = (e) => {
-    if (e.target.src === like1) {
-      e.target.src = like2;
-    } else {
-      e.target.src = like1;
-    }
-  };
+
   handelSubmit = (e) => {
     e.preventDefault();
     let token = e.target.inlineFormInputName.value;
@@ -68,24 +52,15 @@ export class Sports extends Component {
       searched_topics: arr,
     });
   };
-  favourite = async (title, description, image, url) => {
-    let arr = {
-      title: title,
-      image: image,
-      description: description,
-      url: url,
-    };
-    let checkfav = await axios.get(
-      "https://mern-spark-project.herokuapp.com/checkfav"
-    );
+  favourite = async (title,description,image,url) => {
+    let arr = {title:title,image:image,description:description,url:url}
+    let checkfav= await axios.get("https://mern-spark-project.herokuapp.com/checkfav")
     console.log(checkfav.data.id);
-    let add = await axios.patch(
-      `https://mern-spark-project.herokuapp.com/resdata/${checkfav.data.id}`,
-      arr
-    );
+ let add = await axios.patch(
+    `https://mern-spark-project.herokuapp.com/resdata/${checkfav.data.id}`, arr);
     console.log(add.data);
     // window.location.reload();
-  };
+}
   componentDidMount = () => {
     let result = [];
     axios
@@ -139,107 +114,59 @@ export class Sports extends Component {
               />
             </Col>
             <Col>
-              <Button
-                type="submit"
-                style={{ backgroundColor: "#da0037", borderColor: "#da0037" }}
-              >
-                Submit
-              </Button>
+              <Button type="submit">Submit</Button>
             </Col>
           </Row>
         </Form>
         {!this.state.flag_search ? (
           <>
-            {/* <Carousel>
-  <Carousel.Item>
-    <img
-      className="d-block w-100"
-      src="https://dummyimage.com/450x299/65696F/65696F.jpg"
-      alt="First slide"
-    />
-
-    <Carousel.Caption>
-    <img src= "https://www.wepal.net/ar/uploads/2732018-073911PM-1.jpg" alt=""/>
-      <h3>First slide label</h3>
-    </Carousel.Caption>
-  </Carousel.Item>
-  </Carousel> */}
-            <Container
-              className={SportsStyle.cardTop}
-              style={{ marginTop: "100px" }}
-            >
-              <h1 style={{ marginBottom: "36px" }}>Top News</h1>
-              <Row>
-                {this.state.showCard &&
-                  this.state.sportsTop.map((item) => {
-                    return (
-                      <Col>
-                        <Card className="bg-dark text-white">
-                          <Card.Img
-                            src={item.image}
-                            alt="Card image"
-                            style={{ height: "300px" }}
-                          />
-                          <Card.ImgOverlay
-                            style={{ backgroundColor: "#00000082" }}
+            <div className={SportsStyle.cardTop}>
+              {this.state.showCard &&
+                this.state.sportsTop.map((item) => {
+                  return (
+                    <>
+                      <Card className="bg-dark text-white">
+                        <Card.Img
+                          src={item.image}
+                          alt="Card image"
+                          style={{ width: "500px", height: "300px" }}
+                        />
+                        <Card.ImgOverlay>
+                          <div
+                            style={{
+                              width: "350px",
+                              height: "300px",
+                              float: "right",
+                            }}
                           >
-                            <div
-                              style={{
-                                width: "350px",
-                                height: "300px",
-                                float: "right",
-                              }}
-                            >
-                              {" "}
-                              <Card.Title>{item.title}</Card.Title>
-                              <Card.Text>{item.abstract}</Card.Text>
-                              <Card.Text>
-                                <strong>{item.byline}</strong>
-                              </Card.Text>
-                              {(isAuthenticated || this.props.userData) && (
-                                <img
-                                  src={like1}
-                                  style={{
-                                    position: "absolute",
-                                    top: "174px",
-                                    left: "285px",
-                                  }}
-                                  onClick={(e) => {
-                                    this.favourite(
-                                      item.title,
-                                      item.description,
-                                      item.image,
-                                      item.url
-                                    );
-                                    this.image2(e);
-                                  }}
-                                  alt=""
-                                />
-                              )}
-                            </div>
-                          </Card.ImgOverlay>
-                        </Card>
-                      </Col>
-                    );
-                  })}
-              </Row>
-            </Container>
-            <Container
-              className={SportsStyle.secondCard}
-              style={{ marginTop: "80px" }}
-            >
-              <h1 style={{ marginBottom: "36px" }}>Recent News</h1>
+                            {" "}
+                            <Card.Title>{item.title}</Card.Title>
+                            <Card.Text>{item.abstract}</Card.Text>
+                            <Card.Text>
+                              <strong>{item.byline}</strong>
+                            </Card.Text>
+                            {(isAuthenticated || this.props.userData) && (
+                              <button onClick={()=>this.favourite(item.title,item.abstract,item.image,item.byline)}>Like</button>
+                            )}
+                          </div>
+                        </Card.ImgOverlay>
+                      </Card>
+                    </>
+                  );
+                })}
+            </div>
+            <div className={SportsStyle.secondCard}>
               <Row xs={3}>
                 {" "}
                 {this.state.sportsInfo.map((item) => {
                   return (
                     <>
                       <Col>
-                        <Card style={{ marginBottom: "30px" }}>
+                        <Card>
                           <Card.Img
                             variant="top"
                             src={item.image}
-                            style={{ objectFit: "cover", height: "200px" }}
+                            style={{ width: "382.5px", height: "200px" }}
                           />
                           <Card.Body style={{ height: "200px" }}>
                             <Card.Title
@@ -253,36 +180,11 @@ export class Sports extends Component {
                               {item.abstract}
                             </Card.Text>
                             <p>
-                              <a
-                                href={item.url}
-                                style={{
-                                  textDecoration: "none",
-                                  color: "#da0037",
-                                }}
-                              >
-                                Show more
-                              </a>
+                              <a href={item.url}>Show more</a>
                             </p>
                           </Card.Body>
                           {(isAuthenticated || this.props.userData) && (
-                            <img
-                              src={like1}
-                              style={{
-                                position: "absolute",
-                                top: "72px",
-                                left: "285px",
-                              }}
-                              onClick={(e) => {
-                                this.favourite(
-                                  item.title,
-                                  item.description,
-                                  item.image,
-                                  item.url
-                                );
-                                this.image2(e);
-                              }}
-                              alt=""
-                            />
+                            <button onClick={()=>this.favourite(item.title,item.abstract,item.image,item.url)}>Like</button>
                           )}
                           <Card.Footer>
                             <small className="text-muted">{item.byline}</small>{" "}
@@ -297,7 +199,40 @@ export class Sports extends Component {
                   );
                 })}
               </Row>
-            </Container>
+            </div>
+            <div className={SportsStyle.lastCard}>
+              {this.state.showCard &&
+                this.state.lastUpdated.map((item) => {
+                  return (
+                    <>
+                      {" "}
+                      <Card border="light" style={{ width: "13rem" }}>
+                        <Card.Header
+                          style={{ overflow: "hidden", height: "35px" }}
+                        >
+                          {item.title}
+                        </Card.Header>
+                        <Card.Body>
+                          <Card.Img
+                            variant="top"
+                            src={item.image}
+                            style={{
+                              width: "10rem",
+                              height: "100px",
+                              margin: "auto",
+                            }}
+                            onClick={() => window.open(`${item.url}`, "_blank")}
+                          />
+                          <Card.Text>{item.byline}</Card.Text>
+                        </Card.Body>
+                        {(isAuthenticated || this.props.userData) && (
+                          <button onClick={()=>this.favourite(item.title,item.description,item.image,item.url)}>Like</button>
+                        )}
+                      </Card>
+                    </>
+                  );
+                })}
+            </div>
           </>
         ) : (
           this.state.searched_topics.map((item) => {
@@ -321,24 +256,7 @@ export class Sports extends Component {
                     <Card.Text>{item.byline}</Card.Text>
                   </Card.Body>
                   {(isAuthenticated || this.props.userData) && (
-                    <img
-                      src={like1}
-                      style={{
-                        position: "absolute",
-                        top: "220px",
-                        left: "190px",
-                      }}
-                      onClick={(e) => {
-                        this.favourite(
-                          item.title,
-                          item.description,
-                          item.image,
-                          item.url
-                        );
-                        this.image2(e);
-                      }}
-                      alt=""
-                    />
+                    <button onClick={this.favourite}>Like</button>
                   )}
                 </Card>
               </>
