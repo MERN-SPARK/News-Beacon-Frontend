@@ -14,6 +14,7 @@ export class ForgetPassword extends Component {
       newconfirm: "",
       showerror: false,
       showcorrect: "",
+      token:''
     }
   }
 
@@ -50,6 +51,7 @@ export class ForgetPassword extends Component {
       )
       this.setState({
         shownewtoken: true,
+        token:resetPassword.data.resetToken
       })
       console.log(resetPassword)
     } catch (err) {
@@ -104,6 +106,7 @@ export class ForgetPassword extends Component {
           {this.state.showerror && (
             <Alert variant={"danger"}>{this.state.signupError}</Alert>
           )}
+          {this.state.token}
         </Form>
 
         {this.state.shownewtoken && (
