@@ -12,8 +12,8 @@ export class ForgetPassword extends Component {
       forgetToken: "",
       newpassword: "",
       newconfirm: "",
-      showerror:false,
-      showcorrect:''
+      showerror: false,
+      showcorrect: "",
     }
   }
 
@@ -55,8 +55,7 @@ export class ForgetPassword extends Component {
     } catch (err) {
       this.setState({
         signupError: "there is no user with this email adress",
-        showerror:true
-
+        showerror: true,
       })
     }
   }
@@ -67,15 +66,15 @@ export class ForgetPassword extends Component {
         password: Number(this.state.newpassword),
         passwordConfirm: Number(this.state.newconfirm),
       }
-console.log(password);
-console.log(this.state.forgetToken);
+      console.log(password)
+      console.log(this.state.forgetToken)
       let resetToken = await axios.patch(
         `http://localhost:8070/reset-use/${this.state.forgetToken}`,
         password
       )
       console.log(resetToken)
       this.setState({
-showcorrect:'your password is change you can login now'
+        showcorrect: "your password is change you can login now",
       })
     } catch (err) {
       this.setState({
@@ -88,7 +87,7 @@ showcorrect:'your password is change you can login now'
     return (
       <div>
         <Header />
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit} style={{ padding: "30px" }}>
           <Row className="mb-3">
             <FloatingLabel
               controlId="floatingInput"
@@ -105,21 +104,21 @@ showcorrect:'your password is change you can login now'
           {this.state.showerror && (
             <Alert variant={"danger"}>{this.state.signupError}</Alert>
           )}
-          <br/>
-          <br/>
-        </Form >
+        </Form>
 
         {this.state.shownewtoken && (
-          <Form onSubmit={this.handleSubmit2}>
+          <Form onSubmit={this.handleSubmit2} style={{ padding: "30px" }}>
             <Row className="mb-3">
               <FloatingLabel
                 controlId="floatingInput"
                 label="Enter the Token"
                 className="mb-3"
               >
-                <Form.Control type="password" 
-                placeholder="Enter the Token" 
-                onChange={this.handleLocation2}/>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter the Token"
+                  onChange={this.handleLocation2}
+                />
               </FloatingLabel>
 
               <FloatingLabel
@@ -128,7 +127,7 @@ showcorrect:'your password is change you can login now'
                 className="mb-3"
               >
                 <Form.Control
-                 onChange={this.handleLocation3}
+                  onChange={this.handleLocation3}
                   type="password"
                   placeholder="Enter the Password"
                 />
@@ -139,7 +138,7 @@ showcorrect:'your password is change you can login now'
                 className="mb-3"
               >
                 <Form.Control
-                 onChange={this.handleLocation4}
+                  onChange={this.handleLocation4}
                   type="password"
                   placeholder="Enter the Password again"
                 />
