@@ -74,7 +74,7 @@ class TopNews extends Component {
                                 onClick={() =>
                                   this.favourite(
                                     item.title,
-                                    item.description,
+                                    item.abstract,
                                     item.image,
                                     item.url
                                   )
@@ -110,7 +110,7 @@ class TopNews extends Component {
                                 onClick={() =>
                                   this.favourite(
                                     item.title,
-                                    item.description,
+                                    item.abstract,
                                     item.image,
                                     item.url
                                   )

@@ -226,7 +226,7 @@ export class Sports extends Component {
                           <Card.Text>{item.byline}</Card.Text>
                         </Card.Body>
                         {(isAuthenticated || this.props.userData) && (
-                          <button onClick={()=>this.favourite(item.title,item.description,item.image,item.url)}>Like</button>
+                          <button onClick={()=>this.favourite(item.title,item.abstract,item.image,item.url)}>Like</button>
                         )}
                       </Card>
                     </>

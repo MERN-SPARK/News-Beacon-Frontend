@@ -80,7 +80,7 @@ export class MostPopular extends Component {
                               onClick={() =>
                                 this.favourite(
                                   item.title,
-                                  item.description,
+                                  item.abstract,
                                   item.image,
                                   item.url
                                 )
@@ -115,7 +115,7 @@ export class MostPopular extends Component {
                               onClick={() =>
                                 this.favourite(
                                   item.title,
-                                  item.description,
+                                  item.abstract,
                                   item.image,
                                   item.url
                                 )
