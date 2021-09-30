@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import logoImage from "../../src/logo.png";
 import { Link } from "react-router-dom";
-import navstyle from "./navstyle.css"
+import navstyle from "./navstyle.css";
+import icon from "../../src/icon.png";
 import {
   Navbar,
   Nav,
@@ -41,7 +42,17 @@ class Header extends Component {
           
             }}
           >
-            <img src={logoImage} width="150" height="50" alt="logo" />
+             <img
+              src={logoImage}
+              width="150"
+              height="50"
+              alt="logo"
+              style={{
+                objectFit: "cover",
+                marginLeft: "10px",
+                marginTop: "20px",
+              }}
+            />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse
@@ -120,14 +131,14 @@ class Header extends Component {
               {
                 //button to show the sidenav
               }
-              <Button
-                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
-                variant="primary"
+              <img
+                style={{ height: "50px", width: "50px" }}
+                // variant="primary"
                 onClick={this.props.OpenNav}
-                className="me-2"
-              >
-                More
-              </Button>
+                // className="me-2"
+                src={icon}
+                alt=""
+              />
             </div>
           </Navbar.Collapse>
         </Navbar>
@@ -149,14 +160,15 @@ class Header extends Component {
           </Offcanvas.Header>
           <Offcanvas.Body style={{ fontSize: "30px" }}>
            
-            <Link to="/about" className="nav-link navnav"> Sports</Link>
+            
             <Link to="/country" className="nav-link navnav"> Country News</Link>
             <Link to="/sports" className="nav-link navnav"> Sports</Link>
             <Link to="/arts" className="nav-link navnav"> Arts</Link>
-            <Link to="/business" className="nav-link navnav"> Business</Link>
+            <Link to="/business" className="nav-link navnav"> Insider</Link>
             <Link to="/travel" className="nav-link navnav"> travel</Link>
             <Link to="/politics" className="nav-link navnav"> Politics</Link>
             <Link to="/food" className="nav-link navnav"> Food</Link>
+            <Link to="/about" className="nav-link navnav"> About</Link>
 
           </Offcanvas.Body>
         </Offcanvas>

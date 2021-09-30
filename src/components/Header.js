@@ -110,10 +110,6 @@ class Header extends Component {
             id="navbarScroll"
             style={{
               justifyContent: "flex-end"
-              display: "grid",
-              gridTemplateColumns: "auto auto auto ",
-              gridGap: "50px",
-              alignItems: "center",
 
             }}
           >
@@ -180,24 +176,12 @@ class Header extends Component {
               }}
             >
 
-              {/* <span>{(isAuthenticated || this.props.userData) && this.props.headername}</span> */}
-              <span style={{color:"white", width:"100px",textAlign:"center"}}>{(isAuthenticated || this.props.userData) && "name" }</span>
-              {isAuthenticated? (
-
+            
               <span style={{ color: "white", width: "100px" }}>
                 {(isAuthenticated || this.props.userData) &&
                   this.props.headername}
               </span>
-              {/* {isAuthenticated || this.props.userData ? (
-                <LogoutButton />
-              ) : (
-                <Button
-                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
-                href="/login"
-              >
-                Login
-              </Button>
-              )} */}
+           
               {isAuthenticated ? (
 
                 <LogoutButton />
@@ -220,7 +204,6 @@ class Header extends Component {
                 </Button>
                 </Link>
               )}
-              // eslint-disable-next-line
               <img
                 style={{ height: "50px", width: "50px" }}
                 // variant="primary"
@@ -253,47 +236,32 @@ class Header extends Component {
           </Offcanvas.Header>
 
           <Offcanvas.Body style={{ fontSize: "30px" }}>
-            <Link to="/about" className="nav-link navnav">
-              {" "}
-              Sports
-            </Link>
-            <Link to="/country" className="nav-link navnav">
-              {" "}
+            <Nav.Link href="/country" style={{ color: "#171717" }}>
               Country News
-            </Link>
-            <Link to="/sports" className="nav-link navnav">
-              {" "}
+            </Nav.Link>
+            <Nav.Link href="/sports" style={{ color: "#171717" }}>
               Sports
-            </Link>
-            <Link to="/arts" className="nav-link navnav">
-              {" "}
+            </Nav.Link>
+            <Nav.Link href="/arts" style={{ color: "#171717" }}>
               Arts
-
             </Nav.Link>
             <Nav.Link href="/business" style={{ color: "#171717" }}>
               Insider
             </Nav.Link>
             <Nav.Link href="/travel" style={{ color: "#171717" }}>
-
-            </Link>
-            <Link to="/business" className="nav-link navnav">
-              {" "}
-              Business
-            </Link>
-            <Link to="/travel" className="nav-link navnav">
-              {" "}
-
               travel
-            </Link>
-            <Link to="/politics" className="nav-link navnav">
-              {" "}
+            </Nav.Link>
+            <Nav.Link href="/politics" style={{ color: "#171717" }}>
               Politics
-            </Link>
-            <Link to="/food" className="nav-link navnav">
-              {" "}
+            </Nav.Link>
+            <Nav.Link href="/food" style={{ color: "#171717" }}>
               Food
-            </Link>
-            <Col></Col>
+            </Nav.Link>
+            <Nav.Link href="/about" style={{ color: "#171717" }}>
+              About
+            </Nav.Link>
+            <Col>
+            </Col>
           </Offcanvas.Body>
         </Offcanvas>
       </>

@@ -55,7 +55,7 @@ class Home extends Component {
     let weatherInfo = []
     
     axios
-      .get(`http://localhost:8070/WeatherNews?city=${this.state.city}`)
+      .get(`https://mern-spark-project.herokuapp.com/WeatherNews?city=${this.state.city}`)
       .then((res) => {
         weatherInfo = res.data
         this.setState({
@@ -79,7 +79,7 @@ class Home extends Component {
     return this.state.loaded ? (
       <>
         <CarouselsNews topThree={this.state.topThree} />
-        {this.state.weatherData.length!=0&&
+        {this.state.weatherData.length!==0&&
         <Weather weatherData={this.state.weatherData} />}
         <TopNews topNews={this.state.topNews} userData = {this.props.userData} favId={this.props.favId}/>
        <h1> {this.props.favTd}</h1>
