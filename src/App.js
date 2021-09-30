@@ -26,6 +26,7 @@ import ForgetPassword from "./components/HomeComponent/ForgetPassword"
 import HeaderOther from "./components/HeaderOther"
 import { withAuth0 } from "@auth0/auth0-react"
 import Favourite from "./components/Favourite"
+import { CompressOutlined } from "@mui/icons-material";
 
 export class App extends Component {
   constructor(props) {
@@ -111,18 +112,20 @@ export class App extends Component {
     const check = {
       name: name,
     }
+    console.log(name);
     let checkfav = await axios.get(
       "https://mern-spark-project.herokuapp.com/checkfav"
     )
-    console.log(checkfav)
+    console.log(checkfav , "checkfav")
     if (!checkfav.data.state) {
       // eslint-disable-next-line
+      console.log("helloe")
       let create = await axios.post(
         `https://mern-spark-project.herokuapp.com/addfav`,
         check
       )
+      console.log(create,"create")
     }
-    console.log(this.state.favId)
     this.setState({
       headername:name
     })

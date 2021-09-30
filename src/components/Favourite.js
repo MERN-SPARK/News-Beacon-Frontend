@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import axios from "axios"
-import { Accordion, Button } from "react-bootstrap"
+import { Card, Row, Col, Button, Form } from "react-bootstrap";
+import SportsStyle from "./SportsStyle.css";
 export class Favourite extends Component {
   constructor(props) {
     super(props)
@@ -15,6 +16,7 @@ export class Favourite extends Component {
       "https://mern-spark-project.herokuapp.com/checkfav"
     )
     console.log(checkfav.data.id)
+
     let add = await axios.get(
       `https://mern-spark-project.herokuapp.com/getfav/${checkfav.data.id}`
     )
@@ -42,20 +44,40 @@ export class Favourite extends Component {
 
   render() {
     return (
-      <div>
-        {this.state.data.map((item) => {
-          return (
-            <Accordion defaultActiveKey="0">
-              <Accordion.Item eventKey="0">
-                <Accordion.Header>{item.title}</Accordion.Header>
-                <Accordion.Body>BODY</Accordion.Body>
-              </Accordion.Item>
-              <br />
-              <Button onClick={() => this.delfav(item.title)}>Remove</Button>
-            </Accordion>
-          )
-        })}
-      </div>
+      <div className={SportsStyle.cardTop}>
+              {
+                this.state.data.map((item) => {
+                  return (
+                    <>
+                      <Card className="bg-dark text-white">
+                        <Card.Img
+                          src={item.image}
+                          alt="Card image"
+                          style={{ width: "500px", height: "300px" }}
+                        />
+                        <Card.ImgOverlay>
+                          <div
+                            style={{
+                              width: "350px",
+                              height: "300px",
+                              float: "right",
+                            }}
+                          >
+                            {" "}
+                            <Card.Title>{item.title}</Card.Title>
+                            <Card.Text>{item.description}</Card.Text>
+                            <Card.Text>
+                            </Card.Text>
+                           
+                          </div>
+                        </Card.ImgOverlay>
+                      </Card>
+                    </>
+                  );
+                })}
+            </div>
+
+      
     )
   }
 }
