@@ -236,6 +236,17 @@ class Header extends Component {
           </Offcanvas.Header>
 
           <Offcanvas.Body style={{ fontSize: "30px" }}>
+
+          {(isAuthenticated || this.props.userData) &&
+            <Link to="/moreInfo" className="nav-link navnav">
+              {" "}
+              Contact-us
+            </Link>}
+            <Link to="/about" className="nav-link navnav">
+              {" "}
+              about
+            </Link>
+            
             <Link to="/country" className="nav-link navnav">
               Country News
             </Link>

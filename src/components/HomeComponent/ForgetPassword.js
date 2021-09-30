@@ -69,7 +69,7 @@ export class ForgetPassword extends Component {
       console.log(password)
       console.log(this.state.forgetToken)
       let resetToken = await axios.patch(
-        `http://localhost:8070/reset-use/${this.state.forgetToken}`,
+        `https://mern-spark-project.herokuapp.com/reset-use/${this.state.forgetToken}`,
         password
       )
       console.log(resetToken)
