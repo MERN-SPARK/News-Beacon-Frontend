@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import logoImage from "../../src/logo.png";
-import axios from "axios";
+import React, { Component } from "react"
+import logoImage from "../../src/logo.png"
+import axios from "axios"
 // eslint-disable-next-line
-import LoginButton from "./LoginButton";
-import LogoutButton from "./LogoutButton";
-import { withAuth0 } from "@auth0/auth0-react";
-import icon from "../../src/icon.png";
+import LoginButton from "./LoginButton"
+import LogoutButton from "./LogoutButton"
+import { withAuth0 } from "@auth0/auth0-react"
+import icon from "../../src/icon.png"
 // eslint-disable-next-line
-import classnames from "classnames/bind";
-import { Link } from "react-router-dom";
+import classnames from "classnames/bind"
+import { Link } from "react-router-dom"
 
 import {
   Navbar,
@@ -18,64 +18,63 @@ import {
   FormControl,
   Offcanvas,
   Col,
-} from "react-bootstrap";
+} from "react-bootstrap"
 
 class Header extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       userData: [],
       prevScrollpos: window.pageYOffset,
       visible: true,
-    };
+    }
   }
 
   componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener("scroll", this.handleScroll)
   }
 
   componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener("scroll", this.handleScroll)
   }
   Logout = async (values) => {
     // eslint-disable-next-line
     let logoutUSer = await axios.get(
       `https://mern-spark-project.herokuapp.com/signout-user`
-    );
+    )
     // eslint-disable-next-line
     let endfav = await axios.get(
       `https://mern-spark-project.herokuapp.com/endfav`
-    );
-    console.log(logoutUSer);
-  };
+    )
+    console.log(logoutUSer)
+  }
 
   Logout = async (values) => {
     // eslint-disable-next-line
     let logoutUSer = await axios.get(
       `https://mern-spark-project.herokuapp.com/signout-user`
-    );
+    )
     // eslint-disable-next-line
     let endfav = await axios.get(
       `https://mern-spark-project.herokuapp.com/endfav`
-    );
-  };
+    )
+  }
 
   handleScroll = () => {
-    const { prevScrollpos } = this.state;
-    const currentScrollPos = window.pageYOffset;
-    const visible = prevScrollpos > currentScrollPos;
+    const { prevScrollpos } = this.state
+    const currentScrollPos = window.pageYOffset
+    const visible = prevScrollpos > currentScrollPos
     this.setState({
       prevScrollpos: currentScrollPos,
       visible,
-    });
-  };
+    })
+  }
 
   render() {
-    const { isAuthenticated } = this.props.auth0;
+    const { isAuthenticated } = this.props.auth0
 
     return (
       <>
-        {console.log(this.props.isHomepage)}
         <Navbar
           className={
             ("navbar",
@@ -108,7 +107,7 @@ class Header extends Component {
           <Navbar.Collapse
             id="navbarScroll"
             style={{
-              display: "grid",
+              display: "gird",
               gridTemplateColumns: "auto auto auto ",
               gridGap: "50px",
               alignItems: "center",
@@ -138,10 +137,9 @@ class Header extends Component {
                   </Nav.Link>
                   {(isAuthenticated || this.props.userData) && (
                     <>
-                      <Link to="/favourite" className="nav-link navnav">
-                        {" "}
-                        Favourite
-                      </Link>
+                      <Nav.Link href="/favourite" style={{ color: "white" }}>
+                        Favourites
+                      </Nav.Link>
                     </>
                   )}
                 </>
@@ -166,11 +164,7 @@ class Header extends Component {
             </Form>
             <div
               style={{
-                display: "grid",
-                gridTemplateColumns: "auto auto auto",
-                gridGap: "35px",
-                justifyContent: "center",
-                alignContent: "center",
+                display: "flex",
                 alignItems: "center",
               }}
             >
@@ -242,6 +236,7 @@ class Header extends Component {
           </Offcanvas.Header>
 
           <Offcanvas.Body style={{ fontSize: "30px" }}>
+
           {(isAuthenticated || this.props.userData) &&
             <Link to="/moreInfo" className="nav-link navnav">
               {" "}
@@ -253,39 +248,34 @@ class Header extends Component {
             </Link>
             
             <Link to="/country" className="nav-link navnav">
-              {" "}
               Country News
             </Link>
             <Link to="/sports" className="nav-link navnav">
-              {" "}
               Sports
             </Link>
             <Link to="/arts" className="nav-link navnav">
-              {" "}
               Arts
             </Link>
             <Link to="/business" className="nav-link navnav">
-              {" "}
               Business
             </Link>
             <Link to="/travel" className="nav-link navnav">
-              {" "}
               travel
             </Link>
             <Link to="/politics" className="nav-link navnav">
-              {" "}
               Politics
             </Link>
             <Link to="/food" className="nav-link navnav">
-              {" "}
               Food
             </Link>
-            <Col></Col>
+            <Link to="/about" className="nav-link navnav">
+              About
+            </Link>
           </Offcanvas.Body>
         </Offcanvas>
       </>
-    );
+    )
   }
 }
 
-export default withAuth0(Header);
+export default withAuth0(Header)

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import logoImage from "../../src/logo.png";
-import { Link } from "react-router-dom";
+import React, { Component } from "react"
+import logoImage from "../../src/logo.png"
+import { Link } from "react-router-dom"
 import navstyle from "./navstyle.css"
 import {
   Navbar,
@@ -11,16 +11,13 @@ import {
   Button,
   FormControl,
   Offcanvas,
-} from "react-bootstrap";
+} from "react-bootstrap"
 
 class Header extends Component {
- 
-
   render() {
     return (
       <>
-      
-      {console.log(this.props.isHomepage)}
+        {console.log(this.props.isHomepage)}
         <Navbar
           bg="dark"
           expand="lg"
@@ -38,10 +35,19 @@ class Header extends Component {
             href="/"
             style={{
               color: "white",
-          
             }}
           >
-            <img src={logoImage} width="150" height="50" alt="logo" />
+            <img
+              src={logoImage}
+              width="150"
+              height="50"
+              alt="logo"
+              style={{
+                objectFit: "cover",
+                marginLeft: "10px",
+                marginTop: "20px",
+              }}
+            />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse
@@ -50,23 +56,18 @@ class Header extends Component {
               display: "grid",
               gridTemplateColumns: "auto auto auto ",
               gridGap: "150px",
-              
             }}
           >
             <Nav
-            //grid-template-columns: auto auto auto;gap: 50px;
-            
+              //grid-template-columns: auto auto auto;gap: 50px;
+
               className="mr-auto my-2 my-lg-0"
-              style={{ maxHeight: "100px"
-              }}
+              style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="/" style={{ color: "white", fontSize:"30px" }}>
+              <Nav.Link href="/" style={{ color: "white", fontSize: "30px" }}>
                 Home
               </Nav.Link>
-               
-              
-              
 
               {/* decomment if you need a dropDown list
                <NavDropdown title="Link" id="navbarScrollingDropdown">
@@ -106,22 +107,6 @@ class Header extends Component {
             >
               <Button
                 style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
-                href="/login"
-              >
-                Login
-              </Button>
-              <Button
-                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
-                href="/signup"
-              >
-                SignUp
-              </Button>
-
-              {
-                //button to show the sidenav
-              }
-              <Button
-                style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
                 variant="primary"
                 onClick={this.props.OpenNav}
                 className="me-2"
@@ -131,9 +116,7 @@ class Header extends Component {
             </div>
           </Navbar.Collapse>
         </Navbar>
-        {
-          //******************SideNav******************** */
-        }
+
         <Offcanvas
           show={this.props.openSideBar}
           onHide={this.props.closeNav}
@@ -148,21 +131,35 @@ class Header extends Component {
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body style={{ fontSize: "30px" }}>
-           
-            <Link to="/about" className="nav-link navnav"> Sports</Link>
-            <Link to="/country" className="nav-link navnav"> Country News</Link>
-            <Link to="/sports" className="nav-link navnav"> Sports</Link>
-            <Link to="/arts" className="nav-link navnav"> Arts</Link>
-            <Link to="/business" className="nav-link navnav"> Business</Link>
-            <Link to="/travel" className="nav-link navnav"> travel</Link>
-            <Link to="/politics" className="nav-link navnav"> Politics</Link>
-            <Link to="/food" className="nav-link navnav"> Food</Link>
-
+            <Link to="/country" className="nav-link navnav">
+              Country News
+            </Link>
+            <Link to="/sports" className="nav-link navnav">
+              Sports
+            </Link>
+            <Link to="/arts" className="nav-link navnav">
+              Arts
+            </Link>
+            <Link to="/business" className="nav-link navnav">
+              Business
+            </Link>
+            <Link to="/travel" className="nav-link navnav">
+              travel
+            </Link>
+            <Link to="/politics" className="nav-link navnav">
+              Politics
+            </Link>
+            <Link to="/food" className="nav-link navnav">
+              Food
+            </Link>
+            <Link to="/about" className="nav-link navnav">
+              About
+            </Link>
           </Offcanvas.Body>
         </Offcanvas>
       </>
-    );
+    )
   }
 }
 
-export default Header;
+export default Header

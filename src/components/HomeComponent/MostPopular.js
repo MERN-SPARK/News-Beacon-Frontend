@@ -1,41 +1,45 @@
 /* eslint-disable no-unreachable */
-import React, { Component } from "react";
-import { Col, Row, Card, Button, Container } from "react-bootstrap";
-import ModalHomepage from "./ModalHomepage";
-import { withAuth0 } from "@auth0/auth0-react";
-import axios from "axios";
+import React, { Component } from "react"
+import { Col, Row, Card, Button, Container } from "react-bootstrap"
+import ModalHomepage from "./ModalHomepage"
+import { withAuth0 } from "@auth0/auth0-react"
+import axios from "axios"
 
 export class MostPopular extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       showmore: 6,
       showmodal: false,
       newslist: [],
-    };
+    }
   }
   openmodals = (data) => {
     this.setState({
       showmodal: true,
       newslist: data,
-    });
-  };
+    })
+  }
   handleClose = () => {
     this.setState({
       showmodal: false,
-    });
-  };
-  favourite = async (title,description,image,url) => {
-    let arr = {title:title,image:image,description:description,url:url}
-    let checkfav= await axios.get("https://mern-spark-project.herokuapp.com/checkfav")
-    console.log(checkfav.data.id);
- let add = await axios.patch(
-    `https://mern-spark-project.herokuapp.com/resdata/${checkfav.data.id}`, arr);
-    console.log(add.data);
+    })
+  }
+  favourite = async (title, description, image, url) => {
+    let arr = { title: title, image: image, description: description, url: url }
+    let checkfav = await axios.get(
+      "https://mern-spark-project.herokuapp.com/checkfav"
+    )
+    console.log(checkfav.data.id)
+    let add = await axios.patch(
+      `https://mern-spark-project.herokuapp.com/resdata/${checkfav.data.id}`,
+      arr
+    )
+    console.log(add.data)
     // window.location.reload();
-}
+  }
   render() {
-    const { isAuthenticated } = this.props.auth0;
+    const { isAuthenticated } = this.props.auth0
 
     return (
       <div id="popular">
@@ -69,15 +73,27 @@ export class MostPopular extends Component {
                         }}
                       >
                         <Card.Body>
-                          {(isAuthenticated || this.props.userData) && (
-                            <button onClick={()=>this.favourite(item.title,item.description,item.image,item.url)}>Like</button>
-                          )}
+                          <Card.Img variant="top" src={`${item.image}`} />
                           <Card.Title>{`${item.title}`}</Card.Title>
+                          {(isAuthenticated || this.props.userData) && (
+                            <Button
+                              onClick={() =>
+                                this.favourite(
+                                  item.title,
+                                  item.description,
+                                  item.image,
+                                  item.url
+                                )
+                              }
+                              style={{ width: "100%" }}
+                            >
+                              Like
+                            </Button>
+                          )}
                         </Card.Body>
-                        <Card.Img variant="top" src={`${item.image}`} />
                       </Card>
                     </Col>
-                  );
+                  )
                 } else {
                   return (
                     <Col
@@ -90,19 +106,29 @@ export class MostPopular extends Component {
                           height: "350px",
                           marginTop: "50px",
                         }}
-                        onClick={() => this.openmodals(item)}
                       >
-                        <Card.Img variant="bottom" src={`${item.image}`} />
-
                         <Card.Body>
-                          {(isAuthenticated || this.props.userData) && (
-                            <button onClick={()=>this.favourite(item.title,item.description,item.image,item.url)}>Like</button>
-                          )}
+                          <Card.Img variant="top" src={`${item.image}`} />
                           <Card.Title>{`${item.title}`}</Card.Title>
+                          {(isAuthenticated || this.props.userData) && (
+                            <Button
+                              onClick={() =>
+                                this.favourite(
+                                  item.title,
+                                  item.description,
+                                  item.image,
+                                  item.url
+                                )
+                              }
+                              style={{ width: "100%" }}
+                            >
+                              Like
+                            </Button>
+                          )}
                         </Card.Body>
                       </Card>
                     </Col>
-                  );
+                  )
                 }
               })}
           </Row>
@@ -119,7 +145,7 @@ export class MostPopular extends Component {
               marginTop: "30px",
             }}
             onClick={() => {
-              this.setState({ showmore: this.state.showmore + 3 });
+              this.setState({ showmore: this.state.showmore + 3 })
             }}
           >
             See More
@@ -132,8 +158,8 @@ export class MostPopular extends Component {
         />
         ;
       </div>
-    );
+    )
   }
 }
 
-export default withAuth0(MostPopular);
+export default withAuth0(MostPopular)
