@@ -44,7 +44,10 @@ export class Favourite extends Component {
 
   render() {
     return (
+
       <div className={SportsStyle.cardTop}>
+              <br/>
+
               {
                 this.state.data.map((item) => {
                   return (
@@ -53,24 +56,45 @@ export class Favourite extends Component {
                         <Card.Img
                           src={item.image}
                           alt="Card image"
-                          style={{ width: "500px", height: "300px" }}
+                          style={{ width: "500px", height: "200px" }}
                         />
                         <Card.ImgOverlay>
                           <div
                             style={{
                               width: "350px",
-                              height: "300px",
-                              float: "right",
+                              height: "200px",
+                              position:"relative",
+                              left:"45%"
+                              
                             }}
                           >
                             {" "}
                             <Card.Title>{item.title}</Card.Title>
-                            <Card.Text>{item.description}</Card.Text>
-                           
-                           
+                            <a href={item.url}>open Source</a>
+                            <br/>
+                            <br/>
                           </div>
-                        </Card.ImgOverlay>
+                          </Card.ImgOverlay>
+                        <Card.ImgOverlay>
+                          <div
+                            style={{
+                              width: "350px",
+                              height: "200px",
+                              float: "right",
+
+
+                            }}
+                          >
+                            {" "}
+                            <Card.Text>{item.description}</Card.Text>
+                            
+                            <br/>
+                           <Button type='button' onClick={()=>this.delfav(item.title)} variant="secondary">Remove</Button>
+                          </div>
+                          </Card.ImgOverlay>
+
                       </Card>
+                      <br/>
                     </>
                   );
                 })}
