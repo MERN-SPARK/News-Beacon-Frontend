@@ -58,10 +58,8 @@ class Header extends Component {
           <Navbar.Collapse
             id="navbarScroll"
             style={{
-              display: "grid",
-              gridTemplateColumns: "auto auto auto ",
               gridGap: "150px",
-              
+              justifyContent: "flex-end",
             }}
           >
             <Nav
@@ -115,7 +113,7 @@ class Header extends Component {
                 gridGap: "20px",
               }}
             >
-              <Button
+              {/* <Button
                 style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
                 href="/login"
               >
@@ -126,7 +124,7 @@ class Header extends Component {
                 href="/signup"
               >
                 SignUp
-              </Button>
+              </Button> */}
 
               {
                 //button to show the sidenav

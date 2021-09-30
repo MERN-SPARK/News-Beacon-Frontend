@@ -85,7 +85,7 @@ class Header extends Component {
           }
           bg="dark"
           expand="lg"
-          style={{display:"flex",justifyContent:"space-between"}}
+          style={{display:"flex",justifyContent:"space-between",    height: "100px"}}
         >
           <Navbar.Brand
             href="/"
