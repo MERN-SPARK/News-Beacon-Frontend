@@ -137,9 +137,11 @@ class Header extends Component {
                   </Nav.Link>
                   {(isAuthenticated || this.props.userData) && (
                     <>
-                      <Nav.Link href="/favourite" style={{ color: "white" }}>
-                        Favourites
-                      </Nav.Link>
+                    <Link to="/favourite" className="nav-link navnav">
+                         {" "}
+                       Favourites
+                      </Link>
+                      
                     </>
                   )}
                 </>
