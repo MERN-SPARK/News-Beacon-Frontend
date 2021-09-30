@@ -191,7 +191,7 @@ class Header extends Component {
               {isAuthenticated ? (
                 <LogoutButton />
               ) : this.props.userData ? (
-                
+
                 <Button
                   style={{ backgroundColor: "#DA0037", borderColor: "#DA0037" }}
                   href="/"
@@ -243,7 +243,11 @@ class Header extends Component {
           <Offcanvas.Body style={{ fontSize: "30px" }}>
             <Link to="/about" className="nav-link navnav">
               {" "}
-              Sports
+              about
+            </Link>
+            <Link to="/moreInfo" className="nav-link navnav">
+              {" "}
+              Contact-us
             </Link>
             <Link to="/country" className="nav-link navnav">
               {" "}
